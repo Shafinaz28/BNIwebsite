@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BNI AURA | Get Invited</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        
+        /* Custom styles for BNI theme */
+        :root {
+            --bni-red: #ef4444;
+            --bni-red-dark: #dc2626;
+            --step-icon-bg: #fff; /* White background for icons */
+            --step-icon-color: #dc2626; /* Dark Red icon color */
+            --step-border-color: #fbd3d3; /* Light red border */
+        }
+
+        .text-bni-red { color: var(--bni-red); }
+        .bg-bni-red { background-color: var(--bni-red); }
+        .border-bni-red { border-color: var(--bni-red); }
+
+        /* How It Works Step Styling */
+        .how-it-works-step {
+            @apply flex flex-col items-center text-center p-4;
+            position: relative;
+        }
+
+        .step-icon-wrapper {
+            @apply w-16 h-16 rounded-full flex items-center justify-center mb-3 border-2 border-transparent;
+            background-color: var(--step-icon-bg);
+            color: var(--step-icon-color);
+            z-index: 10;
+        }
+
+        .step-number {
+            position: absolute;
+            top: 0;
+            right: 0; 
+            @apply w-6 h-6 rounded-full bg-red-600 text-white flex items-center justify-center text-xs font-bold shadow-md;
+            z-index: 20;
+        }
+
+        /* --- Dropdown specific styles (Desktop) --- */
+        .dropdown:hover .dropdown-menu { display: block; }
+        
+        /* Floating Chat Styles */
+        #floating-chat-btn { position: fixed; bottom: 2rem; right: 2rem; z-index: 1000; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 900; }
+        .chat-modal-container { position: fixed; bottom: 6rem; right: 2rem; width: 90%; max-width: 350px; z-index: 1000; transform: translateY(20px); opacity: 0; transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; }
+        .chat-modal-container.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-lg fixed top-0 left-0 w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between relative">
+             <div class="flex items-center space-x-3 z-10">
+    <img src="./images/BNI.jpg" 
+         alt="BNI AURA Logo" 
+         class="h-10 md:h-12 w-auto object-contain" 
+         onerror="this.onerror=null; this.src='https://placehold.co/150x40/ef4444/ffffff?text=BNI+AURA+Logo'">
+</div>
+
+            <nav class="hidden md:flex space-x-6 text-gray-700 font-semibold md:absolute md:inset-0 md:justify-center md:items-center">
+                <a href="index.html" class="hover:text-red-600 transition duration-300">Home</a>
+                <a href="about.html" class="hover:text-red-600 transition duration-300">About Us</a>
+                <div class="relative dropdown">
+                    <a href="categories.html" class="flex items-center hover:text-red-600 transition duration-300">
+                        Categories
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </a>
+                    <div class="dropdown-menu hidden absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-64 bg-white rounded-lg shadow-xl border border-gray-100 z-50">
+                        <div class="py-2">
+                            <a href="infra-detail.html" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">INFRA TEAM</a>
+                            <a href="construction-Team.html" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">CONSTRUCTION TEAM</a>
+                            <a href="finance-team.html" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">FINANCE TEAM</a>
+                            <a href="events.html" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">EVENTS TEAM</a>
+                            <a href="Industrialsme.html" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">INDUSTRIAL/SME TEAM</a>
+                            <a href="healthcare.html" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">HEALTHCARE TEAM</a>
+                            <a href="categories.html" class="block px-4 py-2 text-red-600 font-bold border-t mt-1 hover:bg-red-50 transition duration-200">View All Categories</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="invite.html" class="hover:text-red-600 transition duration-300 text-bni-red">Get Invited</a>
+                <a href="join.html" class="hover:text-red-600 transition duration-300">Join Us</a>
+            </nav>
+
+
+            <div class="hidden md:flex items-center space-x-3 z-10">
+                <a href="mailto:support@bniaura.com" class="text-sm sm:text-base text-red-600 font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <span>support@bniaura.com</span>
+                </a>
+            </div>
+
+            <button id="menuBtn" class="md:hidden text-gray-700 focus:outline-none p-2 rounded-md hover:bg-gray-100 transition duration-300 z-10">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+
+        <div id="mobileMenu" class="md:hidden bg-white shadow-xl hidden border-t border-red-100">
+            <nav class="flex flex-col space-y-2 p-4 text-gray-700 font-medium">
+                <a href="index.html" class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Home</a>
+                <a href="about.html" class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">About Us</a>
+
+                <button id="mobile-category-toggle" class="w-full text-left flex justify-between items-center px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300 font-bold border-b border-red-100 focus:outline-none">
+                    Categories (Teams)
+                    <svg id="category-arrow" class="w-4 h-4 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </button>
+
+                <div id="mobile-category-list" class="hidden flex flex-col space-y-1">
+                    <a href="infra-detail.html" class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">INFRA TEAM</a>
+                    <a href="construction-Team.html" class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">CONSTRUCTION TEAM</a>
+                    <a href="finance-team.html" class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">FINANCE TEAM</a>
+                    <a href="events.html" class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">EVENTS TEAM</a>
+                    <a href="Industrialsme.html" class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">INDUSTRIAL/SME TEAM</a>
+                    <a href="healthcare.html" class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">HEALTHCARE TEAM</a>
+                </div>
+
+                <a href="invite.html" class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300 text-red-600 font-bold">
+                    Get Invited
+                </a>
+
+                <a href="join.html" class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Join Us</a>
+                <a href="mailto:support@bniaura.com" class="block px-3 py-2 text-red-600 font-semibold text-center border-t mt-2">support@bniaura.com</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-20">
+
+        <section id="team-hero" class="bg-bni-red text-white py-24" style="background-image: linear-gradient(to right, #dc2626, #ef4444);">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h1 class="text-5xl font-extrabold mb-3 drop-shadow-md">Request Your Invitation</h1>
+                <p class="text-xl font-light text-gray-300 max-w-3xl mx-auto">Take the first step towards growing your business through structured networking</p>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">How It Works</h2>
+
+                <div class="max-w-6xl mx-auto flex justify-between relative bg-red-50/50 rounded-lg shadow-sm">
+                    
+                    <div class="how-it-works-step relative w-1/4 p-4 md:p-6 text-center flex flex-col items-center">
+                        <span class="absolute top-0 right-0 left-0 text-sm font-bold pt-2 text-red-600">01</span>
+                        
+                        <div class="w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center mb-3 mt-8 border border-red-200">
+                            <i class="fa-solid fa-file-alt text-2xl text-red-600"></i>
+                        </div>
+                        
+                        <h3 class="font-bold text-gray-900 mb-1 text-base md:text-lg">Submit Request</h3>
+                        <p class="text-sm text-gray-600">Fill out the invitation form</p>
+                    </div>
+
+                    <div class="how-it-works-step relative w-1/4 p-4 md:p-6 text-center flex flex-col items-center">
+                        <span class="absolute top-0 right-0 left-0 text-sm font-bold pt-2 text-red-600">02</span>
+
+                        <div class="w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center mb-3 mt-8 border border-red-200">
+                            <i class="fa-solid fa-envelope-open text-2xl text-red-600"></i>
+                        </div>
+                        
+                        <h3 class="font-bold text-gray-900 mb-1 text-base md:text-lg">Get Confirmation</h3>
+                        <p class="text-sm text-gray-600">Receive meeting details via email</p>
+                    </div>
+
+                    <div class="how-it-works-step relative w-1/4 p-4 md:p-6 text-center flex flex-col items-center">
+                        <span class="absolute top-0 right-0 left-0 text-sm font-bold pt-2 text-red-600">03</span>
+
+                        <div class="w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center mb-3 mt-8 border border-red-200">
+                            <i class="fa-solid fa-calendar-alt text-2xl text-red-600"></i>
+                        </div>
+                        
+                        <h3 class="font-bold text-gray-900 mb-1 text-base md:text-lg">Attend Meeting</h3>
+                        <p class="text-sm text-gray-600">Visit as our guest</p>
+                    </div>
+
+                    <div class="how-it-works-step relative w-1/4 p-4 md:p-6 text-center flex flex-col items-center">
+                        <span class="absolute top-0 right-0 left-0 text-sm font-bold pt-2 text-red-600">04</span>
+
+                        <div class="w-12 h-12 bg-white rounded-lg shadow-md flex items-center justify-center mb-3 mt-8 border border-red-200">
+                            <i class="fa-solid fa-user-check text-2xl text-red-600"></i>
+                        </div>
+                        
+                        <h3 class="font-bold text-gray-900 mb-1 text-base md:text-lg">Join Network</h3>
+                        <p class="text-sm text-gray-600">Become a member</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6">
+
+                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-bni-red">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">Invitation Request Form</h2>
+                    <p class="text-sm text-gray-600 mb-6">Join our exclusive business referral network.</p>
+
+                    <form class="space-y-4">
+                        <input placeholder="Full Name*" type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                        <input placeholder="Email Address*" type="email" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                        <input type="tel" placeholder="Phone Number*" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                        <input placeholder="Business Name*" type="text" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+
+                        <select required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 bg-white appearance-none">
+                            <option value="" disabled selected>Select your category*</option>
+                            <option>Finance Consultant</option>
+                            <option>Digital Marketing Agency</option>
+                            <option>Real Estate Agent</option>
+                            <option>Software Developer</option>
+                        </select>
+
+                        <textarea placeholder="Message (Optional)" rows="3" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500"></textarea>
+
+                        <button type="submit" class="w-full bg-red-600 text-white text-lg font-bold py-3 rounded-lg hover:bg-red-700 transition">
+                            Submit Request
+                        </button>
+                        <p class="text-xs text-gray-500 text-center pt-2">
+                            By submitting this form, you agree to be contacted by BNI AURA.
+                        </p>
+                    </form>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-red-100">
+    
+    <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">Visit Us as a Guest</h2>
+
+    <p class="text-gray-700 mb-6 leading-relaxed">
+        Experience our weekly chapter meeting firsthand. See how our **structured networking** format helps members generate qualified referrals and grow their businesses.
+    </p>
+
+    <div class="space-y-4 mb-6">
+        
+        <div class="flex items-start space-x-3">
+            <span class="text-bni-red text-xl flex-shrink-0 pt-1"><i class="fa-solid fa-calendar-alt"></i></span>
+            <div>
+                <h4 class="font-semibold text-gray-900">Weekly Meetings</h4>
+                <p class="text-sm text-gray-600">Join us every week for structured networking sessions</p>
+            </div>
+        </div>
+
+        <div class="flex items-start space-x-3">
+            <span class="text-bni-red text-xl flex-shrink-0 pt-1"><i class="fa-solid fa-users"></i></span>
+            <div>
+                <h4 class="font-semibold text-gray-900">Professional Network</h4>
+                <p class="text-sm text-gray-600">Connect with diverse business professionals in your area</p>
+            </div>
+        </div>
+
+        <div class="flex items-start space-x-3">
+            <span class="text-bni-red text-xl flex-shrink-0 pt-1"><i class="fa-solid fa-check-circle"></i></span>
+            <div>
+                <h4 class="font-semibold text-gray-900">No Obligation</h4>
+                <p class="text-sm text-gray-600">Visit as a guest to see if BNI AURA is right for you</p>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="mt-6 p-4 bg-red-50 border-l-4 border-bni-red text-sm text-gray-700">
+        Note: Guests are welcome to attend up to two meetings before deciding on membership.
+    </div>
+
+    <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b pb-2 text-center mt-10">CONTACT US FOR MORE INFO!</h2>
+
+    <div class="space-y-6">
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4"> 
+        
+        <div class="p-4 bg-gray-50 rounded-lg shadow-sm border border-red-100">
+            <h3 class="font-bold text-lg text-gray-900 mb-1">SAGAR DHONGADY</h3>
+            <div class="flex justify-between items-center">
+                
+                <a href="tel:+919964083546" class="text-bni-red font-bold text-lg hover:underline">+91-99640 83546</a>
+            </div>
+        </div>
+
+        <div class="p-4 bg-gray-50 rounded-lg shadow-sm border border-red-100">
+            <h3 class="font-bold text-lg text-gray-900 mb-1">SOWRABHA L</h3>
+            <div class="flex justify-between items-center">
+                
+                <a href="tel:+919902279257" class="text-bni-red font-bold text-lg hover:underline">+91-99022 79257</a>
+            </div>
+        </div>
+    </div>
+    <div class="pt-4">
+        <a href="https://wa.me/919964083546" target="_blank"
+            class="bg-green-500 text-white py-3 px-6 rounded-xl flex items-center justify-center space-x-2 font-bold hover:bg-green-600 shadow-lg transition duration-300">
+            <i class="fab fa-whatsapp text-xl"></i>
+            <span>Message us on WhatsApp</span>
+        </a>
+        <p class="text-xs text-gray-500 text-center mt-2">
+            +91 99640 83546 (Sagar Dhongady)
+        </p>
+    </div>
+</div>
+</div>
+
+            </div>
+        </section>
+
+        <button id="floating-chat-btn" class="bg-red-600 text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z"></path></svg>
+        </button>
+
+        <div id="chat-modal" class="hidden">
+            <div class="modal-overlay"></div>
+            <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-red-600">
+                <div class="flex justify-between items-start border-b pb-3 mb-4">
+                    <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-red-600">AURA</span></h3>
+                    <button id="close-chat-btn" class="text-gray-500 hover:text-gray-900 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+
+                <p class="text-sm text-gray-600 mb-4">Hi! Please leave your details and our team will connect with you shortly.</p>
+
+                <form action="#" method="POST" class="space-y-4">
+                    <div>
+                        <input type="text" placeholder="Name*" class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500" required>
+                    </div>
+                    <div>
+                        <input type="email" placeholder="Email*" class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500" required>
+                    </div>
+                    <button type="submit" class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
+                        Send
+                    </button>
+                </form>
+
+                <p class="text-xs text-center text-gray-400 mt-4">
+                    This site is protected by reCAPTCHA and the Google <a href="#" class="hover:text-red-500 underline">Privacy Policy</a> and <a href="#" class="hover:text-red-500 underline">Terms of Service</a> apply.
+                </p>
+            </div>
+        </div>
+<footer class="bg-gray-900 py-12 text-gray-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
+
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                        <img src="./images/BNI.jpg" alt="" class="h-8 w-auto object-contain"
+                            onerror="this.onerror=null; this.src='https://placehold.co/120x30/ef4444/ffffff?text=BNI+AURA+Logo'">
+                 </div>
+                <p class="text-sm">
+                    Unlock new opportunities, forge valuable partnerships, and drive your business forward with BNI
+                    AURA.
+                </p>
+                <p class="text-xs mt-1 text-red-400 font-semibold">
+                    We believe in Givers Gain®.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Quick Links</h4>
+                <nav class="space-y-2 text-sm">
+                    <a href="index.html" class="block hover:text-red-400 transition">Home</a>
+                    <a href="about.html" class="block hover:text-red-400 transition">About Us</a>
+                    <a href="teams-overview.html" class="block hover:text-red-400 transition">Categories</a>
+                    <a href="invite.html" class="block hover:text-red-400 transition">Get Invited</a>
+                    <a href="join.html" class="block hover:text-red-400 transition">Join Us</a>
+                </nav>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Contact</h4>
+                <div class="space-y-2 text-sm">
+                    <p class="flex items-start space-x-2">
+                        <svg class="w-5 h-5 mt-1 text-red-500 flex-shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        <span>
+                            BNI AURA Chapter Office,<br>
+                            123 Referral Blvd, Suite 400,<br>
+                            Business City, CA 90210
+                        </span>
+                    </p>
+                    <a href="mailto:support@bniaura.com"
+                        class="flex items-center space-x-2 hover:text-red-400 transition">
+                        <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                        <span>support@bniaura.com</span>
+                    </a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Connect</h4>
+                <div class="flex space-x-4">
+                    
+
+                    <a href="https://www.instagram.com/bniaura/?igsh=MWU0N3U0bnlyMnUzcA%3D%3D#" class="text-red-400 hover:text-white transition">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.773 1.58 4.92 4.85.058 1.265.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.147 3.27-1.678 4.773-4.92 4.92-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-3.27-.147-4.773-1.678-4.92-4.92-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.147-3.27 1.678-4.773 4.92-4.92 1.265-.058 1.645-.07 4.85-.07zm0-2.163C8.715 0 8.358.012 7.1.07 3.655.22 1.3 2.64 1.15 6.1c-.058 1.265-.07 1.645-.07 4.85s.012 3.584.07 4.85c.15 3.45 2.57 5.869 6.1 6.019 1.265.058 1.645.07 4.85.07s3.584-.012 4.85-.07c3.45-.15 5.869-2.57 6.019-6.1.058-1.265.07-1.645.07-4.85s-.012-3.584-.07-4.85c-.15-3.45-2.57-5.869-6.1-6.019-1.265-.058-1.645-.07-4.85-.07zm0 6a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 2a2.5 2.5 0 110 5 2.5 2.5 0 010-5zm5.5-2.75a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z" />
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center text-sm">
+            <p>Copyright &copy; 2025 BNI AURA All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Menu Toggle JS ---
+            const menuBtn = document.getElementById("menuBtn");
+            const mobileMenu = document.getElementById("mobileMenu");
+
+            menuBtn.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            // --- Mobile Categories Accordion Toggle JS ---
+            const categoryToggle = document.getElementById('mobile-category-toggle');
+            const categoryList = document.getElementById('mobile-category-list');
+            const categoryArrow = document.getElementById('category-arrow');
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+
+            if (categoryToggle && categoryList) {
+                categoryToggle.addEventListener('click', () => {
+                    const isHidden = categoryList.classList.contains('hidden');
+                    categoryList.classList.toggle('hidden');
+
+                    if (isHidden) {
+                        categoryArrow.style.transform = 'rotate(180deg)';
+                    } else {
+                        categoryArrow.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+            
+            // --- Floating Chat/Modal JS ---
+            const chatBtn = document.getElementById("floating-chat-btn");
+            const chatModal = document.getElementById("chat-modal");
+            const closeChatBtn = document.getElementById("close-chat-btn");
+            
+            if (chatModal) {
+                const modalContainer = chatModal.querySelector('.chat-modal-container');
+
+                const toggleModal = () => {
+                    chatModal.classList.toggle("hidden");
+                    if (!chatModal.classList.contains("hidden")) {
+                        setTimeout(() => {
+                            modalContainer.classList.add("active");
+                        }, 10);
+                    } else {
+                        modalContainer.classList.remove("active");
+                    }
+                };
+
+                if (chatBtn) {
+                    chatBtn.addEventListener("click", toggleModal);
+                }
+                if (closeChatBtn) {
+                    closeChatBtn.addEventListener("click", toggleModal);
+                }
+                
+                chatModal.addEventListener("click", (e) => {
+                    if (e.target.classList.contains('modal-overlay')) {
+                        toggleModal();
+                    }
+                });
+            }
+            
+            // --- Close mobile menu on clicking any link ---
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
