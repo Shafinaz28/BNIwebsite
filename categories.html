@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,27 +8,42 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        
         /* --- Custom BNI Red Theme & Unique Team Colors --- */
         :root {
-            --bni-red: #ef4444; /* Red-500 */
-            --bni-red-dark: #dc2626; /* Red-600/700 */
+            --bni-red: #ef4444;
+            /* Red-500 */
+            --bni-red-dark: #dc2626;
+            /* Red-600/700 */
+            --bni-red-original: #ef4444;
+            /* Added for consistency */
 
             /* Defined colors are not currently used in the component background, but kept for future icon styling */
-            --infra-blue-icon: #3b82f6; 
-            --construction-orange-icon: #fb923c; 
-            --finance-green-icon: #10b981; 
-            --events-purple-icon: #a855f7; 
-            --industrial-gray-icon: #64748b; 
-            --healthcare-red-icon: #ef4444; 
+            --infra-blue-icon: #3b82f6;
+            --construction-orange-icon: #fb923c;
+            --finance-green-icon: #10b981;
+            --events-purple-icon: #a855f7;
+            --industrial-gray-icon: #64748b;
+            --healthcare-red-icon: #ef4444;
         }
-        .font-display { font-family: 'Roboto Condensed', sans-serif; }
-        
-        .text-bni-red { color: var(--bni-red); }
-        .bg-bni-red { background-color: var(--bni-red); }
-        .border-bni-red { border-color: var(--bni-red); }
-        
+
+        .font-display {
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        .text-bni-red {
+            color: var(--bni-red);
+        }
+
+        .bg-bni-red {
+            background-color: var(--bni-red);
+        }
+
+        .border-bni-red {
+            border-color: var(--bni-red);
+        }
+
         /* Header specific active link */
         .nav-link.active {
             color: var(--bni-red);
@@ -37,92 +53,213 @@
         }
 
         /* Dropdown */
-        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
 
         /* --- Team Card Styling (UNIFIED & ATTRACTIVE) --- */
         .team-card {
             /* Full card border on hover, lift effect, and permanent shadow */
-            @apply bg-white rounded-xl shadow-md p-6 flex flex-col 
-                   transition-all duration-300 transform 
-                   border-2 border-transparent; 
-        }
-        .team-card:hover {
-            /* Full Red Border and Lift on Hover */
-            @apply shadow-xl border-bni-red; 
-            transform: translateY(-5px); 
-        }
-        
-        .team-icon-wrapper {
-            /* Large (80px) circle, light gray background, centered. */
-            @apply w-20 h-20 rounded-full mb-4 flex items-center justify-center bg-gray-100 mx-auto; 
-            padding-top: 10px; 
-            padding-bottom: 10px;
-        }
-        .team-icon {
-            /* Icon size (48px) */
-            @apply w-12 h-12 object-contain; 
-        }
-        .team-title {
-            /* Title style (Red text, bold, centered) */
-            @apply text-xl font-extrabold font-display mb-1 text-center text-bni-red;
-        }
-        .team-description {
-            /* Description style (Gray text, centered) */
-            @apply text-sm text-gray-700 mb-4 flex-grow text-center;
-        }
-        .team-stats {
-            @apply text-sm text-gray-700 space-y-1;
-        }
-        .team-stats > div {
-            /* Spacing for stats - added px-6 for internal padding */
-            @apply flex justify-between items-center px-6; 
-        }
-        .open-spot {
-            @apply text-bni-red font-extrabold; 
-        }
-        .view-button {
-            /* Button style */
-            @apply w-full text-center bg-bni-red text-white font-bold py-2.5 px-4 rounded-lg mt-4 
-                   transition duration-300 hover:bg-red-700 flex items-center justify-center space-x-2;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            background-color: #fff;
+            border-radius: 0.75rem;
+            -webkit-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            -webkit-transform: translate(0);
+            -ms-transform: translate(0);
+            transform: translate(0);
+            border: 2px solid transparent;
         }
 
+        .team-card:hover {
+            /* Full Red Border and Lift on Hover */
+            -webkit-box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            border-color: var(--bni-red);
+            -webkit-transform: translateY(-5px);
+            -ms-transform: translateY(-5px);
+            transform: translateY(-5px);
+        }
+
+        .team-icon-wrapper {
+            /* Large (80px) circle, light gray background, centered. */
+            width: 5rem;
+            height: 5rem;
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            background-color: #f3f4f6;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .team-icon {
+            /* Icon size (48px) */
+            width: 3rem;
+            height: 3rem;
+            -o-object-fit: contain;
+            object-fit: contain;
+        }
+
+        .team-title {
+            /* Title style (Red text, bold, centered) */
+            font-size: 1.25rem;
+            font-weight: 800;
+            font-family: 'Roboto Condensed', sans-serif;
+            margin-bottom: 0.25rem;
+            text-align: center;
+            color: var(--bni-red);
+        }
+
+        .team-description {
+            /* Description style (Gray text, centered) */
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .view-button {
+            /* Button style */
+            width: 100%;
+            text-align: center;
+            background-color: var(--bni-red);
+            color: #fff;
+            font-weight: bold;
+            padding-top: 0.625rem;
+            padding-bottom: 0.625rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            -webkit-transition: background-color 0.3s;
+            -o-transition: background-color 0.3s;
+            transition: background-color 0.3s;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .view-button:hover {
+            background-color: #dc2626;
+        }
+
+
         /* --- Floating Chat/Modal Styles (Kept standard) --- */
-        #floating-chat-btn { position: fixed; bottom: 2rem; right: 2rem; z-index: 1000; }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 900; }
-        .chat-modal-container { position: fixed; bottom: 6rem; right: 2rem; width: 90%; max-width: 350px; z-index: 1000; transform: translateY(20px); opacity: 0; transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; }
-        .chat-modal-container.active { opacity: 1; transform: translateY(0); }
+        #floating-chat-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 900;
+        }
+
+        .chat-modal-container {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem;
+            width: 90%;
+            max-width: 350px;
+            z-index: 1000;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .chat-modal-container.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
+
 <body class="bg-gray-50 text-gray-800">
 
     <header class="bg-white shadow-lg fixed top-0 left-0 w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between relative">
-            
-             <div class="flex items-center space-x-3 z-10">
-    <img src="./images/BNI.jpg" 
-         alt="BNI AURA Logo" 
-         class="h-10 md:h-12 w-auto object-contain" 
-         onerror="this.onerror=null; this.src='https://placehold.co/150x40/ef4444/ffffff?text=BNI+AURA+Logo'">
-</div>
 
-            <nav class="hidden md:flex space-x-6 text-gray-700 font-semibold md:absolute md:inset-0 md:justify-center md:items-center">
+            <div class="flex items-center space-x-3 z-10">
+                <img src="./images/BNI.jpg" alt="BNI AURA Logo" class="h-10 md:h-12 w-auto object-contain"
+                    onerror="this.onerror=null; this.src='https://placehold.co/150x40/ef4444/ffffff?text=BNI+AURA+Logo'">
+            </div>
+
+            <nav
+                class="hidden md:flex space-x-6 text-gray-700 font-semibold md:absolute md:inset-0 md:justify-center md:items-center">
                 <a href="index.html" class="nav-link hover:text-bni-red transition duration-300">Home</a>
                 <a href="about.html" class="nav-link hover:text-bni-red transition duration-300">About Us</a>
-                
+
                 <div class="relative dropdown">
-                    <a href="#teams" class="nav-link active flex items-center text-bni-red transition duration-300 border-b-2 border-bni-red pb-1">
+                    <a href="categories.html"
+                        class="nav-link active flex items-center text-bni-red transition duration-300 border-b-2 border-bni-red pb-1 text-bni-red active">
                         Categories
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
                     </a>
-                    <div class="dropdown-menu hidden absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-64 bg-white rounded-lg shadow-xl border border-gray-100 z-50">
+                    <div
+                        class="dropdown-menu hidden absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-64 bg-white rounded-lg shadow-xl border border-gray-100 z-50">
                         <div class="py-2">
-                            <a href="infra-detail.html" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">INFRA TEAM</a>
-                            <a href="construction-Team.html" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">CONSTRUCTION TEAM</a>
-                            <a href="finance-team.html" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">FINANCE TEAM</a>
-                            <a href="events.html" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">EVENTS TEAM</a>
-                            <a href="Industrialsme.html" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">INDUSTRIAL/SME TEAM</a>
-                            <a href="healthcare.html" class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">HEALTHCARE TEAM</a>
-                            <a href="#teams" class="block px-4 py-2 text-bni-red font-bold border-t mt-1 hover:bg-red-50 transition duration-200">View All Teams</a>
+                            <a href="infra-detail.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">INFRA
+                                TEAM</a>
+                            <a href="construction-Team.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">CONSTRUCTION
+                                TEAM</a>
+                            <a href="finance-team.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">FINANCE
+                                TEAM</a>
+                            <a href="events.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">EVENTS
+                                TEAM</a>
+                            <a href="Industrialsme.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">INDUSTRIAL/SME
+                                TEAM</a>
+                            <a href="healthcare.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">HEALTHCARE
+                                TEAM</a>
+                            <a href="#teams"
+                                class="block px-4 py-2 text-bni-red font-bold border-t mt-1 hover:bg-red-50 transition duration-200">View
+                                All Teams</a>
                         </div>
                     </div>
                 </div>
@@ -131,173 +268,294 @@
             </nav>
 
             <div class="hidden md:flex items-center space-x-3 z-10">
-                <a href="mailto:support@bniaura.com" class="text-sm sm:text-base text-bni-red font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    <span>support@bniaura.com</span>
+                <a href="mailto:bniaurablr@gmail.com
+"
+                    class="text-sm sm:text-base text-bni-red font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    <span>bniaurablr@gmail.com</span>
                 </a>
             </div>
-            
-            <button id="menuBtn" class="md:hidden text-gray-700 focus:outline-none p-2 rounded-md hover:bg-gray-100 transition duration-300 z-10">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+
+            <button id="menuBtn"
+                class="md:hidden text-gray-700 focus:outline-none p-2 rounded-md hover:bg-gray-100 transition duration-300 z-10">
+                <svg class="w-6 h-6" id="mobileMenuButton" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
             </button>
         </div>
 
         <div id="mobileMenu" class="md:hidden bg-white shadow-xl hidden border-t border-red-100">
             <nav class="flex flex-col space-y-2 p-4 text-gray-700 font-medium">
-                <a href="index.html" class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Home</a>
-                <a href="about.html" class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">About Us</a>
-                
-                <a href="#teams" class="block px-3 py-2 rounded-md bg-red-50 text-bni-red font-bold transition duration-300 border-b border-red-100">Categories (Teams)</a>
-                <a href="infra-detail.html" class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INFRA TEAM</a>
-                <a href="construction-Team.html" class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">CONSTRUCTION TEAM</a>
-                <a href="finance-team.html" class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">FINANCE TEAM</a>
-                <a href="events.html" class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">EVENTS TEAM</a>
-                <a href="Industrialsme.html" class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INDUSTRIAL/SME TEAM</a>
-                <a href="healthcare.html" class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">HEALTHCARE TEAM</a>
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Home</a>
+                <a href="about.html"
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">About
+                    Us</a>
+
+                <div class="border-b border-red-100">
+                    <div
+                        class="flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-red-50 transition duration-300 ">
+                        <a href="categories.html" class="flex-grow font-bold text-bni-red active hover:text-bni-red ">
+                            Categories
+                        </a>
+                        <button id="categoryToggle" class="p-1 focus:outline-none">
+                            <svg id="toggleIcon" class="w-4 h-4 transform rotate-0 transition-transform duration-300"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
 
 
-                <a href="invite.html" class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Get Invited</a>
-                <a href="join.html" class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Join Us</a>
-                <a href="mailto:support@bniaura.com" class="block px-3 py-2 text-bni-red font-semibold text-center border-t mt-2">support@bniaura.com</a>
+                <div id="mobileSubCategories" class="hidden flex flex-col space-y-1">
+                    <a href="infra-detail.html"
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INFRA
+                        TEAM</a>
+                    <a href="construction-Team.html"
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">CONSTRUCTION
+                        TEAM</a>
+                    <a href="finance-team.html"
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">FINANCE
+                        TEAM</a>
+                    <a href="events.html"
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">EVENTS
+                        TEAM</a>
+                    <a href="Industrialsme.html"
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INDUSTRIAL/SME
+                        TEAM</a>
+                    <a href="healthcare.html"
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">HEALTHCARE
+                        TEAM</a>
+                    <a href="#teams"
+                        class="block pl-8 py-2 text-bni-red font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200">View
+                        All Teams</a>
+                </div>
+                <a href="invite.html"
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Get
+                    Invited</a>
+                <a href="join.html"
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Join
+                    Us</a>
+                <a href="mailto:bniaurablr@gmail.com"
+                    class="block px-3 py-2 text-bni-red font-semibold text-center border-t mt-2">bniaurablr@gmail.com</a>
             </nav>
         </div>
     </header>
-    
+
     <main class="pt-20">
 
-        <section class="py-20 bg-bni-red text-white" style="background-image: linear-gradient(to bottom, #dc2626, #ef4444);">
+        <section class="py-20 bg-bni-red text-white"
+            style="background-image: linear-gradient(to bottom, #dc2626, #ef4444);">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                
-                <span class="inline-block bg-white text-gray-800 text-xs font-semibold px-4 py-1 rounded-full uppercase tracking-widest mb-6">
+
+                <span
+                    class="inline-block bg-white text-gray-800 text-xs font-semibold px-4 py-1 rounded-full uppercase tracking-widest mb-6">
                     Business Categories
                 </span>
-                
+
                 <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight drop-shadow-lg">
                     Explore Our Diverse Network
                 </h1>
-                
+
                 <p class="text-xl mb-10 max-w-3xl mx-auto text-gray-100">
-                    BNI AURA accepts only one member per professional category, ensuring exclusive referral opportunities
+                    BNI AURA accepts only one member per professional category, ensuring exclusive referral
+                    opportunities
                 </p>
 
             </div>
         </section>
 
-<section id="teams" class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-extrabold text-gray-900 font-display">
-                Explore Our Teams
-            </h2>
-            <p class="mt-2 text-base text-gray-600">
-                Each team represents a professional category with exclusive membership opportunities
-            </p>
-            <p class="text-center text-sm font-semibold text-bni-red mt-4">
-                Exclusive Membership: Only one professional per category ensures you receive all referrals for your industry
-            </p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <a href="infra-detail.html" class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
-                <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto" style="background-color: #e0f2fe;"> <i class="fa-solid fa-house-chimney-crack text-4xl" style="color: var(--infra-blue-icon);"></i>
+        <section id="teams" class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-extrabold text-gray-900 font-display">
+                        Explore Our Teams
+                    </h2>
+                    <p class="mt-2 text-base text-gray-600">
+                        Each team represents a professional category with exclusive membership opportunities
+                    </p>
+                    <p class="text-center text-sm font-semibold text-bni-red mt-4">
+                        Exclusive Membership: Only one professional per category ensures you receive all referrals for
+                        your industry
+                    </p>
                 </div>
-                <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center" style="color: var(--infra-blue-icon);">INFRA TEAM</h3>
-                <p class="team-description text-sm text-gray-700 mb-6 flex-grow text-center">
-                    Infrastructure, Real Estate, and Property Development professionals
-                </p>
-                <div class="view-button w-full text-center bg-bni-red text-white font-bold py-2.5 px-4 rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center space-x-2">
-                    View Details 
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg>
-                </div>
-            </a>
-            
-            <a href="construction-Team.html" class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
-                <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto" style="background-color: #fff7ed;"> <i class="fa-solid fa-helmet-safety text-4xl" style="color: var(--construction-orange-icon);"></i>
-                </div>
-                <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center" style="color: var(--construction-orange-icon);">CONSTRUCTION TEAM</h3>
-                <p class="team-description text-sm text-gray-700 mb-6 flex-grow text-center">Construction, Building Materials, and Contracting services</p>
-                <div class="view-button w-full text-center bg-bni-red text-white font-bold py-2.5 px-4 rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center space-x-2">
-                    View Details 
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg>
-                </div>
-            </a>
-            
-            <a href="finance-team.html" class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
-                <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto" style="background-color: #ecfdf5;"> <i class="fa-solid fa-chart-line text-4xl" style="color: var(--finance-green-icon);"></i>
-                </div>
-                <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center" style="color: var(--finance-green-icon);">FINANCE TEAM</h3>
-                <p class="team-description text-sm text-gray-700 mb-6 flex-grow text-center">Financial Services, Banking, Insurance, and Investment advisors</p>
-                <div class="view-button w-full text-center bg-bni-red text-white font-bold py-2.5 px-4 rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center space-x-2">
-                    View Details 
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg>
-                </div>
-            </a>
 
-            <a href="events.html" class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
-                <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto" style="background-color: #f3e8ff;"> <i class="fa-solid fa-calendar-check text-4xl" style="color: var(--events-purple-icon);"></i>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <a href="infra-detail.html"
+                        class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
+                        <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto"
+                            style="background-color: #e0f2fe;"> <i class="fa-solid fa-house-chimney-crack text-4xl"
+                                style="color: var(--infra-blue-icon);"></i>
+                        </div>
+                        <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center"
+                            style="color: var(--infra-blue-icon);">INFRA TEAM</h3>
+                        <p class="team-description text-sm text-gray-700 mb-6 flex-grow text-center">
+                            Infrastructure, Real Estate, and Property Development professionals
+                        </p>
+                        <div
+                            class="view-button w-full text-center bg-bni-red text-white font-bold py-2.5 px-4 rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center space-x-2">
+                            View Details
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <a href="construction-Team.html"
+                        class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
+                        <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto"
+                            style="background-color: #fff7ed;"> <i class="fa-solid fa-helmet-safety text-4xl"
+                                style="color: var(--construction-orange-icon);"></i>
+                        </div>
+                        <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center"
+                            style="color: var(--construction-orange-icon);">CONSTRUCTION TEAM</h3>
+                        <p class="team-description text-sm text-gray-700 mb-6 flex-grow text-center">Construction,
+                            Building Materials, and Contracting services</p>
+                        <div
+                            class="view-button w-full text-center bg-bni-red text-white font-bold py-2.5 px-4 rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center space-x-2">
+                            View Details
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <a href="finance-team.html"
+                        class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
+                        <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto"
+                            style="background-color: #ecfdf5;"> <i class="fa-solid fa-chart-line text-4xl"
+                                style="color: var(--finance-green-icon);"></i>
+                        </div>
+                        <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center"
+                            style="color: var(--finance-green-icon);">FINANCE TEAM</h3>
+                        <p class="team-description text-sm text-gray-700 mb-6 flex-grow text-center">Financial Services,
+                            Banking, Insurance, and Investment advisors</p>
+                        <div
+                            class="view-button w-full text-center bg-bni-red text-white font-bold py-2.5 px-4 rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center space-x-2">
+                            View Details
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <a href="events.html"
+                        class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
+                        <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto"
+                            style="background-color: #f3e8ff;"> <i class="fa-solid fa-calendar-check text-4xl"
+                                style="color: var(--events-purple-icon);"></i>
+                        </div>
+                        <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center"
+                            style="color: var(--events-purple-icon);">EVENTS TEAM</h3>
+                        <p class="team-description text-sm text-gray-700 mb-6 flex-grow text-center">Event Management,
+                            Catering, Entertainment, and Hospitality</p>
+                        <div
+                            class="view-button w-full text-center bg-bni-red text-white font-bold py-2.5 px-4 rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center space-x-2">
+                            View Details
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <a href="Industrialsme.html"
+                        class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
+                        <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto"
+                            style="background-color: #f1f5f9;"> <i class="fa-solid fa-industry text-4xl"
+                                style="color: var(--industrial-gray-icon);"></i>
+                        </div>
+                        <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center"
+                            style="color: var(--industrial-gray-icon);">INDUSTRIAL/SME TEAM</h3>
+                        <p class="team-description text-sm text-gray-700 mb-6 flex-grow text-center">Manufacturing,
+                            Industrial Supplies, and SME Services</p>
+                        <div
+                            class="view-button w-full text-center bg-bni-red text-white font-bold py-2.5 px-4 rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center space-x-2">
+                            View Details
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                            </svg>
+                        </div>
+                    </a>
+
+                    <a href="healthcare.html"
+                        class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
+                        <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto"
+                            style="background-color: #fee2e2;"> <i class="fa-solid fa-suitcase-medical text-4xl"
+                                style="color: var(--healthcare-red-icon);"></i>
+                        </div>
+                        <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center"
+                            style="color: var(--healthcare-red-icon);">HEALTHCARE TEAM</h3>
+                        <p class="team-description text-sm text-gray-700 mb-6 flex-grow text-center">Medical,
+                            Healthcare, Wellness, and Life Sciences professionals</p>
+                        <div
+                            class="view-button w-full text-center bg-bni-red text-white font-bold py-2.5 px-4 rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center space-x-2">
+                            View Details
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                            </svg>
+                        </div>
+                    </a>
                 </div>
-                <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center" style="color: var(--events-purple-icon);">EVENTS TEAM</h3>
-                <p class="team-description text-sm text-gray-700 mb-6 flex-grow text-center">Event Management, Catering, Entertainment, and Hospitality</p>
-                <div class="view-button w-full text-center bg-bni-red text-white font-bold py-2.5 px-4 rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center space-x-2">
-                    View Details 
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg>
-                </div>
-            </a>
-            
-            <a href="Industrialsme.html" class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
-                <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto" style="background-color: #f1f5f9;"> <i class="fa-solid fa-industry text-4xl" style="color: var(--industrial-gray-icon);"></i>
-                </div>
-                <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center" style="color: var(--industrial-gray-icon);">INDUSTRIAL/SME TEAM</h3>
-                <p class="team-description text-sm text-gray-700 mb-6 flex-grow text-center">Manufacturing, Industrial Supplies, and SME Services</p>
-                <div class="view-button w-full text-center bg-bni-red text-white font-bold py-2.5 px-4 rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center space-x-2">
-                    View Details 
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg>
-                </div>
-            </a>
-            
-            <a href="healthcare.html" class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
-                <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto" style="background-color: #fee2e2;"> <i class="fa-solid fa-suitcase-medical text-4xl" style="color: var(--healthcare-red-icon);"></i>
-                </div>
-                <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center" style="color: var(--healthcare-red-icon);">HEALTHCARE TEAM</h3>
-                <p class="team-description text-sm text-gray-700 mb-6 flex-grow text-center">Medical, Healthcare, Wellness, and Life Sciences professionals</p>
-                <div class="view-button w-full text-center bg-bni-red text-white font-bold py-2.5 px-4 rounded-lg hover:bg-red-700 transition duration-300 flex items-center justify-center space-x-2">
-                    View Details 
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path></svg>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
+            </div>
+        </section>
 
         <section class="py-20 bg-white">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-3xl font-bold text-gray-900 mb-10 text-center">
                     Category Status Guide
                 </h2>
-                
+
                 <div class="grid md:grid-cols-2 gap-8">
-                    
-                    <div class="bg-white p-6 border-2 border-green-500 rounded-xl shadow-lg transition duration-300 hover:shadow-xl">
+
+                    <div
+                        class="bg-white p-6 border-2 border-green-500 rounded-xl shadow-lg transition duration-300 hover:shadow-xl">
                         <div class="flex items-center mb-4">
-                            <span class="inline-block bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase mr-3">Available</span>
+                            <span
+                                class="inline-block bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase mr-3">Available</span>
                             <h3 class="text-xl font-bold text-gray-900">Open for Membership</h3>
                         </div>
                         <p class="text-gray-600">
-                            This category is currently **available**. You can apply to join BNI AURA in this category.
+                            This category is currently available. You can apply to join BNI AURA in this category.
                         </p>
-                        <a href="join.html" class="text-green-600 font-semibold mt-3 block hover:underline">Apply Now &rarr;</a>
+                        <a href="join.html" class="text-green-600 font-semibold mt-3 block hover:underline">Apply Now
+                            &rarr;</a>
                     </div>
-                    
-                    <div class="bg-white p-6 border-2 border-bni-red rounded-xl shadow-lg transition duration-300 hover:shadow-xl">
+
+                    <div
+                        class="bg-white p-6 border-2 border-bni-red rounded-xl shadow-lg transition duration-300 hover:shadow-xl">
                         <div class="flex items-center mb-4">
-                            <span class="inline-block bg-bni-red text-white text-xs font-semibold px-3 py-1 rounded-full uppercase mr-3">Taken</span>
+                            <span
+                                class="inline-block bg-bni-red text-white text-xs font-semibold px-3 py-1 rounded-full uppercase mr-3">Taken</span>
                             <h3 class="text-xl font-bold text-gray-900">Currently Filled</h3>
                         </div>
                         <p class="text-gray-600">
-                            This category has an **active member**. Contact us to be added to the waiting list.
+                            This category has an active member. Contact us to be added to the waiting list.
                         </p>
-                        <a href="join.html" class="text-bni-red font-semibold mt-3 block hover:underline">Join Waiting List &rarr;</a>
+                        <a href="join.html" class="text-bni-red font-semibold mt-3 block hover:underline">Join Waiting
+                            List &rarr;</a>
                     </div>
 
                 </div>
@@ -312,7 +570,7 @@
                 <p class="text-xl mb-10 max-w-2xl mx-auto">
                     Get invited to visit our next meeting and see if BNI AURA is the right fit for your business
                 </p>
-                
+
                 <a href="invite.html"
                     class="inline-block bg-white text-red-700 font-bold py-4 px-12 rounded-lg hover:bg-red-500 transition duration-300 shadow-xl transform hover:scale-105">
                     Request an Invitation
@@ -321,9 +579,14 @@
         </section>
 
     </main>
-    
-    <button id="floating-chat-btn" class="bg-red-600 text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z"></path></svg>
+
+    <button id="floating-chat-btn"
+        class="bg-red-600 text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z">
+            </path>
+        </svg>
     </button>
 
     <div id="chat-modal" class="hidden">
@@ -332,145 +595,206 @@
             <div class="flex justify-between items-start border-b pb-3 mb-4">
                 <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-red-600">AURA</span></h3>
                 <button id="close-chat-btn" class="text-gray-500 hover:text-gray-900 transition">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
                 </button>
             </div>
-            
-            <p class="text-sm text-gray-600 mb-4">Hi! Please leave your details and our team will connect with you shortly.</p>
-            
+
+            <p class="text-sm text-gray-600 mb-4">Hi! Please leave your details and our team will connect with you
+                shortly.</p>
+
             <form action="#" method="POST" class="space-y-4">
                 <div>
-                    <input type="text" placeholder="Name*" class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500" required>
+                    <input type="text" placeholder="Name*"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        required>
                 </div>
                 <div>
-                    <input type="email" placeholder="Email*" class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500" required>
+                    <input type="email" placeholder="Email*"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        required>
                 </div>
-                <button type="submit" class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
+                <button type="submit"
+                    class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
                     Send
                 </button>
             </form>
-            
+
             <p class="text-xs text-center text-gray-400 mt-4">
-                This site is protected by reCAPTCHA and the Google <a href="#" class="hover:text-red-500 underline">Privacy Policy</a> and <a href="#" class="hover:text-red-500 underline">Terms of Service</a> apply.
+                This site is protected by reCAPTCHA and the Google <a href="#"
+                    class="hover:text-red-500 underline">Privacy Policy</a> and <a href="#"
+                    class="hover:text-red-500 underline">Terms of Service</a> apply.
             </p>
         </div>
     </div>
-    
+
     <footer class="bg-gray-900 py-12 text-gray-400">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
 
-            <div>
-                <div class="flex items-center space-x-2 mb-4">
-                        <img src="./images/BNI.jpg" alt="" class="h-8 w-auto object-contain"
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="./images/BNI.jpg" alt="BNI AURA Logo" class="h-8 w-auto object-contain"
                             onerror="this.onerror=null; this.src='https://placehold.co/120x30/ef4444/ffffff?text=BNI+AURA+Logo'">
-                 </div>
-                <p class="text-sm">
-                    Unlock new opportunities, forge valuable partnerships, and drive your business forward with BNI
-                    AURA.
-                </p>
-                <p class="text-xs mt-1 text-red-400 font-semibold">
-                    We believe in Givers Gain®.
-                </p>
-            </div>
-
-            <div>
-                <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Quick Links</h4>
-                <nav class="space-y-2 text-sm">
-                    <a href="index.html" class="block hover:text-red-400 transition">Home</a>
-                    <a href="about.html" class="block hover:text-red-400 transition">About Us</a>
-                    <a href="teams-overview.html" class="block hover:text-red-400 transition">Categories</a>
-                    <a href="invite.html" class="block hover:text-red-400 transition">Get Invited</a>
-                    <a href="join.html" class="block hover:text-red-400 transition">Join Us</a>
-                </nav>
-            </div>
-
-            <div>
-                <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Contact</h4>
-                <div class="space-y-2 text-sm">
-                    <p class="flex items-start space-x-2">
-                        <svg class="w-5 h-5 mt-1 text-red-500 flex-shrink-0" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                            </path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                        <span>
-                            BNI AURA Chapter Office,<br>
-                            123 Referral Blvd, Suite 400,<br>
-                            Business City, CA 90210
-                        </span>
+                    </div>
+                    <p class="text-sm">
+                        Unlock new opportunities, forge valuable partnerships, and drive your business forward with BNI
+                        AURA.
                     </p>
-                    <a href="mailto:support@bniaura.com"
-                        class="flex items-center space-x-2 hover:text-red-400 transition">
-                        <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                            </path>
-                        </svg>
-                        <span>support@bniaura.com</span>
-                    </a>
+                    <p class="text-xs mt-1 text-red-400 font-semibold">
+                        We believe in Givers Gain®.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Quick Links</h4>
+                    <nav class="space-y-2 text-sm">
+                        <a href="index.html" class="block hover:text-red-400 transition">Home</a>
+                        <a href="about.html" class="block hover:text-red-400 transition">About Us</a>
+                        <a href="teams-overview.html" class="block hover:text-red-400 transition">Categories</a>
+                        <a href="invite.html" class="block hover:text-red-400 transition">Get Invited</a>
+                        <a href="join.html" class="block hover:text-red-400 transition">Join Us</a>
+                    </nav>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Contact</h4>
+                    <div class="space-y-2 text-sm">
+                        <p class="flex items-start space-x-2">
+                            <svg class="w-5 h-5 mt-1 text-red-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>
+                                BNI AURA Chapter Office,<br>
+                                123 Referral Blvd, Suite 400,<br>
+                                Business City, CA 90210
+                            </span>
+                        </p>
+                        <a href="mailto:bniaurablr@gmail.com"
+                            class="flex items-center space-x-2 hover:text-red-400 transition">
+                            <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <span>bniaurablr@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/bniaura/?igsh=MWU0N3U0bnlyMnUzcA%3D%3D#"
+                            class="text-red-400 hover:text-white transition">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.773 1.58 4.92 4.85.058 1.265.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.147 3.27-1.678 4.773-4.92 4.92-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-3.27-.147-4.773-1.678-4.92-4.92-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.147-3.27 1.678-4.773 4.92-4.92 1.265-.058 1.645-.07 4.85-.07zm0-2.163C8.715 0 8.358.012 7.1.07 3.655.22 1.3 2.64 1.15 6.1c-.058 1.265-.07 1.645-.07 4.85s.012 3.584.07 4.85c.15 3.45 2.57 5.869 6.1 6.019 1.265.058 1.645.07 4.85.07s3.584-.012 4.85-.07c3.45-.15 5.869-2.57 6.019-6.1.058-1.265.07-1.645.07-4.85s-.012-3.584-.07-4.85c-.15-3.45-2.57-5.869-6.1-6.019-1.265-.058-1.645-.07-4.85-.07zm0 6a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 2a2.5 2.5 0 110 5 2.5 2.5 0 010-5zm5.5-2.75a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z" />
+                            </svg>
+                        </a>
+
+                    </div>
                 </div>
             </div>
 
-            <div>
-                <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Connect</h4>
-                <div class="flex space-x-4">
-                    
-
-                    <a href="https://www.instagram.com/bniaura/?igsh=MWU0N3U0bnlyMnUzcA%3D%3D#" class="text-red-400 hover:text-white transition">
-                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.773 1.58 4.92 4.85.058 1.265.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.147 3.27-1.678 4.773-4.92 4.92-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-3.27-.147-4.773-1.678-4.92-4.92-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.147-3.27 1.678-4.773 4.92-4.92 1.265-.058 1.645-.07 4.85-.07zm0-2.163C8.715 0 8.358.012 7.1.07 3.655.22 1.3 2.64 1.15 6.1c-.058 1.265-.07 1.645-.07 4.85s.012 3.584.07 4.85c.15 3.45 2.57 5.869 6.1 6.019 1.265.058 1.645.07 4.85.07s3.584-.012 4.85-.07c3.45-.15 5.869-2.57 6.019-6.1.058-1.265.07-1.645.07-4.85s-.012-3.584-.07-4.85c-.15-3.45-2.57-5.869-6.1-6.019-1.265-.058-1.645-.07-4.85-.07zm0 6a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 2a2.5 2.5 0 110 5 2.5 2.5 0 010-5zm5.5-2.75a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z" />
-                        </svg>
-                    </a>
-
-                </div>
+            <div class="text-center text-sm">
+                <p>Copyright &copy; 2025 BNI AURA All Rights Reserved.</p>
             </div>
         </div>
-
-        <div class="text-center text-sm">
-            <p>Copyright &copy; 2025 BNI AURA All Rights Reserved.</p>
-        </div>
-    </div>
-</footer>
+    </footer>
     <script>
         // --- Mobile Menu Toggle JS ---
         const menuBtn = document.getElementById("menuBtn");
         const mobileMenu = document.getElementById("mobileMenu");
+        const mobileMenuButton = document.getElementById('mobileMenuButton'); // Hamburger/Close Icon
 
         menuBtn.addEventListener("click", () => {
+            const isExpanded = mobileMenu.classList.contains('hidden');
             mobileMenu.classList.toggle("hidden");
+
+            // Toggle the icon between hamburger and close (X)
+            if (isExpanded) {
+                mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'; // X icon
+            } else {
+                mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>'; // Hamburger icon
+            }
         });
 
+        // --- Mobile Sub-Category Toggle (NEW) ---
+        const categoryToggle = document.getElementById('categoryToggle');
+        const mobileSubCategories = document.getElementById('mobileSubCategories');
+        const toggleIcon = document.getElementById('toggleIcon');
+
+        if (categoryToggle && mobileSubCategories && toggleIcon) {
+            categoryToggle.addEventListener('click', () => {
+                const isCategoriesHidden = mobileSubCategories.classList.contains('hidden');
+
+                // Toggle visibility of sub-categories
+                mobileSubCategories.classList.toggle('hidden');
+
+                // Rotate the arrow icon for visual feedback (M9 5l7 7-7 7 is a right arrow)
+                if (isCategoriesHidden) {
+                    toggleIcon.classList.add('rotate-90');
+                } else {
+                    toggleIcon.classList.remove('rotate-90');
+                }
+            });
+        }
+
+        // --- Close Mobile Menu on Link Click ---
         const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+                // Do not close if clicking the primary Categories link itself (which now uses the button above)
+                if (link.closest('.flex.justify-between') === null) {
+                    // Reset category menu state when main menu closes (optional but clean)
+                    if (mobileSubCategories) {
+                        mobileSubCategories.classList.add('hidden');
+                    }
+                    if (toggleIcon) {
+                        toggleIcon.classList.remove('rotate-90');
+                    }
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>'; // Reset to Hamburger
+                }
             });
         });
+
 
         // --- Floating Chat/Modal JS (Global) ---
         document.addEventListener('DOMContentLoaded', () => {
             const chatBtn = document.getElementById("floating-chat-btn");
             const chatModal = document.getElementById("chat-modal");
             const closeChatBtn = document.getElementById("close-chat-btn");
-            
+
             if (!chatModal) return; // Exit if modal structure is missing
 
             const modalContainer = chatModal.querySelector('.chat-modal-container');
 
             const toggleModal = () => {
-                chatModal.classList.toggle("hidden");
-                if (!chatModal.classList.contains("hidden")) {
+                const isHidden = chatModal.classList.contains("hidden");
+
+                if (isHidden) {
+                    chatModal.classList.remove("hidden");
+                    // Delay adding 'active' to trigger the CSS transition (transform/opacity)
                     setTimeout(() => {
                         modalContainer.classList.add("active");
                     }, 10);
                 } else {
                     modalContainer.classList.remove("active");
+                    // Delay adding 'hidden' until after the CSS transition completes
+                    setTimeout(() => {
+                        chatModal.classList.add("hidden");
+                    }, 300); // 300ms matches the CSS transition time
                 }
             };
 
@@ -480,13 +804,18 @@
             if (closeChatBtn) {
                 closeChatBtn.addEventListener("click", toggleModal);
             }
-            
+
             chatModal.addEventListener("click", (e) => {
                 if (e.target.classList.contains('modal-overlay')) {
                     toggleModal();
                 }
             });
+             // Initialize feather icons after DOM is loaded
+            if (typeof feather !== 'undefined') {
+                feather.replace();
+            }
         });
     </script>
 </body>
+
 </html>
