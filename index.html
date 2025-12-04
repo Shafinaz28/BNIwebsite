@@ -4,15 +4,24 @@
 <head>
 
     <meta charset="UTF-8" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BNI AURA | The World's Leading Referral Network</title>
 
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Font: Roboto Condensed -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- Swiper CSS (MANDATORY for carousel styles) -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
     <style>
         /* --- Custom BNI Red Theme & Colors --- */
         :root {
@@ -240,12 +249,13 @@
             /* Ensures the full image is visible, scales it down to fit the container. */
             width: 100%;
             /* FIX: Changed height to auto, using min-height for baseline visual presence */
-            height: auto; 
+            height: auto;
             min-height: 250px;
-            object-fit: contain; 
+            object-fit: contain;
             object-position: center;
             border-radius: 0.75rem;
-            background-color: #f7f7f7; /* Background color for potential white space */
+            background-color: #f7f7f7;
+            /* Background color for potential white space */
         }
 
         @media (max-width: 640px) {
@@ -254,7 +264,7 @@
                 height: auto;
                 min-height: 180px;
                 max-height: 300px;
-                object-fit: contain; 
+                object-fit: contain;
                 width: 100%;
                 background-color: #f7f7f7;
             }
@@ -722,80 +732,205 @@
         </section>
 
 
-
+        <!-- START: COMBINED TESTIMONIAL SECTION with SWIPER -->
         <section class="py-20 bg-white">
             <div class="container mx-auto px-6">
+
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold mb-4 text-gray-800">Success <span class="text-bni-red">Stories</span>
+                    <h2 class="text-4xl font-bold mb-4 text-gray-800">Success
+                        <span class="text-bni-red">Stories</span>
                     </h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Hear from our members about their BNI Aura
-                        experience</p>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Hear from our members about their BNI Aura experience
+                    </p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-white p-8 rounded-xl shadow-md">
-                        <div class="text-bni-red mb-4">
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                        </div>
-                        <p class="text-gray-600 mb-6">"BNI Aura was the best business decision I've made. The
-                            connections and training
-                            have been **invaluable for scaling my marketing agency.**"</p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/100x100/dc2626/ffffff?text=AG" alt="Akshay G."
-                                class="testimonial-avatar rounded-full mr-4">
-                            <div>
-                                <h4 class="font-bold">Akshay G.</h4>
-                                <p class="text-sm text-gray-500">Digital Marketing</p>
+                <!-- Swiper Container -->
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+
+                        <!-- 1 Akshay G. (Digital Marketing) - Expanded Content & Size Fix -->
+                        <div class="swiper-slide">
+                            <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
+                                <div class="text-bni-red mb-4">
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i>
+                                </div>
+                                <p class="text-gray-600 mb-6 min-h-[6rem] flex items-center">
+                                    "BNI Aura was the best business decision I've made. The structured, consistent weekly meetings forced me to focus on strategic networking, leading to several high-value, long-term retainers and even global project expansion."
+                                </p>
+                                <div class="flex items-center mt-auto">
+                                    <img src="https://placehold.co/100x100/dc2626/ffffff?text=AG"
+                                        class="testimonial-avatar rounded-full mr-4" alt="Akshay G. avatar">
+                                    <div>
+                                        <h4 class="font-bold">Akshay G.</h4>
+                                        <p class="text-sm text-gray-500">Digital Marketing</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="bg-white p-8 rounded-xl shadow-md">
-                        <div class="text-bni-red mb-4">
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                        </div>
-                        <p class="text-gray-600 mb-6">"The quality of referrals in BNI Aura is exceptional. I've
-                            successfully closed **multiple high-value property deals** since joining."</p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/100x100/ef4444/ffffff?text=TA" alt="Tosif Ali"
-                                class="testimonial-avatar rounded-full mr-4">
-                            <div>
-                                <h4 class="font-bold">Tosif Ali</h4>
-                                <p class="text-sm text-gray-500">Real Estate Broker</p>
+                        <!-- 2 Tousif Ali (Real Estate Broker) - Expanded Content & Size Fix -->
+                        <div class="swiper-slide">
+                            <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
+                                <div class="text-bni-red mb-4">
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i>
+                                </div>
+                                <p class="text-gray-600 mb-6 min-h-[6rem] flex items-center">
+                                    "The quality of referrals in BNI Aura is exceptional. I've successfully closed multiple high-value property deals since joining, relying on the trusted network for due diligence and reliable client introductions."
+                                </p>
+                                <div class="flex items-center mt-auto">
+                                    <img src="https://placehold.co/100x100/ef4444/ffffff?text=TA"
+                                        class="testimonial-avatar rounded-full mr-4" alt="Tousif Ali avatar">
+                                    <div>
+                                        <h4 class="font-bold">Tousif Ali</h4>
+                                        <p class="text-sm text-gray-500">Real Estate Broker</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="bg-white p-8 rounded-xl shadow-md">
-                        <div class="text-bni-red mb-4">
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
-                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                        <!-- 3 Balakrishna (Insurance Advisor) - Expanded Content & Size Fix -->
+                        <div class="swiper-slide">
+                            <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
+                                <div class="text-bni-red mb-4">
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i>
+                                </div>
+                                <p class="text-gray-600 mb-6 min-h-[6rem] flex items-center">
+                                    "My insurance advisory business has grown 40% in the last year. BNI's 'Givers Gain' philosophy truly delivers long-term client trust and a steady stream of pre-qualified referrals, transforming my pipeline."
+                                </p>
+                                <div class="flex items-center mt-auto">
+                                    <img src="https://placehold.co/100x100/dc2626/ffffff?text=BK"
+                                        class="testimonial-avatar rounded-full mr-4" alt="Balakrishna avatar">
+                                    <div>
+                                        <h4 class="font-bold">Balakrishna</h4>
+                                        <p class="text-sm text-gray-500">Insurance Advisor</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <p class="text-gray-600 mb-6">"My insurance advisory business has grown **40% in the last
-                            year.** BNI's 'Givers Gain' philosophy truly delivers long-term client trust."</p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/100x100/dc2626/ffffff?text=BK" alt="Balakrishna"
-                                class="testimonial-avatar rounded-full mr-4">
-                            <div>
-                                <h4 class="font-bold">Balakrishna</h4>
-                                <p class="text-sm text-gray-500">Insurance Advisor</p>
+
+                        <!-- 4 Pranathi Neelakanta (Interior Designer) - Expanded Content & Size Fix -->
+                        <div class="swiper-slide">
+                            <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
+                                <div class="text-bni-red mb-4">
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i>
+                                </div>
+                                <p class="text-gray-600 mb-6 min-h-[6rem] flex items-center">
+                                    "Before BNI, scaling my projects was difficult. BNI Aura helped me secure trusted referrals for high-end residential interiors and provided invaluable business training that streamlined my project management process."
+                                </p>
+                                <div class="flex items-center mt-auto">
+                                    <img src="https://placehold.co/100x100/ef4444/ffffff?text=PN"
+                                        class="testimonial-avatar rounded-full mr-4" alt="Pranathi Neelakanta avatar">
+                                    <div>
+                                        <h4 class="font-bold">Pranathi Neelakanta</h4>
+                                        <p class="text-sm text-gray-500">Interior Designer</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 5 Shareesh (Chartered Accountant) - Expanded Content & Size Fix -->
+                        <div class="swiper-slide">
+                            <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
+                                <div class="text-bni-red mb-4">
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i>
+                                </div>
+                                <p class="text-gray-600 mb-6 min-h-[6rem] flex items-center">
+                                    "Joining BNI Aura boosted my CA client base massively! The trust built within the chapter means I receive exclusive, complex corporate accounting referrals I wouldn't access through traditional marketing channels."
+                                </p>
+                                <div class="flex items-center mt-auto">
+                                    <img src="https://placehold.co/100x100/dc2626/ffffff?text=SH"
+                                        class="testimonial-avatar rounded-full mr-4" alt="Shareesh avatar">
+                                    <div>
+                                        <h4 class="font-bold">Shareesh</h4>
+                                        <p class="text-sm text-gray-500">Chartered Accountant</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 6 Gagan Nischal (Tours & Travels) - Expanded Content & Size Fix -->
+                        <div class="swiper-slide">
+                            <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
+                                <div class="text-bni-red mb-4">
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i>
+                                </div>
+                                <p class="text-gray-600 mb-6 min-h-[6rem] flex items-center">
+                                    "BNI referrals increased my travel bookings dramatically, especially for corporate and high-end family trips. The weekly education modules also helped me refine my sales pitch and close more efficiently."
+                                </p>
+                                <div class="flex items-center mt-auto">
+                                    <img src="https://placehold.co/100x100/ef4444/ffffff?text=GN"
+                                        class="testimonial-avatar rounded-full mr-4" alt="Gagan Nischal avatar">
+                                    <div>
+                                        <h4 class="font-bold">Gagan Nischal</h4>
+                                        <p class="text-sm text-gray-500">Tours & Travels</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 7 Keerthi Kumar C N (Home Loans Specialist) - Expanded Content & Size Fix -->
+                        <div class="swiper-slide">
+                            <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
+                                <div class="text-bni-red mb-4">
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i>
+                                </div>
+                                <p class="text-gray-600 mb-6 min-h-[6rem] flex items-center">
+                                    "BNI Aura connected me directly with premium home loan clients, thanks to referrals from architects and real estate professionals in the chapter. This synergistic collaboration has ensured stable, high-volume transactions."
+                                </p>
+                                <div class="flex items-center mt-auto">
+                                    <img src="https://placehold.co/100x100/dc2626/ffffff?text=KK"
+                                        class="testimonial-avatar rounded-full mr-4" alt="Keerthi Kumar C N avatar">
+                                    <div>
+                                        <h4 class="font-bold">Keerthi Kumar C N</h4>
+                                        <p class="text-sm text-gray-500">Home Loans Specialist</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 8 Achyut Joshi (Architect) - Expanded Content & Size Fix -->
+                        <div class="swiper-slide">
+                            <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
+                                <div class="text-bni-red mb-4">
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i><i class="fa-solid fa-star inline"></i>
+                                    <i class="fa-solid fa-star inline"></i>
+                                </div>
+                                <p class="text-gray-600 mb-6 min-h-[6rem] flex items-center">
+                                    "The primary benefit of BNI is access to high-quality architectural clients who respect professional pricing. The structured platform and training gave me the confidence to pitch and secure larger, more profitable projects."
+                                </p>
+                                <div class="flex items-center mt-auto">
+                                    <img src="https://placehold.co/100x100/ef4444/ffffff?text=AJ"
+                                        class="testimonial-avatar rounded-full mr-4" alt="Achyut Joshi avatar">
+                                    <div>
+                                        <h4 class="font-bold">Achyut Joshi</h4>
+                                        <p class="text-sm text-gray-500">Architect</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
+        <!-- END: COMBINED TESTIMONIAL SECTION with SWIPER -->
+
 
         <section class="py-16 bg-white">
 
@@ -994,12 +1129,39 @@
     </footer>
 
 
+    <!-- Swiper JS (MANDATORY for carousel functionality) -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Feather Icons Initialization ---
             if (typeof feather !== 'undefined') {
                 feather.replace();
             }
+
+            // --- Swiper Initialization JS ---
+            // Ensure Swiper is initialized correctly for the testimonial section
+            if (typeof Swiper !== 'undefined') {
+                var swiper = new Swiper(".mySwiper", {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                    loop: true,
+                    autoplay: {
+                        delay: 3500, // Increased delay slightly for readability
+                        disableOnInteraction: false,
+                    },
+                    breakpoints: {
+                        // Mobile (320px) and Tablet (640px)
+                        320: { slidesPerView: 1, spaceBetween: 15 },
+                        640: { slidesPerView: 1, spaceBetween: 20 },
+                        // Medium screens
+                        768: { slidesPerView: 2, spaceBetween: 30 },
+                        // Desktop
+                        1024: { slidesPerView: 3, spaceBetween: 30 }
+                    }
+                });
+            }
+
 
             // --- Mobile Menu Toggle JS ---
             const menuBtn = document.getElementById("menuBtn");
