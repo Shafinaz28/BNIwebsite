@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        /* Custom styles for BNI theme */
+        /* Custom styles for BNI theme and red color consistency */
         :root {
-            --bni-red: #ef4444;
+            --bni-red: #ef4444; /* Consistent Red */
             --bni-red-dark: #dc2626;
-            --bni-red-original: #ef4444;
+            --bni-gray: #f9f9f9; /* Light gray background for the overall page */
         }
 
         .text-bni-red {
@@ -28,127 +28,104 @@
             border-color: var(--bni-red);
         }
 
-        /* Style for the Core Values grid background */
-        .core-value-card {
-            transition: transform 0.3s ease;
-        }
-
-        .core-value-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(239, 68, 68, 0.1);
-        }
-
-        /* Mission/Vision Card Styles */
-        .mission-vision-card {
-            min-height: 12rem;
-            border-top: 4px solid var(--bni-red);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-        }
-
-        .mission-vision-card:hover {
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            border-top-color: var(--bni-red-dark);
-        }
-
-        /* --- PROFESSION CARD STYLING (Modern & Elevated) --- */
+        /* --- PROFESSION CARD STYLING (Matching the new square design) --- */
         .profession-card {
             background-color: white;
             border-radius: 0.75rem;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
             border: 1px solid #f3f4f6;
             display: flex;
             flex-direction: column;
+            padding: 1.5rem;
+            position: relative;
+            min-height: 280px; /* Enforce a taller/square look */
+            text-align: left; /* Text alignment inside card */
         }
 
         .profession-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(239, 68, 68, 0.1);
         }
 
-        .profession-card img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            display: block;
-            filter: brightness(0.95);
-        }
-
-        /* Red Label Box Style - Now a Text Block inside the card */
-        .profession-label {
-            background-color: white;
-            color: #1f2937;
-            font-size: 1.125rem;
-            font-weight: 700;
+        /* Card Header (for the side title) */
+        .card-header-label {
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #9ca3af; /* Light gray for the side label */
             text-transform: uppercase;
-            padding: 1rem 0.75rem;
-            text-align: center;
-            min-height: 70px;
+        }
+
+        /* Styling for the icon at the top center of the card */
+        .profession-icon-container {
+            width: 70px;
+            height: 70px;
+            background-color: #fef2f2; /* Very light red background */
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            line-height: 1.3;
-            border-top: 3px solid transparent;
-            transition: border-top 0.3s ease;
-            flex-grow: 1;
+            margin: 1.5rem auto 1rem; /* Center the icon */
+            border: 2px solid var(--bni-red);
+            flex-shrink: 0; /* Prevents icon from shrinking */
         }
 
-        .profession-card:hover .profession-label {
-            border-top: 3px solid #ef4444;
+        /* The main label/title */
+        .profession-label {
+            color: #1f2937;
+            font-size: 1.25rem; /* Larger title */
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            text-align: center; /* Center the main title */
         }
 
-        /* Team Section Styling: FIXED 4-COLUMN LAYOUT */
+        /* Detailed description */
+        .profession-description {
+            font-size: 0.9375rem; /* Slightly larger text */
+            color: #6b7280;
+            line-height: 1.5;
+            flex-grow: 1; /* Pushes the utility icon to the bottom */
+            padding-top: 0.5rem;
+        }
+        
+        /* Utility Icon (Bottom Right) */
+        .card-utility-icon {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            color: #6b7280;
+            transition: color 0.3s;
+        }
+
+        .profession-card:hover .card-utility-icon {
+            color: var(--bni-red);
+        }
+
+        /* Team Section Styling: FIXED 3-COLUMN LAYOUT for desktop */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(1, minmax(0, 1fr));
             gap: 1.5rem;
         }
 
         @media (min-width: 640px) {
             .team-grid {
-                grid-template-columns: repeat(4, minmax(0, 1fr));
+                grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 2rem;
             }
         }
-
-
-        /* --- Floating Chat/Modal Styles --- */
-        #floating-chat-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 1000;
-        }
-
-        /* Modal Overlay */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 900;
-        }
-
-        .chat-modal-container {
-            position: fixed;
-            bottom: 6rem;
-            right: 2rem;
-            width: 90%;
-            max-width: 350px;
-            z-index: 1000;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
-
-        .chat-modal-container.active {
-            opacity: 1;
-            transform: translateY(0);
+        
+        @media (min-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 2.5rem;
+            }
         }
 
 
@@ -173,11 +150,49 @@
             padding-left: 2rem !important;
             padding-right: 1rem;
         }
+
+        /* --- FLOATING CHAT/MODAL STYLES (RIGHT SIDE) --- */
+        #floating-chat-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem; 
+            left: auto;
+            z-index: 1000;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 900;
+        }
+
+        .chat-modal-container {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem; 
+            left: auto;
+            width: 90%;
+            max-width: 350px;
+            z-index: 1000;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .chat-modal-container.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-100 text-gray-800">
 
+    <!-- HEADER (Navigation) -->
     <header class="bg-white shadow-lg fixed top-0 left-0 w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between relative">
 
@@ -319,179 +334,286 @@
 
     <main class="pt-header-fix">
 
-        <section id="team-hero" class="bg-gray-800 text-white py-20">
+        <!-- HERO SECTION - BRIGHT RED BACKGROUND FOR STRIKING EFFECT -->
+        <section id="team-hero" class="bg-bni-red text-white py-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-5xl font-extrabold mb-3 text-red-500">INFRA TEAM</h1>
-                <h2 class="text-3xl font-light mb-2">Essential Professions</h2>
-                <p class="text-xl font-light text-gray-300">Specialists in Real Estate,Construction,Design,and
+                <h1 class="text-5xl font-extrabold mb-3 text-white">INFRA TEAM</h1>
+                <h2 class="text-3xl font-light mb-2">Essential Professions for Construction & Development</h2>
+                <p class="text-xl font-light text-red-100">Specialists in Real Estate, Construction, Design, and
                     Engineering Services.</p>
             </div>
         </section>
+        
+        <hr class="border-t-4 border-red-700 w-full" />
 
-        <section id="professions-grid" class="py-16 bg-gray-50">
+        <!-- PROFESSIONS GRID - RE-STYLED AS CARDS MATCHING THE NEW DESIGN -->
+        <section id="professions-grid" class="py-16 bg-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Available Categories</h3>
 
                 <div id="grid-container" class="team-grid">
 
+                    <!-- ARCHITECT -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about ARCHITECT seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/ARCHITECT.jpg" alt="ARCHITECT"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=ARCHITECT'">
+                        <span class="card-header-label">INFRA TEAM / ARCHITECTURE</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-drafting-compass text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">ARCHITECT</div>
+                        <p class="profession-description">Comprehensive design and project planning for residential and commercial structures. This role involves conceptualizing, drafting plans, and ensuring regulatory compliance for world-class infrastructure.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- LANDSCAPE ARCHITECT /CONTRACTOR -->
                     <a href="#floating-chat-btn" class="profession-card"
                         title="Inquire about LANDSCAPE ARCHITECT /CONTRACTOR seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/LANDSCAPE-ARCHITECT-CONTRACTOR.jpg" alt="LANDSCAPE ARCHITECT /CONTRACTOR"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=LANDSCAPE+ARCHITECT'">
+                        <span class="card-header-label">INFRA TEAM / LANDSCAPE</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-tree text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">LANDSCAPE ARCHITECT /CONTRACTOR</div>
+                        <p class="profession-description">Experts in designing and executing aesthetic and functional outdoor spaces, including parks, gardens, and green roofs, enhancing the overall appeal and sustainability of projects.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- RESIDENTIAL CIVIL CONTRACTOR -->
                     <a href="#floating-chat-btn" class="profession-card"
                         title="Inquire about RESIDENTIAL CIVIL CONTRACTOR seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/RESIDENTIAL-CIVIL-CONTRACTOR.jpg" alt="RESIDENTIAL CIVIL CONTRACTOR"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=RESIDENTIAL+CONTRACTOR'">
+                        <span class="card-header-label">INFRA TEAM / CONSTRUCTION</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-home text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">RESIDENTIAL CIVIL CONTRACTOR</div>
+                        <p class="profession-description">Specialists focused on the timely and high-quality construction of residential properties, from luxury villas to apartment complexes, managing the entire build process.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- COMMERCIAL CIVIL CONTRACTOR -->
                     <a href="#floating-chat-btn" class="profession-card"
                         title="Inquire about COMMERCIAL CIVIL CONTRACTOR seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/COMMERCIAL-CIVIL-CONTRACTOR.jpg" alt="COMMERCIAL CIVIL CONTRACTOR"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=COMMERCIAL+CONTRACTOR'">
+                        <span class="card-header-label">INFRA TEAM / COMMERCIAL</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-building text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">COMMERCIAL CIVIL CONTRACTOR</div>
+                        <p class="profession-description">Responsible for large-scale commercial projects like offices, retail centers, and industrial facilities, adhering to strict timelines, budget controls, and safety standards.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- REAL ESTATE DEVELOPER -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about REAL ESTATE DEVELOPER seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/REAL-ESTATE-DEVELOPER.jpg" alt="REAL ESTATE DEVELOPER"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=DEVELOPER'">
+                        <span class="card-header-label">INFRA TEAM / REALTY</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-city text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">REAL ESTATE DEVELOPER</div>
+                        <p class="profession-description">The driving force behind development projects, acquiring land, securing financing, and coordinating all aspects from concept to completion and sales to maximize investment returns.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- RESIDENTIAL INTERIOR DESIGNER -->
                     <a href="#floating-chat-btn" class="profession-card"
                         title="Inquire about RESIDENTIAL INTERIOR DESIGNER seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/RESIDENTIAL-INTERIOR-DESIGNER.jpg" alt="RESIDENTIAL INTERIOR DESIGNER"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=RESIDENTIAL+DESIGNER'">
+                        <span class="card-header-label">INFRA TEAM / DESIGN</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-chair text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">RESIDENTIAL INTERIOR DESIGNER</div>
+                        <p class="profession-description">Creating aesthetically pleasing, comfortable, and functional interior environments for private homes, focused on personalized style and efficient space utilization.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- COMMERCIAL INTERIOR DESIGNER -->
                     <a href="#floating-chat-btn" class="profession-card"
                         title="Inquire about COMMERCIAL INTERIOR DESIGNER seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/COMMERCIAL-INTERIOR-DESIGNER.jpg" alt="COMMERCIAL INTERIOR DESIGNER"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=COMMERCIAL+DESIGNER'">
+                        <span class="card-header-label">INFRA TEAM / COMMERCIAL DESIGN</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-laptop-house text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">COMMERCIAL INTERIOR DESIGNER</div>
+                        <p class="profession-description">Specializing in designing workspaces, retail outlets, and hospitality venues to optimize workflow, brand identity, and customer experience through innovative design.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- PROJECT MANAGEMENT CONSULTANT -->
                     <a href="#floating-chat-btn" class="profession-card"
                         title="Inquire about PROJECT MANAGEMENT CONSULTANT seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/PROJECT-MANAGEMENT-CONSULTANT.jpg" alt="PROJECT MANAGEMENT CONSULTANT"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=PROJECT+CONSULTANT'">
+                        <span class="card-header-label">INFRA TEAM / CONSULTING</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-project-diagram text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">PROJECT MANAGEMENT CONSULTANT</div>
+                        <p class="profession-description">Ensuring construction projects meet client objectives by managing scope, schedule, budget, and risk, acting as the critical link between the client and the build team.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- MEP CONSULTANT -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about MEP CONSULTANT seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/MEP-CONSULTANT.jpg" alt="MEP CONSULTANT"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=MEP+CONSULTANT'">
+                        <span class="card-header-label">INFRA TEAM / ENGINEERING</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-fan text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">MEP CONSULTANT</div>
+                        <p class="profession-description">Specialist in Mechanical, Electrical, and Plumbing systems design that ensures a building is comfortable, safe, and efficient, including HVAC, lighting, and water management.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- STRUCTURAL ENGINEER -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about STRUCTURAL ENGINEER seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/STRUCTURAL-ENGINEER.jpg" alt="STRUCTURAL ENGINEER"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=STRUCTURAL+ENGINEER'">
+                        <span class="card-header-label">INFRA TEAM / ENGINEERING</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-cogs text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">STRUCTURAL ENGINEER</div>
+                        <p class="profession-description">Calculates and designs the bones of a building to withstand all loads and environmental factors, guaranteeing the long-term safety and integrity of the structure.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- PLUMBING CONTRACTOR -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about PLUMBING CONTRACTOR seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/PLUMBING-CONTRACTOR.jpg" alt="PLUMBING CONTRACTOR"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=PLUMBING+CONTRACTOR'">
+                        <span class="card-header-label">INFRA TEAM / SPECIALIZED TRADE</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-faucet text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">PLUMBING CONTRACTOR</div>
+                        <p class="profession-description">Handles all installations and maintenance of piping, drainage, fixtures, and water systems, ensuring reliable and sanitary water management throughout the building.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- ELECTRICAL CONTRACTOR -->
                     <a href="#floating-chat-btn" class="profession-card"
                         title="Inquire about ELECTRICAL CONTRACTOR seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/ELECTRICAL-CONTRACTOR.jpg" alt="ELECTRICAL CONTRACTOR"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=ELECTRICAL+CONTRACTOR'">
+                        <span class="card-header-label">INFRA TEAM / SPECIALIZED TRADE</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-bolt text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">ELECTRICAL CONTRACTOR</div>
+                        <p class="profession-description">Manages the complete electrical infrastructure, from main supply connections and distribution boards to lighting and power socket installation, ensuring safe power access.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- PAINTING CONTRACTOR -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about PAINTING CONTRACTOR seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/PAINTING-CONTRACTOR.jpg" alt="PAINTING CONTRACTOR"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=PAINTING+CONTRACTOR'">
+                        <span class="card-header-label">INFRA TEAM / FINISHES</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-paint-roller text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">PAINTING CONTRACTOR</div>
+                        <p class="profession-description">Provides high-quality interior and exterior finishing services, applying protective and decorative coats that define the final look and feel of a structure.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- LAND SURVEYOR -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about LAND SURVEYOR seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/LAND-SURVEYOR.jpg" alt="LAND SURVEYOR"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=LAND+SURVEYOR'">
+                        <span class="card-header-label">INFRA TEAM / GEOSPATIAL</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-map-marked-alt text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">LAND SURVEYOR</div>
+                        <p class="profession-description">Crucial for defining property boundaries and topographical features, providing precise data necessary for design, planning, and legal compliance before construction begins.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- BOREWELL CONTRACTOR -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about BOREWELL CONTRACTOR seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/BOREWELL-CONTRACTOR.jpg" alt="BOREWELL CONTRACTOR"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=BOREWELL+CONTRACTOR'">
+                        <span class="card-header-label">INFRA TEAM / WATER RESOURCE</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-water text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">BOREWELL CONTRACTOR</div>
+                        <p class="profession-description">Specializing in subterranean drilling services to establish reliable, independent water sources for construction sites and completed properties where municipal supply is limited.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- WATERPROOFING CONTRACTOR -->
                     <a href="#floating-chat-btn" class="profession-card"
                         title="Inquire about WATERPROOFING CONTRACTOR seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/WATERPROOFING-CONTRACTOR.jpg" alt="WATERPROOFING CONTRACTOR"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=WATERPROOFING'">
+                        <span class="card-header-label">INFRA TEAM / SPECIALIZED TRADE</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-umbrella-beach text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">WATERPROOFING CONTRACTOR</div>
+                        <p class="profession-description">Applies protective barriers to basements, roofs, and wet areas to prevent moisture damage, ensuring structural longevity and mitigating costly future repairs for clients.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- GREEN BUILDING CONSULTANT -->
                     <a href="#floating-chat-btn" class="profession-card"
                         title="Inquire about GREEN BUILDING CONSULTANT seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/GREEN-BUILDING-CONSULTANT.jpg" alt="GREEN BUILDING CONSULTANT"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=GREEN+BUILDING'">
+                        <span class="card-header-label">INFRA TEAM / SUSTAINABILITY</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-leaf text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">GREEN BUILDING CONSULTANT</div>
+                        <p class="profession-description">Advises clients and construction teams on achieving LEED, GRIHA, or other green certifications, integrating sustainable materials and energy-efficient designs into projects.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- PEB STRUCTURES -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about PEB STRUCTURES seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/PEB-STRUCTURES.jpg" alt="PEB STRUCTURES"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=PEB+STRUCTURES'">
+                        <span class="card-header-label">INFRA TEAM / FABRICATION</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-warehouse text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">PEB STRUCTURES</div>
+                        <p class="profession-description">Delivers fast, cost-effective, and customized Pre-Engineered Building solutions, ideal for industrial, warehousing, and large commercial temporary structures.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- HVAC CONSULTANT -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about HVAC CONSULTANT seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/HVAC-CONSULTANT.jpg" alt="HVAC CONSULTANT"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=HVAC+CONSULTANT'">
+                        <span class="card-header-label">INFRA TEAM / CLIMATE CONTROL</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-temperature-low text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">HVAC CONSULTANT</div>
+                        <p class="profession-description">Designs state-of-the-art heating, ventilation, and air conditioning systems to ensure optimal indoor air quality and temperature control in any type of building.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- VASTU CONSULTANT -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about VASTU CONSULTANT seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Infra-team/VASTU-CONSULTANT.jpg" alt="VASTU CONSULTANT"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=VASTU+CONSULTANT'">
+                        <span class="card-header-label">INFRA TEAM / CULTURAL DESIGN</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-star-of-life text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">VASTU CONSULTANT</div>
+                        <p class="profession-description">Provides traditional Indian architectural guidance to harmonize structures with nature, promoting well-being and prosperity for the occupants of residential and commercial properties.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
                 </div>
             </div>
         </section>
 
+        <!-- JOIN SECTION -->
         <section id="join" class="py-16 bg-bni-red text-white">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h3 class="text-3xl font-bold mb-4">
                     Ready to Claim Your Category? 🚀
                 </h3>
-                <p class="text-lg text-gray-200 mb-6">
+                <p class="text-lg text-red-100 mb-6">
                     If your category is open, secure your spot. If it's taken, or you don't see your profession, click
                     below to connect with us!
                 </p>
@@ -505,20 +627,23 @@
 
     </main>
 
+    <!-- FLOATING CHAT BUTTON (RIGHT SIDE) -->
     <button id="floating-chat-btn"
-        class="bg-red-600 text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+        class="bg-bni-red text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Icon to represent a message or chat bubble -->
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z">
             </path>
         </svg>
     </button>
 
+    <!-- CHAT MODAL (RIGHT SIDE) -->
     <div id="chat-modal" class="hidden">
         <div class="modal-overlay"></div>
-        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-red-600">
+        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-bni-red">
             <div class="flex justify-between items-start border-b pb-3 mb-4">
-                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-red-600">AURA</span></h3>
+                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-bni-red">AURA</span></h3>
                 <button id="close-chat-btn" class="text-gray-500 hover:text-gray-900 transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -534,28 +659,29 @@
             <form action="#" method="POST" class="space-y-4">
                 <div>
                     <input type="text" placeholder="Name*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <div>
                     <input type="email" placeholder="Email*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <button type="submit"
-                    class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
+                    class="w-full bg-bni-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
                     Send
                 </button>
             </form>
 
             <p class="text-xs text-center text-gray-400 mt-4">
                 This site is protected by reCAPTCHA and the Google <a href="#"
-                    class="hover:text-red-500 underline">Privacy Policy</a> and <a href="#"
-                    class="hover:text-red-500 underline">Terms of Service</a> apply.
+                    class="hover:text-bni-red underline">Privacy Policy</a> and <a href="#"
+                    class="hover:text-bni-red underline">Terms of Service</a> apply.
             </p>
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer class="bg-gray-900 py-12 text-gray-400">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
@@ -712,25 +838,25 @@
             const chatModal = document.getElementById("chat-modal");
             const closeChatBtn = document.getElementById("close-chat-btn");
 
-            if (chatModal) {
+            // Function to toggle the chat modal visibility
+            const toggleModal = () => {
                 const modalContainer = chatModal.querySelector('.chat-modal-container');
+                const isHidden = chatModal.classList.contains("hidden");
 
-                const toggleModal = () => {
-                    const isHidden = chatModal.classList.contains("hidden");
+                if (isHidden) {
+                    chatModal.classList.remove("hidden");
+                    setTimeout(() => {
+                        modalContainer.classList.add("active");
+                    }, 10);
+                } else {
+                    modalContainer.classList.remove("active");
+                    setTimeout(() => {
+                        chatModal.classList.add("hidden");
+                    }, 300); // Wait for CSS transition
+                }
+            };
 
-                    if (isHidden) {
-                        chatModal.classList.remove("hidden");
-                        setTimeout(() => {
-                            modalContainer.classList.add("active");
-                        }, 10);
-                    } else {
-                        modalContainer.classList.remove("active");
-                        setTimeout(() => {
-                            chatModal.classList.add("hidden");
-                        }, 300); // Wait for transition
-                    }
-                };
-
+            if (chatModal) {
                 if (chatBtn) {
                     chatBtn.addEventListener("click", toggleModal);
                 }
@@ -738,9 +864,28 @@
                     closeChatBtn.addEventListener("click", toggleModal);
                 }
 
+                // Close modal if overlay is clicked
                 chatModal.addEventListener("click", (e) => {
                     if (e.target.classList.contains('modal-overlay')) {
                         toggleModal();
+                    }
+                });
+
+                // Attach the click handler to all profession cards (which link to #floating-chat-btn)
+                document.querySelectorAll('.profession-card').forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        e.preventDefault(); // Prevent default link behavior
+                        if (chatModal.classList.contains("hidden")) {
+                             toggleModal();
+                        }
+                    });
+                });
+                
+                // Attach the click handler to the CTA button (which links to #floating-chat-btn)
+                document.querySelector('#join a').addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default link behavior
+                    if (chatModal.classList.contains("hidden")) {
+                         toggleModal();
                     }
                 });
             }

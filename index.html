@@ -2,18 +2,28 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About BNI AURA - The World's Leading Referral Network</title>
+    <title>BNI AURA | The World's Leading Referral Network</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        /* Custom styles for BNI theme */
+        /* --- Custom BNI Red Theme & Colors --- */
         :root {
             --bni-red: #ef4444;
+            /* Consistent Red (Tailwind red-500) */
             --bni-red-dark: #dc2626;
-            --bni-red-original: #ef4444;
+            /* Darker Red (Tailwind red-700) */
+        }
+
+        .font-display {
+            font-family: 'Roboto Condensed', sans-serif;
         }
 
         .text-bni-red {
@@ -28,29 +38,6 @@
             border-color: var(--bni-red);
         }
 
-        /* Style for the Core Values grid background */
-        .core-value-card {
-            transition: transform 0.3s ease;
-        }
-
-        .core-value-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(239, 68, 68, 0.1);
-        }
-
-        /* Mission/Vision Card Styles */
-        .mission-vision-card {
-            min-height: 12rem;
-            border-top: 4px solid var(--bni-red);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-        }
-
-        .mission-vision-card:hover {
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            border-top-color: var(--bni-red-dark);
-        }
-
         /* Utility for Header Spacing */
         .pt-header-fix {
             padding-top: 5rem;
@@ -62,46 +49,22 @@
             }
         }
 
+        /* Active navigation link styling */
+        .nav-link.active {
+            color: var(--bni-red);
+            font-weight: bold;
+            border-bottom: 2px solid var(--bni-red);
+            padding-bottom: 0.25rem;
+        }
+
+        /* Dropdown */
         .dropdown:hover .dropdown-menu {
             display: block;
         }
 
-        #floating-chat-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 1000;
-        }
-
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 900;
-        }
-
-        .chat-modal-container {
-            position: fixed;
-            bottom: 6rem;
-            right: 2rem;
-            width: 90%;
-            max-width: 350px;
-            z-index: 1000;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
-
-        .chat-modal-container.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Hero Slider Styles for Alignment & 5 Slides (FIXED) --- */
+        /* --- Hero Slider Styles (FIXED FOR 3 SLIDES) --- */
         #hero-slider {
+            /* Full height minus header height */
             height: calc(100vh - 5rem);
             overflow: hidden;
             position: relative;
@@ -113,18 +76,17 @@
             }
         }
 
-        /* FIX: Updated width for 5 slides (500%) */
+        /* Slide Track for 3 slides: MUST be 300% (3 slides * 100%) */
         .slide-track {
-            width: 500%;
-            /* WAS 400% */
+            width: 300%;
             height: 100%;
             display: flex;
             transition: transform 0.8s ease-in-out;
         }
 
+        /* Each slide must be 1/3 of the track width: 100% / 3 = 33.333% */
         .slide {
-            min-width: 20%;
-            /* WAS 25% (100% / 5) */
+            min-width: 33.333%;
             height: 100%;
             background-size: cover;
             background-position: center;
@@ -147,7 +109,7 @@
             justify-content: center;
         }
 
-        /* --- Slider Navigation Dots --- */
+        /* Slider Navigation Dots */
         .slider-dots {
             position: absolute;
             bottom: 1.5rem;
@@ -168,151 +130,82 @@
         }
 
         .dot.active {
-            background-color: var(--bni-red-original);
+            background-color: var(--bni-red);
             transform: scale(1.3);
             box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8);
         }
 
-        /* --- NEW ANIMATIONS AND EFFECTS (for attractive coloring) --- */
-        @keyframes pulse-red {
-
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5);
-            }
-
-            50% {
-                box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
-            }
-        }
-
-        .animate-pulse-red:hover {
-            animation: pulse-red 1.2s infinite;
-        }
-
-        .btn-glow {
-            box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
-        }
-
-        .value-prop-box:hover {
-            border-color: var(--bni-red-dark);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            transition: border-left-width 0.3s ease-in-out;
-            border-left-width: 8px;
-        }
-
-        .curiosity-card {
+        /* --- Custom Feature Card Styling --- */
+        .feature-box {
             background-color: white;
             padding: 1.5rem;
             border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            transition: all 0.3s;
-            transform: scale(1);
-            border-top: 4px solid var(--bni-red-original);
-
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease-in-out;
+            border-top: 4px solid transparent;
         }
 
-        .curiosity-card:hover {
-            transform: scale(1.03);
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            border-top-color: var(--bni-red);
         }
 
-        .curiosity-icon {
-            font-size: 2.25rem;
-            color: var(--bni-red-original);
-            margin-bottom: 0.75rem;
-            transition: all 0.3s;
-        }
-
-        .curiosity-card:hover .curiosity-icon {
-            transform: scale(1.1);
-            filter: drop-shadow(0 0 4px var(--bni-red-dark));
-        }
-
-        .exclusivity-card {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            transition: all 0.3s;
-            text-align: center;
-            border-bottom: 4px solid transparent;
-        }
-
-        .exclusivity-card:hover {
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            border-bottom-color: var(--bni-red-original);
-        }
-
-        .exclusivity-icon-wrapper {
-            width: 4rem;
-            height: 4rem;
-            border-radius: 9999px;
-            margin: 0 auto 1rem auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #fee2e2;
-            border: 2px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .exclusivity-card:hover .exclusivity-icon-wrapper {
-            border-color: var(--bni-red-original);
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        }
-
-        .exclusivity-icon {
-            width: 2rem;
-            height: 2rem;
-            color: var(--bni-red-original);
-        }
-
-        .stat-card {
-            background-color: white;
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            transition: all 0.3s;
-            transform: scale(1);
-        }
-
-        .stat-card:hover {
-            transform: scale(1.03);
-        }
-
-        .footer-heading {
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid var(--bni-red);
-            padding-bottom: 0.25rem;
-        }
-
-        /* Added for the feature grid section */
-        .feature-grid-item .icon-wrapper {
+        .feature-icon-wrapper {
             background-color: #fef2f2;
-        }
-
-        .feature-grid-item .icon {
             color: var(--bni-red);
-            font-weight: 900;
+            border: 2px solid var(--bni-red);
         }
 
-        .feature-grid-item {
-            padding: 1.5rem;
-            border-radius: 0.75rem;
-            transition: all 0.3s;
-            background-color: white;
-            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-            border: 1px solid #e5e7eb;
+        .category-card {
+            position: relative;
+            height: 260px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: block;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .feature-grid-item:hover {
-            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            border-color: var(--bni-red);
-            transform: translateY(-4px);
+        .category-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-card-overlay {
+            background: rgba(0, 0, 0, 0.45);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .category-card-content {
+            color: #fff;
+        }
+
+        .view-button {
+            width: 100%;
+            text-align: center;
+            background-color: var(--bni-red);
+            color: #fff;
+            font-weight: bold;
+            padding-top: 0.625rem;
+            padding-bottom: 0.625rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            transition: background-color 0.3s;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .view-button:hover {
+            background-color: var(--bni-red-dark);
         }
 
         /* FIX: Ensures the mobile menu takes full width and text is left-aligned */
@@ -323,8 +216,151 @@
 
         /* FIX: Ensures spacing is uniform and text is left-aligned for sub-categories */
         #mobileSubCategories a {
-            padding-left: 2rem !important; /* Overrides default pl-8 (2rem = pl-8) */
+            padding-left: 2rem !important;
             padding-right: 1rem;
+        }
+
+        /* Testimonial Avatar and Image Fixes for mobile */
+        .testimonial-avatar {
+            /* This ensures the image scales correctly and isn't 'stamp-sized' */
+            width: 3rem !important;
+            height: 3rem !important;
+            object-fit: cover;
+        }
+
+        /* --- START MOBILE IMAGE FIX FOR CONTENT SECTION --- */
+        .full-img-mobile {
+            /* On larger screens, maintain fixed aspect/cover */
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+            /* Default position */
+            border-radius: 0.75rem;
+        }
+
+        @media (max-width: 640px) {
+            .full-img-mobile {
+                /* On small screens, use a modest height and try to fit the whole image */
+                height: auto;
+                /* Allow height to adjust */
+                min-height: 180px;
+                /* Minimum height for impact */
+                max-height: 300px;
+                object-fit: contain;
+                /* Ensure the whole image is visible (may introduce white space) */
+                width: 100%;
+                /* Ensure it spans full width of its container */
+                background-color: #f7f7f7;
+                /* Background color behind the 'contained' image */
+            }
+        }
+
+        /* --- END MOBILE IMAGE FIX FOR CONTENT SECTION --- */
+
+
+        /* Ensure all icons within feature boxes use the BNI Red color */
+        .icon-wrapper .fa-solid {
+            color: var(--bni-red);
+        }
+
+        /* --- Categories Card Styling (Image based) --- */
+        .category-card {
+            position: relative;
+            height: 20rem;
+            /* Fixed height for visual uniformity */
+            overflow: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: scale(1.03);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1));
+            transition: background 0.3s;
+            display: flex;
+            align-items: flex-end;
+            border-radius: 0.75rem;
+        }
+
+        .category-card:hover .category-card-overlay {
+            /* Deeper red overlay on hover */
+            background: linear-gradient(to top, var(--bni-red-dark), rgba(0, 0, 0, 0.2));
+        }
+
+        .category-card-content {
+            padding: 1.5rem;
+            color: white;
+            width: 100%;
+        }
+
+        /* --- Team Member Images (Responsive Fix) --- */
+        /* Note: This keeps the image 10rem square on desktop/tablet, and scales well on mobile */
+        .member-portrait {
+            height: 10rem;
+            width: 10rem;
+            object-fit: cover;
+            object-position: center top;
+            /* Center/Top position to keep faces visible */
+            border-radius: 0.5rem;
+            /* rounded-lg */
+        }
+
+        /* On mobile, ensure the card takes full width and the image stays centered */
+        @media (max-width: 767px) {
+            .member-portrait-card {
+                /* On mobile, card takes full width */
+                max-width: 100%;
+            }
+        }
+
+
+        /* CHAT MODAL CUSTOM STYLES */
+        #chat-modal {
+            position: fixed;
+            bottom: 6rem;
+            right: 1.5rem;
+            width: 100%;
+            max-width: 20rem;
+            z-index: 1000;
+        }
+
+        #floating-chat-btn {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 1000;
+        }
+
+        .chat-modal-container {
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+        }
+
+        .chat-modal-container.active {
+            transform: translateY(0);
+            opacity: 1;
         }
     </style>
 </head>
@@ -341,12 +377,12 @@
 
             <nav
                 class="hidden md:flex space-x-6 text-gray-700 font-semibold md:absolute md:inset-0 md:justify-center md:items-center">
-                <a href="index.html" class="nav-link hover:text-bni-red transition duration-300 text-bni-red active">Home</a>
+                <a href="index.html" class="nav-link active hover:text-bni-red transition duration-300">Home</a>
                 <a href="about.html" class="nav-link hover:text-bni-red transition duration-300">About Us</a>
 
                 <div class="relative dropdown">
                     <a href="categories.html"
-                        class="nav-link flex items-center text-gray-700 hover:text-bni-red transition duration-300">
+                        class="nav-link flex items-center hover:text-bni-red transition duration-300">
                         Categories
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -377,7 +413,7 @@
                                 TEAM</a>
                             <a href="categories.html"
                                 class="block px-4 py-2 text-bni-red font-bold border-t mt-1 hover:bg-red-50 transition duration-200">View
-                                All Teams</a>
+                                All Categories</a>
                         </div>
                     </div>
                 </div>
@@ -386,9 +422,8 @@
             </nav>
 
             <div class="hidden md:flex items-center space-x-3 z-10">
-
-                <a href="mailto:bniaurablr@gmail.com"
-                    class="text-sm sm:text-base text-bni-red font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
+                <a href="mailto:bniaurablr@gmail.com
+" class="text-sm sm:text-base text-bni-red font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -412,41 +447,53 @@
         <div id="mobileMenu" class="md:hidden bg-white shadow-xl hidden border-t border-red-100 w-full text-left">
             <nav class="flex flex-col space-y-2 p-4 text-gray-700 font-medium">
                 <a href="index.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300 bg-red-50 text-bni-red font-bold text-bni-red active">Home</a>
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300 text-bni-red font-bold">Home</a>
                 <a href="about.html"
                     class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">About
                     Us</a>
 
-                <div
-                    class="border-b border-red-100 flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-red-50 transition duration-300">
-                    <a href="categories.html" class="flex-grow font-bold text-gray-700 hover:text-bni-red">
-                        Categories
-                    </a>
-                    <button id="categoryToggle" class="p-1 focus:outline-none">
-                        <svg id="toggleIcon"
-                            class="w-4 h-4 transform rotate-0 transition-transform duration-300 text-gray-700 hover:text-bni-red"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                    </button>
+                <div class="border-b border-red-100">
+                    <div
+                        class="flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-red-50 transition duration-300">
+                        <a href="categories.html" class="flex-grow font-bold text-gray-700 hover:text-bni-red">
+                            Categories
+                        </a>
+                        <button id="categoryToggle" class="p-1 focus:outline-none">
+                            <svg id="toggleIcon"
+                                class="w-4 h-4 transform rotate-0 transition-transform duration-300 text-gray-700 hover:text-bni-red"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
+
                 <div id="mobileSubCategories" class="hidden flex flex-col space-y-1">
                     <a href="infra-detail.html"
-                        class="block py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300 pl-8">INFRA TEAM</a>
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INFRA
+                        TEAM</a>
                     <a href="construction-Team.html"
-                        class="block py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300 pl-8">CONSTRUCTION TEAM</a>
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">CONSTRUCTION
+                        TEAM</a>
                     <a href="finance-team.html"
-                        class="block py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300 pl-8">FINANCE TEAM</a>
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">FINANCE
+                        TEAM</a>
                     <a href="events.html"
-                        class="block py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300 pl-8">EVENTS TEAM</a>
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">EVENTS
+                        TEAM</a>
                     <a href="Industrialsme.html"
-                        class="block py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300 pl-8">INDUSTRIAL/SME TEAM</a>
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INDUSTRIAL/SME
+                        TEAM</a>
                     <a href="healthcare.html"
-                        class="block py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300 pl-8">HEALTHCARE TEAM</a>
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">HEALTHCARE
+                        TEAM</a>
                     <a href="categories.html"
-                        class="block py-2 text-bni-red font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200 pl-8">View All Teams</a>
+                        class="block pl-8 py-2 text-bni-red font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200">View
+                        All Categories</a>
                 </div>
+
                 <a href="invite.html"
                     class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Get
                     Invited</a>
@@ -459,7 +506,7 @@
         </div>
     </header>
 
-    <main class="pt-header-fix bg-gray-50">
+    <main class="pt-header-fix">
 
         <section id="hero-slider" class="w-full relative">
             <div id="slide-track" class="slide-track">
@@ -468,17 +515,17 @@
                     <div class="slide-overlay">
                         <div class="max-w-4xl mx-auto px-4 text-center">
                             <h2 class="text-5xl font-bold mb-6 text-white leading-tight font-display drop-shadow-lg">
-                                Grow Your Business <span class="text-red-500">Exponentially</span>
+                                Grow Your Business <span class="text-bni-red">Exponentially</span>
                             </h2>
                             <p class="text-xl mb-8 max-w-2xl mx-auto text-gray-100">Join Bangalore's most powerful
                                 business referral network with over ₹5 Crores in closed business annually</p>
                             <div class="flex flex-col sm:flex-row justify-center gap-4">
                                 <a href="join.html"
-                                    class="bg-white text-red-700 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300 shadow-lg transform hover:scale-105 btn-glow">
+                                    class="bg-white text-bni-red font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300 shadow-lg transform hover:scale-105">
                                     Join Our Network
                                 </a>
                                 <a href="invite.html"
-                                    class="border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-red-700 transition duration-300 shadow-lg transform hover:scale-105">
+                                    class="border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-bni-red transition duration-300 shadow-lg transform hover:scale-105">
                                     Attend as Guest
                                 </a>
                             </div>
@@ -491,13 +538,13 @@
                         <div class="max-w-4xl mx-auto px-4 text-center">
                             <h2
                                 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight font-display mb-4 drop-shadow-lg">
-                                ₹5 Crores+ in <span class="text-red-500">Business Generated</span>
+                                ₹5 Crores+ in <span class="text-bni-red">Business Generated</span>
                             </h2>
 
                             <p class="text-xl text-white font-medium mb-6">Tap into our proven referral system and
                                 maximize your revenue.</p>
                             <a href="join.html"
-                                class="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-base font-semibold rounded-lg text-white hover:bg- hover:text-bni-red-original transition duration-300 shadow-xl btn-glow">
+                                class="inline-flex items-center justify-center px-6 py-3 bg-bni-red text-white font-semibold rounded-lg hover:bg-red-700 transition duration-300 shadow-xl">
                                 Secure Your Exclusive Seat Today
                             </a>
                         </div>
@@ -509,49 +556,13 @@
                         <div class="max-w-4xl mx-auto px-4 text-center">
                             <h2
                                 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight font-display mb-4 drop-shadow-lg">
-                                Continuous Professional <span class="text-red-500">Development</span>
-                            </h2>
-                            <p class="text-xl text-white font-medium mb-6">Access world-class BNI training and
-                                mentorship programs.</p>
-
-                            <a href="about.html"
-                                class="bg-white text-red-700 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition duration-300 shadow-lg transform hover:scale-105 btn-glow">
-                                Explore Member Benefits
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slide" style="background-image: url('./images/hero5.jpg');">
-                    <div class="slide-overlay" style="background-color: rgba(0, 0, 0, 0.75);">
-                        <div class="max-w-4xl mx-auto px-4 text-center">
-                            <h2
-                                class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight font-display mb-4 drop-shadow-lg">
-                                Your Business, <span class="text-red-500"> Your Exclusive Category </span>
+                                Your Business, <span class="text-bni-red"> Your Exclusive Category </span>
                             </h2>
                             <p class="text-xl text-white font-medium mb-6">Gain a monopoly on your profession within our
                                 trusted network. No competition, only collaboration.</p>
                             <a href="join.html"
-                                class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-semibold rounded-lg text-white bg-red-500 hover:bg-red-500 text-gray-900 transition duration-300 shadow-xl">
+                                class="inline-flex items-center justify-center px-6 py-3 bg-bni-red text-white font-semibold rounded-lg hover:bg-red-700 transition duration-300 shadow-xl">
                                 Check Category Availability &rarr;
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="slide" style="background-image: url('./images/hero3.jpg');">
-                    <div class="slide-overlay" style="background-color: rgba(0, 0, 0, 0.65);">
-                        <div class="max-w-4xl mx-auto px-4 text-center">
-                            <h2
-                                class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight font-display mb-4 drop-shadow-lg">
-                                Trusted Partnerships <span class="text-red-500"> for Life</span>
-                            </h2>
-
-                            <p class="text-xl text-white font-medium mb-6">Forge deep, meaningful relationships that drive
-                                long-term business success.</p>
-                            <a href="about.html"
-                                class="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-base font-semibold rounded-lg text-white hover:bg- hover:text-bni-red-original transition duration-300 shadow-xl btn-glow">
-                                Learn More About Our Community
                             </a>
                         </div>
                     </div>
@@ -563,8 +574,6 @@
                 <div class="dot active" data-slide="0"></div>
                 <div class="dot" data-slide="1"></div>
                 <div class="dot" data-slide="2"></div>
-                <div class="dot" data-slide="3"></div>
-                <div class="dot" data-slide="4"></div>
             </div>
 
         </section>
@@ -578,23 +587,19 @@
                 <h2 class="text-4xl font-bold text-center text-gray-900 mb-8 font-display">
                     Discover the Power of <span class="text-bni-red">BNI AURA</span>
                 </h2>
-                <p class="text-lg text-center text-gray-600 max-w-3xl mx-auto mb-12">
-                    BNI AURA is a premier business networking group that consists of entrepreneurs,
-                    professionals, and small businesses. This group showcases a diverse range of
-                    companies, which grow their own businesses using the power of collaboration.
-                </p>
 
                 <div class="md:flex md:items-center md:space-x-12">
 
-                    <div class="md:w-1/2 mb-10 md:mb-0">
-                        <img src="./images/team.jpg" alt="A team meeting during sunset"
-                            class="rounded-xl shadow-xl w-full object-cover h-96">
+                    <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
+                        <img src="./images/team.jpg" alt="BNI Team Meeting" class="full-img-mobile shadow-xl max-w-xl"
+                            onerror="this.onerror=null; this.src='https://placehold.co/600x400/DDE3E8/333333?text=BNI+Team+Meeting'" />
                     </div>
 
                     <div class="md:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
 
-                        <div class="feature-grid-item">
-                            <div class="icon-wrapper w-10 h-10 rounded-full flex items-center justify-center mb-4">
+                        <div class="feature-box">
+                            <div
+                                class="feature-icon-wrapper w-10 h-10 rounded-full flex items-center justify-center mb-4">
                                 <i class="fa-solid fa-user-check icon w-5 h-5"></i>
                             </div>
                             <h3 class="text-lg font-semibold text-gray-900 mb-1">Trusted Network
@@ -604,8 +609,9 @@
                             </p>
                         </div>
 
-                        <div class="feature-grid-item">
-                            <div class="icon-wrapper w-10 h-10 rounded-full flex items-center justify-center mb-4">
+                        <div class="feature-box">
+                            <div
+                                class="feature-icon-wrapper w-10 h-10 rounded-full flex items-center justify-center mb-4">
                                 <i class="fa-solid fa-chart-line icon w-5 h-5"></i>
                             </div>
                             <h3 class="text-lg font-semibold text-gray-900 mb-1">Proven Growth</h3>
@@ -614,8 +620,9 @@
                             </p>
                         </div>
 
-                        <div class="feature-grid-item">
-                            <div class="icon-wrapper w-10 h-10 rounded-full flex items-center justify-center mb-4">
+                        <div class="feature-box">
+                            <div
+                                class="feature-icon-wrapper w-10 h-10 rounded-full flex items-center justify-center mb-4">
                                 <i class="fa-solid fa-handshake-angle icon w-5 h-5"></i>
                             </div>
                             <h3 class="text-lg font-semibold text-gray-900 mb-1">Quality Referrals
@@ -625,93 +632,18 @@
                             </p>
                         </div>
 
-                        <div class="feature-grid-item">
-                            <div class="icon-wrapper w-10 h-10 rounded-full flex items-center justify-center mb-4">
-                                <i class="fa-solid fa-graduation-cap icon w-5 h-5"></i>
+                        <div class="feature-box">
+                            <div
+                                 class="feature-icon-wrapper w-10 h-10 rounded-full flex items-center justify-center mb-4">
+                                <i class="fa-solid fa-graduation-cap w-5 h-5"></i>
                             </div>
-                            <h3 class="text-lg font-semibold text-gray-900 mb-1">Expert Training
-                            </h3>
+                            <h3 class="text-lg font-semibold text-gray-900 mb-1">Expert Training</h3>
                             <p class="text-sm text-gray-600">
                                 Access to proven networking strategies and business growth techniques
                             </p>
                         </div>
+
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-20 bg-gray-50">
-            <div class="max-w-6xl mx-auto px-6 lg:px-8">
-
-                <p class="text-bni-red text-center text-sm font-semibold mb-2 uppercase tracking-widest">
-                    GETTING STARTED IS EASY
-                </p>
-                <h2 class="text-4xl font-bold text-center text-gray-900 mb-4 font-display">
-                    How It Works
-                </h2>
-                <p class="text-lg text-center text-gray-600 max-w-4xl mx-auto mb-16">
-                    Join BNI AURA in four simple steps and start growing your business through
-                    the power of collaboration
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-                    <div
-                        class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
-                        <div class="relative mb-4">
-                            <div
-                                class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center border-2 border-bni-red mt-2">
-                                <i class="fa-solid fa-magnifying-glass text-bni-red text-xl"></i>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mt-6 mb-2">Find Your Chapter</h3>
-                        <p class="text-gray-600">
-                            Browse our diverse chapters and find the one that matches your industry and location
-                        </p>
-                    </div>
-
-                    <div
-                        class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
-                        <div class="relative mb-4">
-                            <div
-                                class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center border-2 border-bni-red mt-2">
-                                <i class="fa-solid fa-paper-plane text-bni-red text-xl"></i>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mt-6 mb-2">Request an Invitation</h3>
-                        <p class="text-gray-600">
-                            Submit your request to visit one of our exclusive weekly meetings as a guest
-                        </p>
-                    </div>
-
-                    <div
-                        class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
-                        <div class="relative mb-4">
-                            <div
-                                class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center border-2 border-bni-red mt-2">
-                                <i class="fa-solid fa-user-friends text-bni-red text-xl"></i>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mt-6 mb-2">Attend a Meeting</h3>
-                        <p class="text-gray-600">
-                            Experience our structured networking format and meet potential business partners
-                        </p>
-                    </div>
-
-                    <div
-                        class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
-                        <div class="relative mb-4">
-                            <div
-                                class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center border-2 border-bni-red mt-2">
-                                <i class="fa-solid fa-rocket text-bni-red text-xl"></i>
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-bold text-gray-900 mt-6 mb-2">Grow Your Business</h3>
-                        <p class="text-gray-600">
-                            Join as a member and start receiving qualified referrals from your trusted network
-                        </p>
-                    </div>
-
                 </div>
 
                 <div class="text-center mt-12">
@@ -724,104 +656,67 @@
             </div>
         </section>
 
-        <section class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold mb-4 text-gray-800">Why <span class="text-red-600">BNI Aura</span>
-                        Works</h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Our structured referral system delivers real
-                        results for business owners</p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-10">
-                    <div
-                        class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-t-4 border-red-600">
-                        <div class="text-red-600 mb-4">
-                            <i data-feather="users" class="w-12 h-12"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-3 text-gray-800">Exclusive Membership
-                        </h3>
-                        <p class="text-gray-600">Only one professional per category ensures no competition and maximum
-                            referrals</p>
-                    </div>
-                    <div
-                        class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-t-4 border-red-600">
-                        <div class="text-red-600 mb-4">
-                            <i data-feather="trending-up" class="w-12 h-12"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-3 text-gray-800">Proven Results</h3>
-                        <p class="text-gray-600">Members average 3-5 qualified referrals per week leading to significant
-                            revenue</p>
-                    </div>
-                    <div
-                        class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-xl transition duration-300 border-t-4 border-red-600">
-                        <div class="text-red-600 mb-4">
-                            <i data-feather="award" class="w-12 h-12"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold mb-3 text-gray-800">World-Class Training
-                        </h3>
-                        <p class="text-gray-600">Access to BNI's global network and business development resources</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold mb-4 text-gray-800">Available <span class="text-red-600">Categories</span>
+        <section id="teams" class="py-16 bg-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-extrabold text-gray-900 font-display">
+                        Explore Our Business Teams
                     </h2>
-                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Secure your exclusive spot in these high-demand
-                        business categories</p>
+                    <p class="mt-2 text-base text-gray-600">
+                        Select a category to view open professions and deep dive into the network.
+                    </p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg">
-                        <img src="https://static.photos/construction/640x360/1" alt="Construction"
-                            class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6">
-                            <h3 class="text-xl font-bold text-white">Construction</h3>
-                            <p class="text-red-300">3 spots remaining</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <a href="infra-detail.html" class="category-card"
+                        style="background-image: url('./images/infr.jpg');">
+                        <div class="category-card-overlay">
+                            <div class="category-card-content">
+                                <h3 class="text-xl font-bold">INFRA TEAM</h3>
+                                <p class="text-sm">Infrastructure, Real Estate, and Property Development professionals
+                                </p>
+                            </div>
                         </div>
-                        <a href="construction-team.html" class="absolute inset-0"></a>
-                    </div>
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg">
-                        <img src="https://static.photos/finance/640x360/2" alt="Finance"
-                            class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6">
-                            <h3 class="text-xl font-bold text-white">Financial Services</h3>
-                            <p class="text-red-300">1 spot remaining</p>
+                    </a>
+
+                    <a href="construction-Team.html" class="category-card"
+                        style="background-image: url('images/construcation.jpg');">
+                        <div class="category-card-overlay">
+                            <div class="category-card-content">
+                                <h3 class="text-xl font-bold">CONSTRUCTION TEAM</h3>
+                                <p class="text-sm">Construction, Building Materials, and Contracting services</p>
+                            </div>
                         </div>
-                        <a href="finance-team.html" class="absolute inset-0"></a>
-                    </div>
-                    <div class="group relative overflow-hidden rounded-xl shadow-lg">
-                        <img src="https://static.photos/healthcare/640x360/3" alt="Healthcare"
-                            class="w-full h-64 object-cover transition duration-500 group-hover:scale-110">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6">
-                            <h3 class="text-xl font-bold text-white">Healthcare</h3>
-                            <p class="text-red-300">2 spots remaining</p>
+                    </a>
+
+                    <a href="finance-team.html" class="category-card"
+                        style="background-image: url('./images/fince.jpg');">
+                        <div class="category-card-overlay">
+                            <div class="category-card-content">
+                                <h3 class="text-xl font-bold">FINANCE TEAM</h3>
+                                <p class="text-sm">Financial Services, Banking, Insurance, and Investment advisors</p>
+                            </div>
                         </div>
-                        <a href="healthcare.html" class="absolute inset-0"></a>
-                    </div>
+                    </a>
+
                 </div>
 
                 <div class="text-center mt-12">
                     <a href="categories.html"
-                        class="inline-flex items-center text-red-600 font-bold hover:text-red-800 transition duration-300">
+                        class="inline-flex items-center text-bni-red font-bold hover:text-red-800 transition duration-300">
                         View All Categories <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
                     </a>
                 </div>
+
             </div>
         </section>
 
-        <section class="py-20 bg-gray-100">
+
+        <section class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold mb-4 text-gray-800">Success <span class="text-red-600">Stories</span>
+                    <h2 class="text-4xl font-bold mb-4 text-gray-800">Success <span class="text-bni-red">Stories</span>
                     </h2>
                     <p class="text-xl text-gray-600 max-w-3xl mx-auto">Hear from our members about their BNI Aura
                         experience</p>
@@ -829,112 +724,182 @@
 
                 <div class="grid md:grid-cols-3 gap-8">
                     <div class="bg-white p-8 rounded-xl shadow-md">
-                        <div class="text-yellow-400 mb-4">
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
+                        <div class="text-bni-red mb-4">
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
                         </div>
-                        <p class="text-gray-600 mb-6">"BNI Aura transformed my business. I've closed ₹42 lakhs in new
-                            business just from referrals in the last 6 months."</p>
+                        <p class="text-gray-600 mb-6">"BNI Aura was the best business decision I've made. The
+                            connections and training
+                            have been **invaluable for scaling my marketing agency.**"</p>
                         <div class="flex items-center">
-                            <img src="https://static.photos/people/100x100/1" alt="Rajesh K."
-                                class="w-12 h-12 rounded-full mr-4">
+                            <img src="https://placehold.co/100x100/dc2626/ffffff?text=AG" alt="Akshay G."
+                                class="testimonial-avatar rounded-full mr-4">
                             <div>
-                                <h4 class="font-bold">Rajesh K.</h4>
-                                <p class="text-sm text-gray-500">Interior Designer</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-8 rounded-xl shadow-md">
-                        <div class="text-yellow-400 mb-4">
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                        </div>
-                        <p class="text-gray-600 mb-6">"The quality of referrals is exceptional. My accounting firm has
-                            grown 35% since joining BNI Aura."</p>
-                        <div class="flex items-center">
-                            <img src="https://static.photos/people/100x100/2" alt="Priya M."
-                                class="w-12 h-12 rounded-full mr-4">
-                            <div>
-                                <h4 class="font-bold">Priya M.</h4>
-                                <p class="text-sm text-gray-500">Chartered Accountant</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-8 rounded-xl shadow-md">
-                        <div class="text-yellow-400 mb-4">
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                            <i data-feather="star" class="w-5 h-5 inline"></i>
-                        </div>
-                        <p class="text-gray-600 mb-6">"Best business decision I've made. The connections and training
-                            have been invaluable for my marketing agency."</p>
-                        <div class="flex items-center">
-                            <img src="https://static.photos/people/100x100/3" alt="Arjun S."
-                                class="w-12 h-12 rounded-full mr-4">
-                            <div>
-                                <h4 class="font-bold">Arjun S.</h4>
+                                <h4 class="font-bold">Akshay G.</h4>
                                 <p class="text-sm text-gray-500">Digital Marketing</p>
                             </div>
                         </div>
                     </div>
+
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <div class="text-bni-red mb-4">
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                        </div>
+                        <p class="text-gray-600 mb-6">"The quality of referrals in BNI Aura is exceptional. I've
+                            successfully closed **multiple high-value property deals** since joining."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/100x100/ef4444/ffffff?text=TA" alt="Tosif Ali"
+                                class="testimonial-avatar rounded-full mr-4">
+                            <div>
+                                <h4 class="font-bold">Tosif Ali</h4>
+                                <p class="text-sm text-gray-500">Real Estate Broker</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <div class="text-bni-red mb-4">
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                            <i class="fa-solid fa-star w-5 h-5 inline"></i>
+                        </div>
+                        <p class="text-gray-600 mb-6">"My insurance advisory business has grown **40% in the last
+                            year.** BNI's 'Givers Gain' philosophy truly delivers long-term client trust."</p>
+                        <div class="flex items-center">
+                            <img src="https://placehold.co/100x100/dc2626/ffffff?text=BK" alt="Balakrishna"
+                                class="testimonial-avatar rounded-full mr-4">
+                            <div>
+                                <h4 class="font-bold">Balakrishna</h4>
+                                <p class="text-sm text-gray-500">Insurance Advisor</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="py-16 bg-gray-100">
+
+        <section class="py-16 bg-white">
+
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-4xl font-extrabold mb-12 text-gray-900 text-center">
-                    Meet the <span class="text-bni-red">AURA Leadership</span> Team
+
+                <h2 class="text-4xl font-extrabold mb-12 text-gray-900 text-center font-display">
+                    Meet the <span class="text-gray-900">AURA Leadership</span> Team
                 </h2>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
 
-                    <div
-                        class="text-center bg-white p-6 rounded-xl shadow-lg border-b-4 border-bni-red transform hover:scale-[1.03] transition duration-300">
-                        <img src="./images/RamSamtani.jpg" alt="Ram Samtani"
-                            class="mx-auto h-40 w-40 object-cover mb-4 border-4 border-red-100 rounded-lg" />
-                        <p class="font-bold text-xl text-gray-900">Ram Samtani</p>
-                        <p class="text-bni-red text-sm font-semibold uppercase mt-1">Area Director - Bangalore NW</p>
+                    <div class="text-center bg-white p-6 rounded-lg transform transition duration-300">
+                        <div style="background-color: #F8F2E9;"
+                            class="mx-auto mb-4 w-52 h-52 md:w-40 md:h-40 rounded-lg overflow-hidden flex items-center justify-center">
+                            <img src="./images/RamSamtani.jpg" alt="Ram Samtani" class="object-cover w-full h-full"
+                                onerror="this.onerror=null; this.src='https://placehold.co/160x160/F8F2E9/ffffff?text=Ram+S'" />
+                        </div>
+                        <p class="font-bold text-xl text-gray-900 mt-2">Ram Samtani</p>
+                        <p class="text-gray-600 text-sm font-light uppercase mt-1">Area Director - Bangalore NW</p>
                     </div>
 
-                    <div
-                        class="text-center bg-white p-6 rounded-xl shadow-lg border-b-4 border-bni-red transform hover:scale-[1.03] transition duration-300">
-                        <img src="./images/SowrabhaL.jpg" alt="Sowrabha L"
-                            class="mx-auto h-40 w-40 object-cover mb-4 border-4 border-red-100 rounded-lg" />
-                        <p class="font-bold text-xl text-gray-900">Sowrabha L</p>
-                        <p class="text-bni-red text-sm font-semibold uppercase mt-1">Launch Director Consultant</p>
+                    <div class="text-center bg-white p-6 rounded-lg transform transition duration-300">
+                        <div style="background-color: #E6F3E6;"
+                            class="mx-auto mb-4 w-52 h-52 md:w-40 md:h-40 rounded-lg overflow-hidden flex items-center justify-center">
+                            <img src="./images/SowrabhaL.jpg" alt="Sowrabha L" class="object-cover w-full h-full"
+                                onerror="this.onerror=null; this.src='https://placehold.co/160x160/E6F3E6/ffffff?text=Sowrabha+L'" />
+                        </div>
+                        <p class="font-bold text-xl text-gray-900 mt-2">Sowrabha L</p>
+                        <p class="text-gray-600 text-sm font-light uppercase mt-1">Launch Director Consultant</p>
                     </div>
 
-                    <div
-                        class="text-center bg-white p-6 rounded-xl shadow-lg border-b-4 border-bni-red transform hover:scale-[1.03] transition duration-300">
-                        <img src="./images/SagarDhongady.jpg" alt="Ar Sagar Dhongady"
-                            class="mx-auto h-40 w-40 object-cover mb-4 border-4 border-red-100 rounded-lg" />
-                        <p class="font-bold text-xl text-gray-900">Ar Sagar Dhongady</p>
-                        <p class="text-bni-red text-sm font-semibold uppercase mt-1">Launch Director Consultant</p>
+                    <div class="text-center bg-white p-6 rounded-lg transform transition duration-300">
+                        <div style="background-color: #F8E3D9;"
+                            class="mx-auto mb-4 w-52 h-52 md:w-40 md:h-40 rounded-lg overflow-hidden flex items-center justify-center">
+                            <img src="./images/SagarDhongady.jpg" alt="Ar Sagar Dhongady"
+                                class="object-cover w-full h-full"
+                                onerror="this.onerror=null; this.src='https://placehold.co/160x160/F8E3D9/ffffff?text=Sagar+D'" />
+                        </div>
+                        <p class="font-bold text-xl text-gray-900 mt-2">Ar Sagar Dhongady</p>
+                        <p class="text-gray-600 text-sm font-light uppercase mt-1">Launch Director Consultant</p>
                     </div>
 
                 </div>
+
             </div>
+
         </section>
-        <section class="py-20 bg-red-600 text-white">
+
+
+        <section class="py-20 bg-bni-red text-white">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
                 <p class="text-xl mb-8 max-w-2xl mx-auto">Join Bangalore's most effective business referral network
                     today</p>
                 <a href="join.html"
-                    class="inline-block bg-white text-red-600 font-bold py-4 px-12 rounded-full hover:bg-gray-100 transition duration-300 shadow-xl transform hover:scale-105">
+                    class="inline-block bg-white text-bni-red font-bold py-4 px-12 rounded-full hover:bg-gray-100 transition duration-300 shadow-xl transform hover:scale-105">
                     Apply Now
                 </a>
             </div>
         </section>
+
     </main>
+
+    <button id="floating-chat-btn"
+        class="bg-bni-red text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105 fixed bottom-6 right-6">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z">
+            </path>
+        </svg>
+    </button>
+
+    <div id="chat-modal" class="hidden">
+        <div class="modal-overlay"></div>
+        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-bni-red">
+            <div class="flex justify-between items-start border-b pb-3 mb-4">
+                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-bni-red">AURA</span></h3>
+                <button id="close-chat-btn" class="text-gray-500 hover:text-gray-900 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <p class="text-sm text-gray-600 mb-4">Hi! Please leave your details and our team will connect with you
+                shortly.</p>
+
+            <form action="#" method="POST" class="space-y-4">
+                <div>
+                    <input type="text" placeholder="Name*"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
+                        required>
+                </div>
+                <div>
+                    <input type="email" placeholder="Email*"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
+                        required>
+                </div>
+                <button type="submit"
+                    class="w-full bg-bni-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
+                    Send
+                </button>
+            </form>
+
+            <p class="text-xs text-center text-gray-400 mt-4">
+                This site is protected by reCAPTCHA and the Google <a href="#"
+                    class="hover:text-bni-red underline">Privacy Policy</a> and <a href="#"
+                    class="hover:text-bni-red underline">Terms of Service</a> apply.
+            </p>
+        </div>
+    </div>
+
     <footer class="bg-gray-900 py-12 text-gray-400">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
@@ -958,7 +923,7 @@
                     <nav class="space-y-2 text-sm">
                         <a href="index.html" class="block hover:text-red-400 transition">Home</a>
                         <a href="about.html" class="block hover:text-red-400 transition">About Us</a>
-                        <a href="teams-overview.html" class="block hover:text-red-400 transition">Categories</a>
+                        <a href="categories.html" class="block hover:text-red-400 transition">Categories</a>
                         <a href="invite.html" class="block hover:text-red-400 transition">Get Invited</a>
                         <a href="join.html" class="block hover:text-red-400 transition">Join Us</a>
                     </nav>
@@ -967,17 +932,6 @@
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Contact</h4>
                     <div class="space-y-2 text-sm">
-                        <a href="tel:+919876543210"
-                            class="flex items-center space-x-2 hover:text-red-400 transition">
-                            <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
-                                </path>
-                            </svg>
-                            <span>+91 98765 43210</span>
-                        </a>
-
                         <p class="flex items-start space-x-2">
                             <svg class="w-5 h-5 mt-1 text-red-500 flex-shrink-0" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1010,6 +964,7 @@
                     <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Connect</h4>
                     <div class="flex space-x-4">
 
+
                         <a href="https://www.instagram.com/bniaura/?igsh=MWU0N3U0bnlyMnUzcA%3D%3D#"
                             class="text-red-400 hover:text-white transition">
                             <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -1030,113 +985,185 @@
 
 
     <script>
-        // --- Feather Icons Initialization ---
-        feather.replace();
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Feather Icons Initialization ---
+            if (typeof feather !== 'undefined') {
+                feather.replace();
+            }
 
-        // --- Mobile Menu Toggle JS ---
-        const menuBtn = document.getElementById("menuBtn");
-        const mobileMenu = document.getElementById("mobileMenu");
-        const mobileMenuButton = document.getElementById('mobileMenuButton'); // Hamburger icon
+            // --- Mobile Menu Toggle JS ---
+            const menuBtn = document.getElementById("menuBtn");
+            const mobileMenu = document.getElementById("mobileMenu");
+            const mobileMenuButton = document.getElementById('mobileMenuButton'); // Hamburger Icon
 
-        menuBtn.addEventListener("click", () => {
-            const isExpanded = mobileMenu.classList.contains('hidden');
-            mobileMenu.classList.toggle("hidden");
+            // Corrected ID for mobile sub-categories used in closing logic
+            const mobileSubCategories = document.getElementById('mobileSubCategories');
+            const toggleIcon = document.getElementById('toggleIcon'); // Arrow icon
 
-            // Toggle the icon between hamburger and close (X)
-            if (isExpanded) {
-                mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'; // X icon
-            } else {
-                mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>'; // Hamburger icon
+            // Helper function to update the hamburger icon based on menu state
+            function updateMobileMenuIcon(isOpen) {
+                if (mobileMenuButton) {
+                    if (isOpen) {
+                        // X Icon
+                        mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+                    } else {
+                        // Hamburger Icon
+                        mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                    }
+                }
+            }
+
+            menuBtn.addEventListener("click", () => {
+                const isHidden = mobileMenu.classList.contains("hidden");
+                mobileMenu.classList.toggle("hidden");
+                updateMobileMenuIcon(isHidden);
+            });
+
+            // --- Mobile Categories Accordion Toggle JS ---
+            const categoryToggle = document.getElementById('categoryToggle'); // This is the button now
+
+            if (categoryToggle && mobileSubCategories && toggleIcon) {
+                categoryToggle.addEventListener('click', (e) => {
+                    // Stop navigation only if the submenu is open or closed, but still allow navigation to categories.html
+                    e.preventDefault();
+
+                    const isCategoriesHidden = mobileSubCategories.classList.contains('hidden');
+                    mobileSubCategories.classList.toggle('hidden');
+
+                    if (isCategoriesHidden) {
+                        toggleIcon.classList.add('rotate-90');
+                    } else {
+                        toggleIcon.classList.remove('rotate-90');
+                    }
+                });
+            }
+
+            // --- Close mobile menu on clicking any link ---
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Check if the clicked link is not inside the Categories section header div
+                    if (!link.closest('.flex.justify-between')) {
+                        // Reset category menu state when main menu closes
+                        if (mobileSubCategories) {
+                            mobileSubCategories.classList.add('hidden');
+                        }
+                        if (toggleIcon) {
+                            toggleIcon.classList.remove('rotate-90');
+                        }
+                        mobileMenu.classList.add('hidden');
+                        updateMobileMenuIcon(false); // Reset icon to hamburger
+                    }
+                });
+            });
+
+
+            // --- Hero Slider JS Fix (UPDATED for 3 Slides) ---
+            const slideTrack = document.getElementById('slide-track');
+            const dotsContainer = document.getElementById('slider-dots');
+            const slides = slideTrack ? slideTrack.querySelectorAll('.slide') : [];
+            const dots = dotsContainer ? dotsContainer.querySelectorAll('.dot') : [];
+            let currentSlide = 0;
+            const totalSlides = slides.length; // Now correctly calculated as 3
+
+            if (slideTrack && totalSlides > 0) {
+
+                // Calculate slide width as a percentage
+                const slideWidthPercentage = 100 / totalSlides;
+
+                // Function to handle the slide movement and state update
+                function moveToSlide(index) {
+                    if (index < 0) {
+                        index = totalSlides - 1; // Loop back to the last slide
+                    } else if (index >= totalSlides) {
+                        index = 0; // Loop back to the first slide
+                    }
+
+                    // Calculate the percentage offset based on the number of slides
+                    const offset = -index * slideWidthPercentage;
+                    slideTrack.style.transform = `translateX(${offset}%)`;
+
+                    // Update dots
+                    dots.forEach((dot, dotIndex) => {
+                        dot.classList.remove('active');
+                        if (dotIndex === index) {
+                            dot.classList.add('active');
+                        }
+                    });
+
+                    currentSlide = index;
+                }
+
+                // Event listeners for dots (manual navigation)
+                dots.forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        const slideIndex = parseInt(e.target.getAttribute('data-slide'));
+                        moveToSlide(slideIndex);
+                        // Reset interval when user clicks a dot
+                        resetAutoSlide();
+                    });
+                });
+
+                // Automatic sliding logic
+                const slideInterval = 5000; // 5 seconds
+                let autoSlideTimer = setInterval(() => {
+                    moveToSlide(currentSlide + 1);
+                }, slideInterval);
+
+                // Function to reset the timer (for manual dot clicks)
+                function resetAutoSlide() {
+                    clearInterval(autoSlideTimer);
+                    autoSlideTimer = setInterval(() => {
+                        moveToSlide(currentSlide + 1);
+                    }, slideInterval);
+                }
+            }
+            // --- End Hero Slider JS Fix ---
+
+
+            // --- Floating Chat/Modal JS (Global) ---
+            const chatBtn = document.getElementById("floating-chat-btn");
+            const chatModal = document.getElementById("chat-modal");
+            const closeChatBtn = document.getElementById("close-chat-btn");
+
+            if (chatModal) {
+                const modalContainer = chatModal.querySelector('.chat-modal-container');
+
+                const toggleModal = () => {
+                    const isHidden = chatModal.classList.contains("hidden");
+
+                    if (isHidden) {
+                        chatModal.classList.remove("hidden");
+                        setTimeout(() => {
+                            modalContainer.classList.add("active");
+                        }, 10);
+                    } else {
+                        modalContainer.classList.remove("active");
+                        setTimeout(() => {
+                            chatModal.classList.add("hidden");
+                        }, 300); // Wait for transition
+                        // Reset form fields on close
+                        const form = chatModal.querySelector('form');
+                        if (form) {
+                            form.reset();
+                        }
+                    }
+                };
+
+                if (chatBtn) {
+                    chatBtn.addEventListener("click", toggleModal);
+                }
+                if (closeChatBtn) {
+                    closeChatBtn.addEventListener("click", toggleModal);
+                }
+
+                chatModal.addEventListener("click", (e) => {
+                    if (e.target.classList.contains('modal-overlay')) {
+                        toggleModal();
+                    }
+                });
             }
         });
-
-        // --- Categories Dropdown Toggle (UPDATED IMPLEMENTATION) ---
-        // This is now the BUTTON/ICON only, so it focuses purely on toggling the submenu visibility and arrow rotation.
-        const categoryToggle = document.getElementById('categoryToggle');
-        const mobileSubCategories = document.getElementById('mobileSubCategories');
-        const toggleIcon = document.getElementById('toggleIcon');
-
-        categoryToggle.addEventListener('click', () => {
-            // Toggle visibility of sub-categories
-            mobileSubCategories.classList.toggle('hidden');
-
-            // Toggle arrow rotation
-            toggleIcon.classList.toggle('rotate-90');
-        });
-
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            // Close the main menu and reset the arrow state when any link (including Categories link) is clicked
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                mobileSubCategories.classList.add('hidden');
-                toggleIcon.classList.remove('rotate-90');
-                // Reset the hamburger icon to the default state
-                mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
-            });
-        });
-
-
-        // --- Hero Slider Logic (FIXED for 5 slides) ---
-        const slideTrack = document.getElementById('slide-track');
-        const dotsContainer = document.getElementById('slider-dots');
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const totalSlides = slides.length; // Now 5
-
-        let currentSlide = 0;
-        let slideInterval;
-
-        // Function to update the slider position
-        function updateSlider() {
-            // FIX: Calculation changed to 100/totalSlides (100/5 = 20%)
-            const offset = -currentSlide * (100 / totalSlides);
-            slideTrack.style.transform = `translateX(${offset}%)`;
-
-            // Update dots
-            dots.forEach((dot, index) => {
-                dot.classList.remove('active');
-                if (index === currentSlide) {
-                    dot.classList.add('active');
-                }
-            });
-        }
-
-        // Function to move to the next slide
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlider();
-        }
-
-        // Function to manually jump to a slide
-        function goToSlide(index) {
-            currentSlide = index;
-            updateSlider();
-            resetInterval(); // Reset the interval on manual navigation
-        }
-
-        // Event listeners for dots
-        dots.forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                const slideIndex = parseInt(e.target.dataset.slide);
-                goToSlide(slideIndex);
-            });
-        });
-
-        // Function to start the automatic slide show
-        function startSlider() {
-            slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-        }
-
-        // Function to clear and restart the interval (used on manual click)
-        function resetInterval() {
-            clearInterval(slideInterval);
-            startSlider();
-        }
-
-        // Initial call to start the slider
-        updateSlider();
-        startSlider();
     </script>
 </body>
 

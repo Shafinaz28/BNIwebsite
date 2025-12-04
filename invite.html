@@ -10,14 +10,9 @@
     <style>
         /* Custom styles for BNI theme */
         :root {
-            --bni-red: #ef4444;
+            --bni-red: #ef4444; /* Consistent Red */
             --bni-red-dark: #dc2626;
-            --step-icon-bg: #fff;
-            /* White background for icons */
-            --step-icon-color: #dc2626;
-            /* Dark Red icon color */
-            --step-border-color: #fbd3d3;
-            /* Light red border */
+            --bni-red-light: #fef2f2; /* Very light red for accents */
         }
 
         .text-bni-red {
@@ -32,55 +27,83 @@
             border-color: var(--bni-red);
         }
 
-        /* How It Works Step Styling */
-        .how-it-works-step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 1rem;
+        /* Utility for Header Fix */
+        .pt-header-fix {
+            padding-top: 5rem;
+        }
+
+        @media (min-width: 768px) {
+            .pt-header-fix {
+                padding-top: 6rem;
+            }
+        }
+
+        /* --- GRADIENT STEP CARD STYLING (Updated to single red accent) --- */
+        .step-card-wrapper {
             position: relative;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            /* Applying BNI red background to the wrapper for consistent accent */
+            background-color: var(--bni-red); 
         }
 
-        .step-icon-wrapper {
-            width: 4rem;
-            height: 4rem;
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 0.75rem;
-            border: 2px solid transparent;
-            background-color: var(--step-icon-bg);
-            color: var(--step-icon-color);
-            z-index: 10;
+        .step-card-wrapper:hover {
+            transform: translateY(-5px);
         }
 
-        .step-number {
+        .step-content {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            position: relative;
+            z-index: 20;
+            min-height: 150px;
+        }
+
+        .step-header {
             position: absolute;
             top: 0;
-            right: 0;
             left: 0;
-            width: 1.5rem;
-            height: 1.5rem;
-            border-radius: 9999px;
-            background-color: #dc2626;
-            color: #fff;
+            width: 100%;
+            height: 3.5rem;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
+            padding: 0 1.5rem;
+            color: white;
             font-weight: bold;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            z-index: 20;
-            margin-left: auto;
-            margin-right: auto;
+            font-size: 1.125rem;
+            z-index: 10;
+            /* Using a darker red overlay for better contrast */
+            background-color: rgba(0, 0, 0, 0.1);
         }
 
-        /* --- Dropdown specific styles (Desktop) --- */
-        .dropdown:hover .dropdown-menu {
-            display: block;
+        /* Icon Styling */
+        .step-icon-inner {
+            color: var(--bni-red-dark);
+            margin-bottom: 0.5rem;
         }
+        
+        /* Layout on mobile (single column) */
+        .how-it-works-grid {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        @media (min-width: 768px) {
+            .how-it-works-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 2rem;
+            }
+            .step-card-wrapper {
+                margin-bottom: 0;
+            }
+        }
+
 
         /* Floating Chat Styles */
         #floating-chat-btn {
@@ -116,23 +139,20 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Utility for Header Fix (Necessary for pt-20 in main) */
-        .pt-header-fix {
-            padding-top: 5rem;
-        }
-
-        @media (min-width: 768px) {
-            .pt-header-fix {
-                padding-top: 6rem;
-            }
-        }
-
+        
         /* Mobile Menu Fixes */
         #mobileSubCategories a {
             padding-left: 2rem !important;
-            /* Ensure proper indent */
             padding-right: 1rem;
+        }
+        
+        /* FIX: Ensure dropdown menu shows on hover for desktop */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .nav-link.active {
+            color: var(--bni-red);
+            font-weight: bold;
         }
     </style>
 </head>
@@ -150,8 +170,10 @@
                 class="hidden md:flex space-x-6 text-gray-700 font-semibold md:absolute md:inset-0 md:justify-center md:items-center">
                 <a href="index.html" class="hover:text-red-600 transition duration-300">Home</a>
                 <a href="about.html" class="hover:text-red-600 transition duration-300">About Us</a>
+                
+                <!-- CORRECTED DESKTOP CATEGORIES DROPDOWN STRUCTURE -->
                 <div class="relative dropdown">
-                    <a href="categories.html" class="flex items-center hover:text-red-600 transition duration-300">
+                    <a href="categories.html" class="nav-link flex items-center hover:text-red-600 transition duration-300">
                         Categories
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -186,7 +208,8 @@
                         </div>
                     </div>
                 </div>
-                <a href="invite.html" class="hover:text-red-600 transition duration-300 text-bni-red active">Get Invited</a>
+                <!-- APPLYING ACTIVE CLASS TO GET INVITED LINK -->
+                <a href="invite.html" class="hover:text-red-600 transition duration-300 nav-link active">Get Invited</a>
                 <a href="join.html" class="hover:text-red-600 transition duration-300">Join Us</a>
             </nav>
 
@@ -194,7 +217,7 @@
             <div class="hidden md:flex items-center space-x-3 z-10">
                 <a href="mailto:bniaurablr@gmail.com
 "
-                    class="text-sm sm:text-base text-red-600 font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
+                    class="text-sm sm:text-base text-bni-red font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -218,156 +241,152 @@
         <div id="mobileMenu" class="md:hidden bg-white shadow-xl hidden border-t border-red-100">
             <nav class="flex flex-col space-y-2 p-4 text-gray-700 font-medium">
                 <a href="index.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Home</a>
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Home</a>
                 <a href="about.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">About
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">About
                     Us</a>
 
                 <div class="border-b border-red-100">
-                    <div
-                        class="flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-red-50 transition duration-300">
-                        <a href="categories.html" class="flex-grow font-bold text-gray-700 hover:text-bni-red">
-                            Categories
-                        </a>
-                        <button id="categoryToggle" class="p-1 focus:outline-none">
-                            <svg id="toggleIcon"
-                                class="w-4 h-4 transform rotate-0 transition-transform duration-300 text-gray-700 hover:text-bni-red"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                                </path>
-                            </svg>
-                        </button>
-                    </div>
+                    <a href="categories.html" id="categoryToggle"
+                        class="flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300 font-bold">
+                        Categories
+                        <svg id="toggleIcon" class="w-4 h-4 transform rotate-0 transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
                 </div>
 
                 <div id="mobileSubCategories" class="hidden flex flex-col space-y-1">
                     <a href="infra-detail.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300 ">INFRA
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INFRA
                         TEAM</a>
                     <a href="construction-Team.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">CONSTRUCTION
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">CONSTRUCTION
                         TEAM</a>
                     <a href="finance-team.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">FINANCE
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">FINANCE
                         TEAM</a>
                     <a href="events.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">EVENTS
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">EVENTS
                         TEAM</a>
                     <a href="Industrialsme.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">INDUSTRIAL/SME
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INDUSTRIAL/SME
                         TEAM</a>
                     <a href="healthcare.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">HEALTHCARE
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">HEALTHCARE
                         TEAM</a>
                     <a href="categories.html"
-                        class="block pl-8 py-2 text-red-600 font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200">View
+                        class="block pl-8 py-2 text-bni-red font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200">View
                         All Categories</a>
                 </div>
 
                 <a href="invite.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300 text-red-600 font-bold text-bni-red active">
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300 text-bni-red font-bold">
                     Get Invited
                 </a>
 
                 <a href="join.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Join
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Join
                     Us</a>
                 <a href="mailto:bniaurablr@gmail.com"
-                    class="block px-3 py-2 text-red-600 font-semibold text-center border-t mt-2">bniaurablr@gmail.com</a>
+                    class="block px-3 py-2 text-bni-red font-semibold text-center border-t mt-2">bniaurablr@gmail.com</a>
             </nav>
         </div>
     </header>
 
-    <main class="pt-20">
+    <main class="pt-header-fix">
 
-        <section id="team-hero" class="bg-bni-red text-white py-24"
+        <section id="hero" class="bg-bni-red text-white py-24"
             style="background-image: linear-gradient(to right, #dc2626, #ef4444);">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h1 class="text-5xl font-extrabold mb-3 drop-shadow-md">Request Your Invitation</h1>
-                <p class="text-xl font-light text-gray-300 max-w-3xl mx-auto">Take the first step towards growing your
+                <p class="text-xl font-light text-red-100 max-w-3xl mx-auto">Take the first step towards growing your
                     business through structured networking</p>
             </div>
         </section>
 
-        <section id="how-it-works" class="py-16 bg-white">
+        <!-- HOW IT WORKS SECTION - RE-STYLED FOR CONSISTENT RED ACCENT -->
+        <section id="how-it-works" class="py-16 bg-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-10">How It Works</h2>
 
+                <div class="max-w-6xl mx-auto how-it-works-grid">
 
-                <div class="max-w-6xl mx-auto flex justify-between relative bg-red-50/50 rounded-lg shadow-sm">
-
-                    <div
-                        class="how-it-works-step relative w-1/4 p-4 md:p-6 text-center flex flex-col items-center">
-                        <span class="step-number">01</span>
-
-                        <div class="step-icon-wrapper">
-                            <i class="fa-solid fa-file-alt text-2xl" style="color: var(--step-icon-color);"></i>
+                    <!-- Step 1: Submit Request (Red Accent) -->
+                    <div class="step-card-wrapper bg-bni-red">
+                        <div class="step-header">STEP 01</div>
+                        <div class="step-content pt-12 text-center">
+                            <div class="step-icon-inner text-3xl mx-auto">
+                                <i class="fa-solid fa-file-alt"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-900 mb-2 text-lg">Submit Request</h3>
+                            <p class="text-sm text-gray-600">Fill out the invitation form below to express your interest in attending a meeting as a guest.</p>
                         </div>
-
-                        <h3 class="font-bold text-gray-900 mb-1 text-base md:text-lg">Submit Request</h3>
-                        <p class="text-sm text-gray-600">Fill out the invitation form</p>
                     </div>
 
-                    <div
-                        class="how-it-works-step relative w-1/4 p-4 md:p-6 text-center flex flex-col items-center">
-                        <span class="step-number">02</span>
-
-                        <div class="step-icon-wrapper">
-                            <i class="fa-solid fa-envelope-open text-2xl" style="color: var(--step-icon-color);"></i>
+                    <!-- Step 2: Get Confirmation (Red Accent) -->
+                    <div class="step-card-wrapper bg-bni-red">
+                        <div class="step-header">STEP 02</div>
+                        <div class="step-content pt-12 text-center">
+                            <div class="step-icon-inner text-3xl mx-auto">
+                                <i class="fa-solid fa-envelope-open"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-900 mb-2 text-lg">Get Confirmed</h3>
+                            <p class="text-sm text-gray-600">Our Membership Committee will review your category and send meeting details via email/WhatsApp if the seat is open.</p>
                         </div>
-
-                        <h3 class="font-bold text-gray-900 mb-1 text-base md:text-lg">Get Confirmation</h3>
-                        <p class="text-sm text-gray-600">Receive meeting details via email</p>
                     </div>
 
-                    <div
-                        class="how-it-works-step relative w-1/4 p-4 md:p-6 text-center flex flex-col items-center">
-                        <span class="step-number">03</span>
-
-                        <div class="step-icon-wrapper">
-                            <i class="fa-solid fa-calendar-alt text-2xl" style="color: var(--step-icon-color);"></i>
+                    <!-- Step 3: Attend Meeting (Red Accent) -->
+                    <div class="step-card-wrapper bg-bni-red">
+                        <div class="step-header">STEP 03</div>
+                        <div class="step-content pt-12 text-center">
+                            <div class="step-icon-inner text-3xl mx-auto">
+                                <i class="fa-solid fa-calendar-alt"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-900 mb-2 text-lg">Visit as a Guest</h3>
+                            <p class="text-sm text-gray-600">Attend our next scheduled meeting to network with members and see the BNI system in action, obligation-free.</p>
                         </div>
-
-                        <h3 class="font-bold text-gray-900 mb-1 text-base md:text-lg">Attend Meeting</h3>
-                        <p class="text-sm text-gray-600">Visit as our guest</p>
                     </div>
 
-                    <div
-                        class="how-it-works-step relative w-1/4 p-4 md:p-6 text-center flex flex-col items-center">
-                        <span class="step-number">04</span>
-
-                        <div class="step-icon-wrapper">
-                            <i class="fa-solid fa-user-check text-2xl" style="color: var(--step-icon-color);"></i>
+                    <!-- Step 4: Join Network (Red Accent) -->
+                    <div class="step-card-wrapper bg-bni-red">
+                        <div class="step-header">STEP 04</div>
+                        <div class="step-content pt-12 text-center">
+                            <div class="step-icon-inner text-3xl mx-auto">
+                                <i class="fa-solid fa-user-check"></i>
+                            </div>
+                            <h3 class="font-bold text-gray-900 mb-2 text-lg">Apply to Join</h3>
+                            <p class="text-sm text-gray-600">If your category is open and you decide the chapter is a great fit, submit your application to secure your exclusive seat.</p>
                         </div>
-
-                        <h3 class="font-bold text-gray-900 mb-1 text-base md:text-lg">Join Network</h3>
-                        <p class="text-sm text-gray-600">Become a member</p>
                     </div>
 
                 </div>
             </div>
         </section>
 
+        <!-- FORM AND CONTACT SECTION -->
         <section class="py-16 bg-gray-50">
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 px-6">
 
-                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-bni-red">
+                <!-- Invitation Request Form (Card 1) -->
+                <div id="invitation-form" class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-bni-red">
                     <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">Invitation Request Form</h2>
-                    <p class="text-sm text-gray-600 mb-6">Join our exclusive business referral network.</p>
+                    <p class="text-sm text-gray-600 mb-6">Join our exclusive business referral network by filling out the details below.</p>
 
                     <form class="space-y-4">
                         <input placeholder="Full Name*" type="text" required
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-bni-red focus:border-bni-red">
                         <input placeholder="Email Address*" type="email" required
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-bni-red focus:border-bni-red">
                         <input type="tel" placeholder="Phone Number*" required
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-bni-red focus:border-bni-red">
                         <input placeholder="Business Name*" type="text" required
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500">
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-bni-red focus:border-bni-red">
 
                         <select required
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500 bg-white appearance-none">
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-bni-red focus:border-bni-red bg-white appearance-none">
                             <option value="" disabled selected>Select your category*</option>
                             <option>Finance Consultant</option>
                             <option>Digital Marketing Agency</option>
@@ -376,10 +395,10 @@
                         </select>
 
                         <textarea placeholder="Message (Optional)" rows="3"
-                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-red-500 focus:border-red-500"></textarea>
+                            class="w-full p-3 border border-gray-300 rounded-lg focus:ring-bni-red focus:border-bni-red"></textarea>
 
                         <button type="submit"
-                            class="w-full bg-red-600 text-white text-lg font-bold py-3 rounded-lg hover:bg-red-700 transition">
+                            class="w-full bg-bni-red text-white text-lg font-bold py-3 rounded-lg hover:bg-red-700 transition">
                             Submit Request
                         </button>
                         <p class="text-xs text-gray-500 text-center pt-2">
@@ -388,8 +407,8 @@
                     </form>
                 </div>
 
-                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-red-100">
-
+                <!-- Guest Visit and Contact Info (Card 2) -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-gray-300">
                     <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b pb-2">Visit Us as a Guest</h2>
 
                     <p class="text-gray-700 mb-6 leading-relaxed">
@@ -398,10 +417,9 @@
                     </p>
 
                     <div class="space-y-4 mb-6">
-
                         <div class="flex items-start space-x-3">
                             <span class="text-bni-red text-xl flex-shrink-0 pt-1"><i
-                                    class="fa-solid fa-calendar-alt"></i></span>
+                                        class="fa-solid fa-calendar-alt"></i></span>
                             <div>
                                 <h4 class="font-semibold text-gray-900">Weekly Meetings</h4>
                                 <p class="text-sm text-gray-600">Join us every week for structured networking sessions
@@ -420,46 +438,34 @@
 
                         <div class="flex items-start space-x-3">
                             <span class="text-bni-red text-xl flex-shrink-0 pt-1"><i
-                                    class="fa-solid fa-check-circle"></i></span>
+                                        class="fa-solid fa-check-circle"></i></span>
                             <div>
                                 <h4 class="font-semibold text-gray-900">No Obligation</h4>
                                 <p class="text-sm text-gray-600">Visit as a guest to see if BNI AURA is right for you
                                 </p>
                             </div>
                         </div>
-
                     </div>
 
-                    <div class="mt-6 p-4 bg-red-50 border-l-4 border-bni-red text-sm text-gray-700">
-                        Note: Guests are welcome to attend up to two meetings before deciding on membership.
-                    </div>
-
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b pb-2 text-center mt-10">CONTACT US FOR MORE
-                        INFO!</h2>
-
-                    <div class="space-y-6">
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
-                            <div class="p-4 bg-gray-50 rounded-lg shadow-sm border border-red-100">
+                    <div class="mt-8">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 border-b pb-2">CONTACT US DIRECTLY</h2>
+                        
+                        <div class="grid grid-cols-1 gap-4">
+                            <!-- Contact cards updated to use white background with red borders -->
+                            <div class="p-4 bg-white rounded-lg shadow-sm border border-red-300">
                                 <h3 class="font-bold text-lg text-gray-900 mb-1">SAGAR DHONGADY</h3>
-                                <div class="flex justify-between items-center">
-
-                                    <a href="tel:+919964083546" class="text-bni-red font-bold text-lg hover:underline">+91-99640 83546</a>
-                                </div>
+                                <a href="tel:+919964083546" class="text-bni-red font-bold text-lg hover:underline">+91-99640 83546</a>
                             </div>
 
-                            <div class="p-4 bg-gray-50 rounded-lg shadow-sm border border-red-100">
+                            <div class="p-4 bg-white rounded-lg shadow-sm border border-red-300">
                                 <h3 class="font-bold text-lg text-gray-900 mb-1">SOWRABHA L</h3>
-                                <div class="flex justify-between items-center">
-
-                                    <a href="tel:+919902279257" class="text-bni-red font-bold text-lg hover:underline">+91-99022 79257</a>
-                                </div>
+                                <a href="tel:+919902279257" class="text-bni-red font-bold text-lg hover:underline">+91-99022 79257</a>
                             </div>
                         </div>
-                        <div class="pt-4">
+                        
+                        <div class="pt-6">
                             <a href="https://wa.me/919964083546" target="_blank"
-                                class="bg-green-500 text-white py-3 px-6 rounded-xl flex items-center justify-center space-x-2 font-bold hover:bg-green-600 shadow-lg transition duration-300">
+                                class="bg-green-500 text-white py-3 px-6 rounded-lg flex items-center justify-center space-x-2 font-bold hover:bg-green-600 shadow-lg transition duration-300">
                                 <i class="fab fa-whatsapp text-xl"></i>
                                 <span>Message us on WhatsApp</span>
                             </a>
@@ -473,17 +479,18 @@
             </div>
         </section>
 
+        <!-- CTA Section - Background changed from bg-gray-900 to bg-bni-red -->
         <section class="py-20 bg-bni-red text-white">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-extrabold mb-4 drop-shadow-md">
+                <h2 class="text-4xl font-extrabold mb-4 drop-shadow-md text-white">
                     Ready to Network?
                 </h2>
-                <p class="text-xl mb-10 max-w-2xl mx-auto">
+                <p class="text-xl mb-10 max-w-2xl mx-auto text-red-100">
                     Submit your details now to secure your invitation to our next meeting!
                 </p>
 
                 <a href="join.html"
-                    class="inline-block bg-white text-red-700 font-bold py-4 px-12 rounded-lg hover:bg-red-500 transition duration-300 shadow-xl transform hover:scale-105">
+                    class="inline-block bg-white text-bni-red font-bold py-4 px-12 rounded-lg hover:bg-gray-200 transition duration-300 shadow-xl transform hover:scale-105">
                     View Membership Application
                 </a>
             </div>
@@ -491,20 +498,23 @@
 
     </main>
 
+    <!-- FLOATING CHAT BUTTON (RIGHT SIDE) -->
     <button id="floating-chat-btn"
-        class="bg-red-600 text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+        class="bg-bni-red text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Icon to represent a message or chat bubble -->
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z">
             </path>
         </svg>
     </button>
 
+    <!-- CHAT MODAL (RIGHT SIDE) -->
     <div id="chat-modal" class="hidden">
         <div class="modal-overlay"></div>
-        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-red-600">
+        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-bni-red">
             <div class="flex justify-between items-start border-b pb-3 mb-4">
-                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-red-600">AURA</span></h3>
+                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-bni-red">AURA</span></h3>
                 <button id="close-chat-btn" class="text-gray-500 hover:text-gray-900 transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -520,24 +530,24 @@
             <form action="#" method="POST" class="space-y-4">
                 <div>
                     <input type="text" placeholder="Name*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <div>
                     <input type="email" placeholder="Email*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <button type="submit"
-                    class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
+                    class="w-full bg-bni-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
                     Send
                 </button>
             </form>
 
             <p class="text-xs text-center text-gray-400 mt-4">
                 This site is protected by reCAPTCHA and the Google <a href="#"
-                    class="hover:text-red-500 underline">Privacy Policy</a> and <a href="#"
-                    class="hover:text-red-500 underline">Terms of Service</a> apply.
+                    class="hover:text-bni-red underline">Privacy Policy</a> and <a href="#"
+                    class="hover:text-bni-red underline">Terms of Service</a> apply.
             </p>
         </div>
     </div>
@@ -554,7 +564,7 @@
                         Unlock new opportunities, forge valuable partnerships, and drive your business forward with BNI
                         AURA.
                     </p>
-                    <p class="text-xs mt-1 text-red-400 font-semibold">
+                    <p class="text-xs mt-1 text-bni-red font-semibold">
                         We believe in Givers Gain®.
                     </p>
                 </div>
@@ -564,7 +574,7 @@
                     <nav class="space-y-2 text-sm">
                         <a href="index.html" class="block hover:text-red-400 transition">Home</a>
                         <a href="about.html" class="block hover:text-red-400 transition">About Us</a>
-                        <a href="teams-overview.html" class="block hover:text-red-400 transition">Categories</a>
+                        <a href="categories.html" class="block hover:text-red-400 transition">Categories</a>
                         <a href="invite.html" class="block hover:text-red-400 transition">Get Invited</a>
                         <a href="join.html" class="block hover:text-red-400 transition">Join Us</a>
                     </nav>
@@ -624,7 +634,6 @@
             </div>
         </div>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Mobile Menu Toggle JS (Main Hamburger) ---
@@ -634,16 +643,19 @@
 
             // Corrected ID for mobile sub-categories used in closing logic
             const mobileSubCategories = document.getElementById('mobileSubCategories');
+            const categoryToggle = document.getElementById('categoryToggle'); // Anchor tag used as a toggle/link
             const toggleIcon = document.getElementById('toggleIcon'); // Arrow icon
 
             // Helper function to update the hamburger icon based on menu state
             function updateMobileMenuIcon(isOpen) {
-                if (isOpen) {
-                    // X Icon (using SVG path for simplicity, Tailwind's transition group might be better for smooth morphing)
-                    mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
-                } else {
-                    // Hamburger Icon
-                    mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                if (mobileMenuButton) {
+                    if (isOpen) {
+                        // X Icon
+                        mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+                    } else {
+                        // Hamburger Icon
+                        mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                    }
                 }
             }
 
@@ -653,15 +665,16 @@
                 updateMobileMenuIcon(isHidden);
             });
 
-            // --- Mobile Categories Accordion Toggle JS ---
-            const categoryToggle = document.getElementById('categoryToggle'); // This is the button now
-
+            // --- Mobile Categories Accordion Toggle JS (Fixed to prevent navigation) ---
             if (categoryToggle && mobileSubCategories && toggleIcon) {
-                categoryToggle.addEventListener('click', () => {
-                    const isCategoriesHidden = mobileSubCategories.classList.contains('hidden');
+                categoryToggle.addEventListener('click', (e) => {
+                    // Stop navigation only if the submenu is open or closed, but still allow navigation to categories.html
+                    e.preventDefault();
+
+                    const isHidden = mobileSubCategories.classList.contains('hidden');
                     mobileSubCategories.classList.toggle('hidden');
 
-                    if (isCategoriesHidden) {
+                    if (isHidden) {
                         toggleIcon.classList.add('rotate-90');
                     } else {
                         toggleIcon.classList.remove('rotate-90');
@@ -673,8 +686,8 @@
             const mobileLinks = mobileMenu.querySelectorAll('a');
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    // Check if the clicked link is not inside the Categories section header div
-                    if (!link.closest('.flex.justify-between')) {
+                    // Check if the clicked link is not the category toggle link itself
+                    if (link.id !== 'categoryToggle') {
                         // Reset category menu state when main menu closes
                         if (mobileSubCategories) {
                             mobileSubCategories.classList.add('hidden');
@@ -688,30 +701,31 @@
                 });
             });
 
+
             // --- Floating Chat/Modal JS (Global) ---
             const chatBtn = document.getElementById("floating-chat-btn");
             const chatModal = document.getElementById("chat-modal");
             const closeChatBtn = document.getElementById("close-chat-btn");
 
-            if (chatModal) {
+            // Function to toggle the chat modal visibility
+            const toggleModal = () => {
                 const modalContainer = chatModal.querySelector('.chat-modal-container');
+                const isHidden = chatModal.classList.contains("hidden");
 
-                const toggleModal = () => {
-                    const isHidden = chatModal.classList.contains("hidden");
+                if (isHidden) {
+                    chatModal.classList.remove("hidden");
+                    setTimeout(() => {
+                        modalContainer.classList.add("active");
+                    }, 10);
+                } else {
+                    modalContainer.classList.remove("active");
+                    setTimeout(() => {
+                        chatModal.classList.add("hidden");
+                    }, 300); // Wait for CSS transition
+                }
+            };
 
-                    if (isHidden) {
-                        chatModal.classList.remove("hidden");
-                        setTimeout(() => {
-                            modalContainer.classList.add("active");
-                        }, 10);
-                    } else {
-                        modalContainer.classList.remove("active");
-                        setTimeout(() => {
-                            chatModal.classList.add("hidden");
-                        }, 300);
-                    }
-                };
-
+            if (chatModal) {
                 if (chatBtn) {
                     chatBtn.addEventListener("click", toggleModal);
                 }
@@ -719,11 +733,22 @@
                     closeChatBtn.addEventListener("click", toggleModal);
                 }
 
+                // Close modal if overlay is clicked
                 chatModal.addEventListener("click", (e) => {
                     if (e.target.classList.contains('modal-overlay')) {
                         toggleModal();
                     }
                 });
+                
+                // Add click listener to the Submit Request button on the page form
+                const submitButton = document.querySelector('#invitation-form button[type="submit"]');
+                if (submitButton) {
+                    submitButton.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        // This logic is simplified; a real app would handle form submission/validation first.
+                        console.log("Invitation form submitted (simulated).");
+                    });
+                }
             }
         });
     </script>

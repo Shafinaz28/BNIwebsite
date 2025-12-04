@@ -16,10 +16,8 @@
     <style>
         /* Custom styles for BNI theme */
         :root {
-            --bni-red: #ef4444;
-            --bni-red-dark: #dc2626;
-            --bni-red-original: #ef4444;
-            /* Added for consistency with usage */
+            --bni-red: #ef4444; /* Consistent Red (Tailwind red-500) */
+            --bni-red-dark: #dc2626; /* Darker Red (Tailwind red-700) */
         }
 
         .text-bni-red {
@@ -34,20 +32,36 @@
             border-color: var(--bni-red);
         }
 
+        /* Active navigation link styling */
+        .nav-link.active {
+            color: var(--bni-red);
+            font-weight: bold;
+            border-bottom: 2px solid var(--bni-red);
+            padding-bottom: 0.25rem;
+        }
+
+
         /* Style for the Core Values grid background */
         .core-value-card {
             transition: transform 0.3s ease;
+            border: 1px solid #f3f4f6; /* Ensure border visibility */
         }
 
         .core-value-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 15px rgba(239, 68, 68, 0.1);
+            border-color: var(--bni-red); /* Highlight border on hover */
+        }
+        
+        .core-value-card:hover .core-value-icon {
+            color: var(--bni-red-dark) !important;
         }
 
         /* Mission/Vision Card Styles */
         .mission-vision-card {
             min-height: 12rem;
-            border-top: 4px solid var(--bni-red);
+            /* Ensure the permanent border-top uses the red variable */
+            border-top: 4px solid var(--bni-red); 
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             transition: all 0.3s;
         }
@@ -126,8 +140,6 @@
                 padding-bottom: 5rem;
             }
         }
-
-        /* --- Slider Styles (Removed since there is no slider content, only hero) --- */
     </style>
 </head>
 
@@ -141,11 +153,11 @@
             </div>
             <nav
                 class="hidden md:flex space-x-6 text-gray-700 font-semibold md:absolute md:inset-0 md:justify-center md:items-center">
-                <a href="index.html" class="hover:text-red-600 transition duration-300">Home</a>
-                <a href="about.html" class="hover:text-red-600 transition duration-300 text-bni-red active">About Us</a>
+                <a href="index.html" class="nav-link hover:text-bni-red transition duration-300">Home</a>
+                <a href="about.html" class="nav-link active hover:text-bni-red transition duration-300">About Us</a>
 
                 <div class="relative dropdown">
-                    <a href="categories.html" class="flex items-center hover:text-red-600 transition duration-300">
+                    <a href="categories.html" class="nav-link flex items-center hover:text-red-600 transition duration-300">
                         Categories
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -157,36 +169,36 @@
                         class="dropdown-menu hidden absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-64 bg-white rounded-lg shadow-xl border border-gray-100 z-50">
                         <div class="py-2">
                             <a href="infra-detail.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">INFRA
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">INFRA
                                 TEAM</a>
                             <a href="construction-Team.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">CONSTRUCTION
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">CONSTRUCTION
                                 TEAM</a>
                             <a href="finance-team.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">FINANCE
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">FINANCE
                                 TEAM</a>
                             <a href="events.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">EVENTS
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">EVENTS
                                 TEAM</a>
                             <a href="Industrialsme.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">INDUSTRIAL/SME
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">INDUSTRIAL/SME
                                 TEAM</a>
                             <a href="healthcare.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">HEALTHCARE
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">HEALTHCARE
                                 TEAM</a>
                             <a href="categories.html"
-                                class="block px-4 py-2 text-red-600 font-bold border-t mt-1 hover:bg-red-50 transition duration-200">View
+                                class="block px-4 py-2 text-bni-red font-bold border-t mt-1 hover:bg-red-50 transition duration-200">View
                                 All Categories</a>
                         </div>
                     </div>
                 </div>
-                <a href="invite.html" class="hover:text-red-600 transition duration-300">Get Invited</a>
-                <a href="join.html" class="hover:text-red-600 transition duration-300">Join Us</a>
+                <a href="invite.html" class="nav-link hover:text-bni-red transition duration-300">Get Invited</a>
+                <a href="join.html" class="nav-link hover:text-bni-red transition duration-300">Join Us</a>
             </nav>
 
             <div class="hidden md:flex items-center space-x-3 z-10">
                 <a href="mailto:bniaurablr@gmail.com"
-                    class="text-sm sm:text-base text-red-600 font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
+                    class="text-sm sm:text-base text-bni-red font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -210,57 +222,60 @@
         <div id="mobileMenu" class="md:hidden bg-white shadow-xl hidden border-t border-red-100 w-full text-left">
             <nav class="flex flex-col space-y-2 p-4 text-gray-700 font-medium">
                 <a href="index.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Home</a>
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Home</a>
                 <a href="about.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300 text-bni-red active">About
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300 text-bni-red font-bold">About
                     Us</a>
 
-                <div
-                    class="border-b border-red-100 flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-red-50 transition duration-300">
-                    <a href="categories.html" class="flex-grow font-bold text-gray-700 hover:text-bni-red">
-                        Categories
-                    </a>
-                    <button id="categoryToggle" class="p-1 focus:outline-none">
-                        <svg id="toggleIcon"
-                            class="w-4 h-4 transform rotate-0 transition-transform duration-300 text-gray-700 hover:text-bni-red"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                    </button>
+                <div class="border-b border-red-100">
+                    <div
+                        class="flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-red-50 transition duration-300">
+                        <a href="categories.html" class="flex-grow font-bold text-gray-700 hover:text-bni-red">
+                            Categories
+                        </a>
+                        <button id="categoryToggle" class="p-1 focus:outline-none">
+                            <svg id="toggleIcon"
+                                class="w-4 h-4 transform rotate-0 transition-transform duration-300 text-gray-700 hover:text-bni-red"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
                 <div id="mobileSubCategories" class="hidden flex flex-col space-y-1">
                     <a href="infra-detail.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">INFRA
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INFRA
                         TEAM</a>
                     <a href="construction-Team.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">CONSTRUCTION
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">CONSTRUCTION
                         TEAM</a>
                     <a href="finance-team.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">FINANCE
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">FINANCE
                         TEAM</a>
                     <a href="events.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">EVENTS
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">EVENTS
                         TEAM</a>
                     <a href="Industrialsme.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">INDUSTRIAL/SME
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INDUSTRIAL/SME
                         TEAM</a>
                     <a href="healthcare.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">HEALTHCARE
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">HEALTHCARE
                         TEAM</a>
                     <a href="categories.html"
-                        class="block pl-8 py-2 text-red-600 font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200">View
-                        All Teams</a>
+                        class="block pl-8 py-2 text-bni-red font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200">View
+                        All Categories</a>
                 </div>
+
                 <a href="invite.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Get
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Get
                     Invited</a>
                 <a href="join.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Join
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Join
                     Us</a>
                 <a href="mailto:bniaurablr@gmail.com"
-                    class="block px-3 py-2 text-red-600 font-semibold text-center border-t mt-2">bniaurablr@gmail.com</a>
+                    class="block px-3 py-2 text-bni-red font-semibold text-center border-t mt-2">bniaurablr@gmail.com</a>
             </nav>
         </div>
     </header>
@@ -362,9 +377,10 @@
 
                     <div
                         class="core-value-card bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-xl hover:border-bni-red">
+                        <!-- ICON: Heart/Givers Gain -->
                         <div
-                            class="w-12 h-12 rounded-lg mb-4 flex items-center justify-center bg-red-50 mx-auto text-bni-red/90">
-                            <i class="fa-solid fa-heart text-2xl"></i>
+                            class="w-12 h-12 rounded-lg mb-4 flex items-center justify-center bg-red-50 mx-auto text-bni-red">
+                            <i class="fa-solid fa-heart text-2xl core-value-icon"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2 text-gray-900 text-center">Givers Gain®</h3>
                         <p class="text-gray-700 text-center text-sm">Our core philosophy - by giving business to others,
@@ -373,9 +389,10 @@
 
                     <div
                         class="core-value-card bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-xl hover:border-bni-red">
+                        <!-- ICON: Relationships -->
                         <div
-                            class="w-12 h-12 rounded-lg mb-4 flex items-center justify-center bg-red-50 mx-auto text-bni-red/90">
-                            <i class="fa-solid fa-people-arrows text-2xl"></i>
+                            class="w-12 h-12 rounded-lg mb-4 flex items-center justify-center bg-red-50 mx-auto text-bni-red">
+                            <i class="fa-solid fa-people-arrows text-2xl core-value-icon"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2 text-gray-900 text-center">Building Relationships</h3>
                         <p class="text-gray-700 text-center text-sm">Creating meaningful connections that lead to
@@ -384,9 +401,10 @@
 
                     <div
                         class="core-value-card bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-xl hover:border-bni-red">
+                        <!-- ICON: Learning -->
                         <div
-                            class="w-12 h-12 rounded-lg mb-4 flex items-center justify-center bg-red-50 mx-auto text-bni-red/90">
-                            <i class="fa-solid fa-ribbon text-2xl"></i>
+                            class="w-12 h-12 rounded-lg mb-4 flex items-center justify-center bg-red-50 mx-auto text-bni-red">
+                            <i class="fa-solid fa-ribbon text-2xl core-value-icon"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2 text-gray-900 text-center">Lifelong Learning</h3>
                         <p class="text-gray-700 text-center text-sm">Continuous education and training to help members
@@ -395,9 +413,10 @@
 
                     <div
                         class="core-value-card bg-white p-6 rounded-xl shadow-md border border-gray-100 hover:shadow-xl hover:border-bni-red">
+                        <!-- ICON: Recognition -->
                         <div
-                            class="w-12 h-12 rounded-lg mb-4 flex items-center justify-center bg-red-50 mx-auto text-bni-red/90">
-                            <i class="fa-solid fa-globe text-2xl"></i>
+                            class="w-12 h-12 rounded-lg mb-4 flex items-center justify-center bg-red-50 mx-auto text-bni-red">
+                            <i class="fa-solid fa-award text-2xl core-value-icon"></i>
                         </div>
                         <h3 class="text-xl font-bold mb-2 text-gray-900 text-center">Recognition</h3>
                         <p class="text-gray-700 text-center text-sm">Celebrating member achievements and successful
@@ -464,13 +483,13 @@
 
 
 
-        <section class="py-20 bg-red-600 text-white">
+        <section class="py-20 bg-bni-red text-white">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
                 <p class="text-xl mb-8 max-w-2xl mx-auto">Join Bangalore's most effective business referral network
                     today</p>
                 <a href="join.html"
-                    class="inline-block bg-white text-red-600 font-bold py-4 px-12 rounded-full hover:bg-gray-100 transition duration-300 shadow-xl transform hover:scale-105">
+                    class="inline-block bg-white text-bni-red font-bold py-4 px-12 rounded-full hover:bg-gray-100 transition duration-300 shadow-xl transform hover:scale-105">
                     Apply Now
                 </a>
             </div>
@@ -479,7 +498,7 @@
     </main>
 
     <button id="floating-chat-btn"
-        class="bg-red-600 text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+        class="bg-bni-red text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z">
@@ -489,9 +508,9 @@
 
     <div id="chat-modal" class="hidden">
         <div class="modal-overlay"></div>
-        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-red-600">
+        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-bni-red">
             <div class="flex justify-between items-start border-b pb-3 mb-4">
-                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-red-600">AURA</span></h3>
+                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-bni-red">AURA</span></h3>
                 <button id="close-chat-btn" class="text-gray-500 hover:text-gray-900 transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -507,24 +526,24 @@
             <form action="#" method="POST" class="space-y-4">
                 <div>
                     <input type="text" placeholder="Name*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <div>
                     <input type="email" placeholder="Email*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <button type="submit"
-                    class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
+                    class="w-full bg-bni-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
                     Send
                 </button>
             </form>
 
             <p class="text-xs text-center text-gray-400 mt-4">
                 This site is protected by reCAPTCHA and the Google <a href="#"
-                    class="hover:text-red-500 underline">Privacy Policy</a> and <a href="#"
-                    class="hover:text-red-500 underline">Terms of Service</a> apply.
+                    class="hover:text-bni-red underline">Privacy Policy</a> and <a href="#"
+                    class="hover:text-bni-red underline">Terms of Service</a> apply.
             </p>
         </div>
     </div>
@@ -552,7 +571,7 @@
                     <nav class="space-y-2 text-sm">
                         <a href="index.html" class="block hover:text-red-400 transition">Home</a>
                         <a href="about.html" class="block hover:text-red-400 transition">About Us</a>
-                        <a href="teams-overview.html" class="block hover:text-red-400 transition">Categories</a>
+                        <a href="categories.html" class="block hover:text-red-400 transition">Categories</a>
                         <a href="invite.html" class="block hover:text-red-400 transition">Get Invited</a>
                         <a href="join.html" class="block hover:text-red-400 transition">Join Us</a>
                     </nav>
@@ -611,110 +630,118 @@
             </div>
         </div>
     </footer>
-
     <script>
-        // --- Feather Icons Initialization (must be called after the script is loaded in <head>) ---
         document.addEventListener('DOMContentLoaded', () => {
-            if (typeof feather !== 'undefined') {
-                feather.replace();
-            }
-        });
+            // --- Mobile Menu Toggle JS ---
+            const menuBtn = document.getElementById("menuBtn");
+            const mobileMenu = document.getElementById("mobileMenu");
+            const mobileMenuButton = document.getElementById('mobileMenuButton'); // Hamburger Icon
 
-        // 1. Mobile Menu Toggle (Main Hamburger)
-        const menuBtn = document.getElementById("menuBtn");
-        const mobileMenu = document.getElementById("mobileMenu");
-        const mobileMenuButton = document.getElementById('mobileMenuButton'); // Hamburger/Close Icon
+            // Corrected ID for mobile sub-categories used in closing logic
+            const mobileSubCategories = document.getElementById('mobileSubCategories');
+            const toggleIcon = document.getElementById('toggleIcon'); // Arrow icon
 
-        menuBtn.addEventListener("click", () => {
-            const isExpanded = mobileMenu.classList.contains('hidden');
-            mobileMenu.classList.toggle("hidden");
-
-            // Toggle the icon between hamburger and close (X)
-            if (isExpanded) {
-                mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'; // X icon
-            } else {
-                mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>'; // Hamburger icon
-            }
-        });
-
-        // 2. Mobile Sub-Category Toggle (NEW)
-        const categoryToggle = document.getElementById('categoryToggle');
-        const mobileSubCategories = document.getElementById('mobileSubCategories');
-        const toggleIcon = document.getElementById('toggleIcon');
-
-        if (categoryToggle && mobileSubCategories && toggleIcon) {
-            categoryToggle.addEventListener('click', () => {
-                const isCategoriesHidden = mobileSubCategories.classList.contains('hidden');
-
-                // Toggle visibility of sub-categories
-                mobileSubCategories.classList.toggle('hidden');
-
-                // Rotate the arrow icon for visual feedback
-                if (isCategoriesHidden) {
-                    toggleIcon.classList.add('rotate-90');
-                    toggleIcon.classList.remove('rotate-0');
-                } else {
-                    toggleIcon.classList.remove('rotate-90');
-                    toggleIcon.classList.add('rotate-0');
-                }
-            });
-        }
-
-        // 3. Close Mobile Menu on Link Click
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                // Check if the clicked link is NOT the Category Toggle button's parent group
-                if (link.closest('#categoryToggle') === null) {
-                    // Reset category menu state when main menu closes
-                    if (mobileSubCategories) {
-                        mobileSubCategories.classList.add('hidden');
+            // Helper function to update the hamburger icon based on menu state
+            function updateMobileMenuIcon(isOpen) {
+                if (mobileMenuButton) {
+                    if (isOpen) {
+                        // X Icon
+                        mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+                    } else {
+                        // Hamburger Icon
+                        mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
                     }
-                    if (toggleIcon) {
+                }
+            }
+
+            menuBtn.addEventListener("click", () => {
+                const isHidden = mobileMenu.classList.contains("hidden");
+                mobileMenu.classList.toggle("hidden");
+                updateMobileMenuIcon(isHidden);
+            });
+
+            // --- Mobile Categories Accordion Toggle JS ---
+            const categoryToggle = document.getElementById('categoryToggle'); // This is the button now
+
+            if (categoryToggle && mobileSubCategories && toggleIcon) {
+                categoryToggle.addEventListener('click', (e) => {
+                    // Stop navigation only if the submenu is open or closed, but still allow navigation to categories.html
+                    e.preventDefault();
+
+                    const isCategoriesHidden = mobileSubCategories.classList.contains('hidden');
+                    mobileSubCategories.classList.toggle('hidden');
+
+                    if (isCategoriesHidden) {
+                        toggleIcon.classList.add('rotate-90');
+                    } else {
                         toggleIcon.classList.remove('rotate-90');
                     }
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>'; // Reset to Hamburger
-                }
+                });
+            }
+
+            // --- Close mobile menu on clicking any link ---
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Check if the clicked link is not inside the Categories section header div
+                    if (!link.closest('.flex.justify-between')) {
+                        // Reset category menu state when main menu closes
+                        if (mobileSubCategories) {
+                            mobileSubCategories.classList.add('hidden');
+                        }
+                        if (toggleIcon) {
+                            toggleIcon.classList.remove('rotate-90');
+                        }
+                        mobileMenu.classList.add('hidden');
+                        updateMobileMenuIcon(false); // Reset icon to hamburger
+                    }
+                });
             });
+
+
+            // --- Floating Chat/Modal JS (Global) ---
+            const chatBtn = document.getElementById("floating-chat-btn");
+            const chatModal = document.getElementById("chat-modal");
+            const closeChatBtn = document.getElementById("close-chat-btn");
+
+            if (chatModal) {
+                const modalContainer = chatModal.querySelector('.chat-modal-container');
+
+                const toggleModal = () => {
+                    const isHidden = chatModal.classList.contains("hidden");
+
+                    if (isHidden) {
+                        chatModal.classList.remove("hidden");
+                        setTimeout(() => {
+                            modalContainer.classList.add("active");
+                        }, 10);
+                    } else {
+                        modalContainer.classList.remove("active");
+                        setTimeout(() => {
+                            chatModal.classList.add("hidden");
+                        }, 300); // Wait for transition
+                        // Reset form fields on close
+                        const form = chatModal.querySelector('form');
+                        if (form) {
+                            form.reset();
+                        }
+                    }
+                };
+
+                if (chatBtn) {
+                    chatBtn.addEventListener("click", toggleModal);
+                }
+                if (closeChatBtn) {
+                    closeChatBtn.addEventListener("click", toggleModal);
+                }
+
+                chatModal.addEventListener("click", (e) => {
+                    if (e.target.classList.contains('modal-overlay')) {
+                        toggleModal();
+                    }
+                });
+            }
         });
-
-        // 4. Floating Chat/Modal JS 
-        const chatBtn = document.getElementById("floating-chat-btn");
-        const chatModal = document.getElementById("chat-modal");
-        const closeChatBtn = document.getElementById("close-chat-btn");
-
-        if (chatModal && chatBtn && closeChatBtn) {
-            const modalContainer = chatModal.querySelector('.chat-modal-container');
-
-            const toggleModal = () => {
-                const isHidden = chatModal.classList.contains("hidden");
-
-                if (isHidden) {
-                    chatModal.classList.remove("hidden");
-                    // Delay adding 'active' to trigger the CSS transition (transform/opacity)
-                    setTimeout(() => {
-                        modalContainer.classList.add("active");
-                    }, 10);
-                } else {
-                    modalContainer.classList.remove("active");
-                    // Delay adding 'hidden' until after the CSS transition completes
-                    setTimeout(() => {
-                        chatModal.classList.add("hidden");
-                    }, 300); // 300ms matches the CSS transition time
-                }
-            };
-
-            chatBtn.addEventListener("click", toggleModal);
-            closeChatBtn.addEventListener("click", toggleModal);
-
-            chatModal.addEventListener("click", (e) => {
-                // If clicking the dark overlay, close the modal
-                if (e.target.classList.contains('modal-overlay')) {
-                    toggleModal();
-                }
-            });
-        }
     </script>
 </body>
 

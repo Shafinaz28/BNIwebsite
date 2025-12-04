@@ -12,20 +12,16 @@
     <style>
         /* --- Custom BNI Red Theme & Unique Team Colors --- */
         :root {
-            --bni-red: #ef4444;
-            /* Red-500 */
-            --bni-red-dark: #dc2626;
-            /* Red-600/700 */
-            --bni-red-original: #ef4444;
-            /* Added for consistency */
-
-            /* Defined colors are not currently used in the component background, but kept for future icon styling */
+            --bni-red: #ef4444; /* Consistent Red (Tailwind red-500) */
+            --bni-red-dark: #dc2626; /* Darker Red (Tailwind red-700) */
+            
+            /* Team Accent Colors - Used for Icon Color */
             --infra-blue-icon: #3b82f6;
             --construction-orange-icon: #fb923c;
             --finance-green-icon: #10b981;
             --events-purple-icon: #a855f7;
             --industrial-gray-icon: #64748b;
-            --healthcare-red-icon: #ef4444;
+            --healthcare-red-icon: #dc2626; /* Darker red accent for Health */
         }
 
         .font-display {
@@ -44,12 +40,15 @@
             border-color: var(--bni-red);
         }
 
-        /* Header specific active link */
-        .nav-link.active {
-            color: var(--bni-red);
-            font-weight: bold;
-            border-bottom: 2px solid var(--bni-red);
-            padding-bottom: 0.25rem;
+        /* Utility for Header Spacing */
+        .pt-header-fix {
+            padding-top: 5rem;
+        }
+
+        @media (min-width: 768px) {
+            .pt-header-fix {
+                padding-top: 6rem;
+            }
         }
 
         /* Dropdown */
@@ -57,66 +56,50 @@
             display: block;
         }
 
+        /* Active navigation link styling */
+        .nav-link.active {
+            color: var(--bni-red);
+            font-weight: bold;
+            border-bottom: 2px solid var(--bni-red);
+            padding-bottom: 0.25rem;
+        }
+
         /* --- Team Card Styling (UNIFIED & ATTRACTIVE) --- */
         .team-card {
-            /* Full card border on hover, lift effect, and permanent shadow */
-            -webkit-box-sizing: border-box;
             box-sizing: border-box;
             background-color: #fff;
             border-radius: 0.75rem;
-            -webkit-box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
-            display: -webkit-box;
-            display: -ms-flexbox;
             display: flex;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: normal;
-            -ms-flex-direction: column;
             flex-direction: column;
-            -webkit-transition: all 0.3s ease-in-out;
-            -o-transition: all 0.3s ease-in-out;
             transition: all 0.3s ease-in-out;
-            -webkit-transform: translate(0);
-            -ms-transform: translate(0);
             transform: translate(0);
             border: 2px solid transparent;
         }
 
         .team-card:hover {
-            /* Full Red Border and Lift on Hover */
-            -webkit-box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
             border-color: var(--bni-red);
-            -webkit-transform: translateY(-5px);
-            -ms-transform: translateY(-5px);
             transform: translateY(-5px);
         }
 
         .team-icon-wrapper {
-            /* Large (80px) circle, light gray background, centered. */
+            /* Large (80px) circle, light accent background, centered. */
             width: 5rem;
             height: 5rem;
             border-radius: 9999px;
             margin-bottom: 1rem;
             display: flex;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
             align-items: center;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
             justify-content: center;
-            background-color: #f3f4f6;
             margin-left: auto;
             margin-right: auto;
+            border: 2px solid transparent; /* Added for consistency */
         }
-
-        .team-icon {
-            /* Icon size (48px) */
-            width: 3rem;
-            height: 3rem;
-            -o-object-fit: contain;
-            object-fit: contain;
+        
+        .team-card:hover .team-icon-wrapper {
+            border-color: var(--bni-red);
         }
 
         .team-title {
@@ -126,7 +109,7 @@
             font-family: 'Roboto Condensed', sans-serif;
             margin-bottom: 0.25rem;
             text-align: center;
-            color: var(--bni-red);
+            color: var(--bni-red-dark); /* Use darker red for all titles for consistency */
         }
 
         .team-description {
@@ -135,8 +118,6 @@
             line-height: 1.5;
             color: #4b5563;
             margin-bottom: 1.5rem;
-            -webkit-box-flex: 1;
-            -ms-flex-positive: 1;
             flex-grow: 1;
             text-align: center;
         }
@@ -154,17 +135,9 @@
             padding-right: 1rem;
             border-radius: 0.5rem;
             margin-top: 1rem;
-            -webkit-transition: background-color 0.3s;
-            -o-transition: background-color 0.3s;
             transition: background-color 0.3s;
-            -webkit-box-pack: center;
-            -ms-flex-pack: center;
             justify-content: center;
-            -webkit-box-align: center;
-            -ms-flex-align: center;
             align-items: center;
-            display: -webkit-box;
-            display: -ms-flexbox;
             display: flex;
             gap: 0.5rem;
         }
@@ -174,7 +147,7 @@
         }
 
 
-        /* --- Floating Chat/Modal Styles (Kept standard) --- */
+        /* --- Floating Chat/Modal Styles (Kept standard and confirmed right) --- */
         #floating-chat-btn {
             position: fixed;
             bottom: 2rem;
@@ -227,8 +200,9 @@
                 <a href="about.html" class="nav-link hover:text-bni-red transition duration-300">About Us</a>
 
                 <div class="relative dropdown">
+                    <!-- Categories link now has the active class for the Categories Overview page -->
                     <a href="categories.html"
-                        class="nav-link active flex items-center text-bni-red transition duration-300 border-b-2 border-bni-red pb-1 text-bni-red active">
+                        class="nav-link active flex items-center hover:text-red-600 transition duration-300 border-b-2 border-bni-red pb-1 font-bold">
                         Categories
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -257,9 +231,9 @@
                             <a href="healthcare.html"
                                 class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">HEALTHCARE
                                 TEAM</a>
-                            <a href="#teams"
+                            <a href="categories.html"
                                 class="block px-4 py-2 text-bni-red font-bold border-t mt-1 hover:bg-red-50 transition duration-200">View
-                                All Teams</a>
+                                All Categories</a>
                         </div>
                     </div>
                 </div>
@@ -316,7 +290,6 @@
                     </div>
                 </div>
 
-
                 <div id="mobileSubCategories" class="hidden flex flex-col space-y-1">
                     <a href="infra-detail.html"
                         class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INFRA
@@ -336,10 +309,11 @@
                     <a href="healthcare.html"
                         class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">HEALTHCARE
                         TEAM</a>
-                    <a href="#teams"
+                    <a href="categories.html"
                         class="block pl-8 py-2 text-bni-red font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200">View
-                        All Teams</a>
+                        All Categories</a>
                 </div>
+
                 <a href="invite.html"
                     class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Get
                     Invited</a>
@@ -352,8 +326,9 @@
         </div>
     </header>
 
-    <main class="pt-20">
+    <main class="pt-header-fix">
 
+        <!-- Hero Section -->
         <section class="py-20 bg-bni-red text-white"
             style="background-image: linear-gradient(to bottom, #dc2626, #ef4444);">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -375,6 +350,7 @@
             </div>
         </section>
 
+        <!-- Teams Grid Section -->
         <section id="teams" class="py-16 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-12">
@@ -392,10 +368,12 @@
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
+                    <!-- INFRA TEAM -->
                     <a href="infra-detail.html"
-                        class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
-                        <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto"
-                            style="background-color: #e0f2fe;"> <i class="fa-solid fa-house-chimney-crack text-4xl"
+                        class="team-card">
+                        <div class="team-icon-wrapper"
+                            style="background-color: #e0f2fe;"> 
+                            <i class="fa-solid fa-house-chimney-crack text-4xl"
                                 style="color: var(--infra-blue-icon);"></i>
                         </div>
                         <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center"
@@ -414,10 +392,12 @@
                         </div>
                     </a>
 
+                    <!-- CONSTRUCTION TEAM -->
                     <a href="construction-Team.html"
-                        class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
-                        <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto"
-                            style="background-color: #fff7ed;"> <i class="fa-solid fa-helmet-safety text-4xl"
+                        class="team-card">
+                        <div class="team-icon-wrapper"
+                            style="background-color: #fff7ed;"> 
+                            <i class="fa-solid fa-helmet-safety text-4xl"
                                 style="color: var(--construction-orange-icon);"></i>
                         </div>
                         <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center"
@@ -435,10 +415,12 @@
                         </div>
                     </a>
 
+                    <!-- FINANCE TEAM -->
                     <a href="finance-team.html"
-                        class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
-                        <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto"
-                            style="background-color: #ecfdf5;"> <i class="fa-solid fa-chart-line text-4xl"
+                        class="team-card">
+                        <div class="team-icon-wrapper"
+                            style="background-color: #ecfdf5;"> 
+                            <i class="fa-solid fa-chart-line text-4xl"
                                 style="color: var(--finance-green-icon);"></i>
                         </div>
                         <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center"
@@ -456,10 +438,12 @@
                         </div>
                     </a>
 
+                    <!-- EVENTS TEAM -->
                     <a href="events.html"
-                        class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
-                        <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto"
-                            style="background-color: #f3e8ff;"> <i class="fa-solid fa-calendar-check text-4xl"
+                        class="team-card">
+                        <div class="team-icon-wrapper"
+                            style="background-color: #f3e8ff;"> 
+                            <i class="fa-solid fa-calendar-check text-4xl"
                                 style="color: var(--events-purple-icon);"></i>
                         </div>
                         <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center"
@@ -477,10 +461,12 @@
                         </div>
                     </a>
 
+                    <!-- INDUSTRIAL/SME TEAM -->
                     <a href="Industrialsme.html"
-                        class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
-                        <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto"
-                            style="background-color: #f1f5f9;"> <i class="fa-solid fa-industry text-4xl"
+                        class="team-card">
+                        <div class="team-icon-wrapper"
+                            style="background-color: #f1f5f9;"> 
+                            <i class="fa-solid fa-industry text-4xl"
                                 style="color: var(--industrial-gray-icon);"></i>
                         </div>
                         <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center"
@@ -498,10 +484,12 @@
                         </div>
                     </a>
 
+                    <!-- HEALTHCARE TEAM -->
                     <a href="healthcare.html"
-                        class="team-card bg-white rounded-xl shadow-md p-6 flex flex-col border border-gray-200 transition-all duration-300 transform hover:shadow-lg">
-                        <div class="team-icon-wrapper w-20 h-20 rounded-full mb-4 flex items-center justify-center mx-auto"
-                            style="background-color: #fee2e2;"> <i class="fa-solid fa-suitcase-medical text-4xl"
+                        class="team-card">
+                        <div class="team-icon-wrapper"
+                            style="background-color: #fee2e2;"> 
+                            <i class="fa-solid fa-suitcase-medical text-4xl"
                                 style="color: var(--healthcare-red-icon);"></i>
                         </div>
                         <h3 class="team-title text-xl font-extrabold font-display mb-2 text-center"
@@ -522,57 +510,18 @@
             </div>
         </section>
 
-        <section class="py-20 bg-white">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl font-bold text-gray-900 mb-10 text-center">
-                    Category Status Guide
-                </h2>
-
-                <div class="grid md:grid-cols-2 gap-8">
-
-                    <div
-                        class="bg-white p-6 border-2 border-green-500 rounded-xl shadow-lg transition duration-300 hover:shadow-xl">
-                        <div class="flex items-center mb-4">
-                            <span
-                                class="inline-block bg-green-500 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase mr-3">Available</span>
-                            <h3 class="text-xl font-bold text-gray-900">Open for Membership</h3>
-                        </div>
-                        <p class="text-gray-600">
-                            This category is currently available. You can apply to join BNI AURA in this category.
-                        </p>
-                        <a href="join.html" class="text-green-600 font-semibold mt-3 block hover:underline">Apply Now
-                            &rarr;</a>
-                    </div>
-
-                    <div
-                        class="bg-white p-6 border-2 border-bni-red rounded-xl shadow-lg transition duration-300 hover:shadow-xl">
-                        <div class="flex items-center mb-4">
-                            <span
-                                class="inline-block bg-bni-red text-white text-xs font-semibold px-3 py-1 rounded-full uppercase mr-3">Taken</span>
-                            <h3 class="text-xl font-bold text-gray-900">Currently Filled</h3>
-                        </div>
-                        <p class="text-gray-600">
-                            This category has an active member. Contact us to be added to the waiting list.
-                        </p>
-                        <a href="join.html" class="text-bni-red font-semibold mt-3 block hover:underline">Join Waiting
-                            List &rarr;</a>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
+        <!-- CTA Section -->
         <section class="py-20 bg-bni-red text-white">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-extrabold mb-4 drop-shadow-md">
+                <h2 class="text-4xl font-extrabold mb-4 drop-shadow-md text-white">
                     Found Your Category?
                 </h2>
-                <p class="text-xl mb-10 max-w-2xl mx-auto">
+                <p class="text-xl mb-10 max-w-2xl mx-auto text-red-100">
                     Get invited to visit our next meeting and see if BNI AURA is the right fit for your business
                 </p>
 
                 <a href="invite.html"
-                    class="inline-block bg-white text-red-700 font-bold py-4 px-12 rounded-lg hover:bg-red-500 transition duration-300 shadow-xl transform hover:scale-105">
+                    class="inline-block bg-white text-bni-red font-bold py-4 px-12 rounded-lg hover:bg-gray-200 transition duration-300 shadow-xl transform hover:scale-105">
                     Request an Invitation
                 </a>
             </div>
@@ -580,8 +529,9 @@
 
     </main>
 
+    <!-- FLOATING CHAT BUTTON (RIGHT SIDE) -->
     <button id="floating-chat-btn"
-        class="bg-red-600 text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+        class="bg-bni-red text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z">
@@ -589,11 +539,12 @@
         </svg>
     </button>
 
+    <!-- CHAT MODAL (RIGHT SIDE) -->
     <div id="chat-modal" class="hidden">
         <div class="modal-overlay"></div>
-        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-red-600">
+        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-bni-red">
             <div class="flex justify-between items-start border-b pb-3 mb-4">
-                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-red-600">AURA</span></h3>
+                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-bni-red">AURA</span></h3>
                 <button id="close-chat-btn" class="text-gray-500 hover:text-gray-900 transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -609,24 +560,24 @@
             <form action="#" method="POST" class="space-y-4">
                 <div>
                     <input type="text" placeholder="Name*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <div>
                     <input type="email" placeholder="Email*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <button type="submit"
-                    class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
+                    class="w-full bg-bni-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
                     Send
                 </button>
             </form>
 
             <p class="text-xs text-center text-gray-400 mt-4">
                 This site is protected by reCAPTCHA and the Google <a href="#"
-                    class="hover:text-red-500 underline">Privacy Policy</a> and <a href="#"
-                    class="hover:text-red-500 underline">Terms of Service</a> apply.
+                    class="hover:text-bni-red underline">Privacy Policy</a> and <a href="#"
+                    class="hover:text-bni-red underline">Terms of Service</a> apply.
             </p>
         </div>
     </div>
@@ -654,7 +605,7 @@
                     <nav class="space-y-2 text-sm">
                         <a href="index.html" class="block hover:text-red-400 transition">Home</a>
                         <a href="about.html" class="block hover:text-red-400 transition">About Us</a>
-                        <a href="teams-overview.html" class="block hover:text-red-400 transition">Categories</a>
+                        <a href="categories.html" class="block hover:text-red-400 transition">Categories</a>
                         <a href="invite.html" class="block hover:text-red-400 transition">Get Invited</a>
                         <a href="join.html" class="block hover:text-red-400 transition">Join Us</a>
                     </nav>
@@ -678,7 +629,8 @@
                                 Business City, CA 90210
                             </span>
                         </p>
-                        <a href="mailto:bniaurablr@gmail.com"
+                        <a href="mailto:bniaurablr@gmail.com
+"
                             class="flex items-center space-x-2 hover:text-red-400 transition">
                             <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -694,6 +646,8 @@
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Connect</h4>
                     <div class="flex space-x-4">
+
+
                         <a href="https://www.instagram.com/bniaura/?igsh=MWU0N3U0bnlyMnUzcA%3D%3D#"
                             class="text-red-400 hover:text-white transition">
                             <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -712,107 +666,110 @@
         </div>
     </footer>
     <script>
-        // --- Mobile Menu Toggle JS ---
-        const menuBtn = document.getElementById("menuBtn");
-        const mobileMenu = document.getElementById("mobileMenu");
-        const mobileMenuButton = document.getElementById('mobileMenuButton'); // Hamburger/Close Icon
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Menu Toggle JS ---
+            const menuBtn = document.getElementById("menuBtn");
+            const mobileMenu = document.getElementById("mobileMenu");
+            const mobileMenuButton = document.getElementById('mobileMenuButton'); // Hamburger Icon
 
-        menuBtn.addEventListener("click", () => {
-            const isExpanded = mobileMenu.classList.contains('hidden');
-            mobileMenu.classList.toggle("hidden");
+            // Corrected ID for mobile sub-categories used in closing logic
+            const mobileSubCategories = document.getElementById('mobileSubCategories');
+            const toggleIcon = document.getElementById('toggleIcon'); // Arrow icon
 
-            // Toggle the icon between hamburger and close (X)
-            if (isExpanded) {
-                mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'; // X icon
-            } else {
-                mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>'; // Hamburger icon
-            }
-        });
-
-        // --- Mobile Sub-Category Toggle (NEW) ---
-        const categoryToggle = document.getElementById('categoryToggle');
-        const mobileSubCategories = document.getElementById('mobileSubCategories');
-        const toggleIcon = document.getElementById('toggleIcon');
-
-        if (categoryToggle && mobileSubCategories && toggleIcon) {
-            categoryToggle.addEventListener('click', () => {
-                const isCategoriesHidden = mobileSubCategories.classList.contains('hidden');
-
-                // Toggle visibility of sub-categories
-                mobileSubCategories.classList.toggle('hidden');
-
-                // Rotate the arrow icon for visual feedback (M9 5l7 7-7 7 is a right arrow)
-                if (isCategoriesHidden) {
-                    toggleIcon.classList.add('rotate-90');
-                } else {
-                    toggleIcon.classList.remove('rotate-90');
-                }
-            });
-        }
-
-        // --- Close Mobile Menu on Link Click ---
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                // Do not close if clicking the primary Categories link itself (which now uses the button above)
-                if (link.closest('.flex.justify-between') === null) {
-                    // Reset category menu state when main menu closes (optional but clean)
-                    if (mobileSubCategories) {
-                        mobileSubCategories.classList.add('hidden');
+            // Helper function to update the hamburger icon based on menu state
+            function updateMobileMenuIcon(isOpen) {
+                if (mobileMenuButton) {
+                    if (isOpen) {
+                        // X Icon
+                        mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>';
+                    } else {
+                        // Hamburger Icon
+                        mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
                     }
-                    if (toggleIcon) {
+                }
+            }
+
+            menuBtn.addEventListener("click", () => {
+                const isHidden = mobileMenu.classList.contains("hidden");
+                mobileMenu.classList.toggle("hidden");
+                updateMobileMenuIcon(isHidden);
+            });
+
+            // --- Mobile Categories Accordion Toggle JS ---
+            const categoryToggle = document.getElementById('categoryToggle'); // This is the button now
+
+            if (categoryToggle && mobileSubCategories && toggleIcon) {
+                categoryToggle.addEventListener('click', (e) => {
+                    // Stop navigation only if the submenu is open or closed, but still allow navigation to categories.html
+                    e.preventDefault();
+
+                    const isCategoriesHidden = mobileSubCategories.classList.contains('hidden');
+                    mobileSubCategories.classList.toggle('hidden');
+
+                    if (isCategoriesHidden) {
+                        toggleIcon.classList.add('rotate-90');
+                    } else {
                         toggleIcon.classList.remove('rotate-90');
                     }
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuButton.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>'; // Reset to Hamburger
-                }
+                });
+            }
+
+            // --- Close mobile menu on clicking any link ---
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // Check if the clicked link is not inside the Categories section header div
+                    if (!link.closest('.flex.justify-between')) {
+                        // Reset category menu state when main menu closes
+                        if (mobileSubCategories) {
+                            mobileSubCategories.classList.add('hidden');
+                        }
+                        if (toggleIcon) {
+                            toggleIcon.classList.remove('rotate-90');
+                        }
+                        mobileMenu.classList.add('hidden');
+                        updateMobileMenuIcon(false); // Reset icon to hamburger
+                    }
+                });
             });
-        });
 
 
-        // --- Floating Chat/Modal JS (Global) ---
-        document.addEventListener('DOMContentLoaded', () => {
+            // --- Floating Chat/Modal JS (Global) ---
             const chatBtn = document.getElementById("floating-chat-btn");
             const chatModal = document.getElementById("chat-modal");
             const closeChatBtn = document.getElementById("close-chat-btn");
 
-            if (!chatModal) return; // Exit if modal structure is missing
+            if (chatModal) {
+                const modalContainer = chatModal.querySelector('.chat-modal-container');
 
-            const modalContainer = chatModal.querySelector('.chat-modal-container');
+                const toggleModal = () => {
+                    const isHidden = chatModal.classList.contains("hidden");
 
-            const toggleModal = () => {
-                const isHidden = chatModal.classList.contains("hidden");
+                    if (isHidden) {
+                        chatModal.classList.remove("hidden");
+                        setTimeout(() => {
+                            modalContainer.classList.add("active");
+                        }, 10);
+                    } else {
+                        modalContainer.classList.remove("active");
+                        setTimeout(() => {
+                            chatModal.classList.add("hidden");
+                        }, 300); // Wait for transition
+                    }
+                };
 
-                if (isHidden) {
-                    chatModal.classList.remove("hidden");
-                    // Delay adding 'active' to trigger the CSS transition (transform/opacity)
-                    setTimeout(() => {
-                        modalContainer.classList.add("active");
-                    }, 10);
-                } else {
-                    modalContainer.classList.remove("active");
-                    // Delay adding 'hidden' until after the CSS transition completes
-                    setTimeout(() => {
-                        chatModal.classList.add("hidden");
-                    }, 300); // 300ms matches the CSS transition time
+                if (chatBtn) {
+                    chatBtn.addEventListener("click", toggleModal);
                 }
-            };
-
-            if (chatBtn) {
-                chatBtn.addEventListener("click", toggleModal);
-            }
-            if (closeChatBtn) {
-                closeChatBtn.addEventListener("click", toggleModal);
-            }
-
-            chatModal.addEventListener("click", (e) => {
-                if (e.target.classList.contains('modal-overlay')) {
-                    toggleModal();
+                if (closeChatBtn) {
+                    closeChatBtn.addEventListener("click", toggleModal);
                 }
-            });
-             // Initialize feather icons after DOM is loaded
-            if (typeof feather !== 'undefined') {
-                feather.replace();
+
+                chatModal.addEventListener("click", (e) => {
+                    if (e.target.classList.contains('modal-overlay')) {
+                        toggleModal();
+                    }
+                });
             }
         });
     </script>

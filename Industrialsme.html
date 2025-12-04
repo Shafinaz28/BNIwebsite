@@ -4,16 +4,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Industrial/SME Team - BNI AURA</title>
+    <title>INDUSTRIAL/SME TEAM - BNI AURA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        /* Custom styles for BNI theme */
+        /* Custom styles for BNI theme and red color consistency */
         :root {
-            --bni-red: #ef4444;
+            --bni-red: #ef4444; /* Consistent Red */
             --bni-red-dark: #dc2626;
-            --bni-red-original: #ef4444;
-            /* Added for consistency with usage */
         }
 
         .text-bni-red {
@@ -28,147 +27,104 @@
             border-color: var(--bni-red);
         }
 
-        /* Style for the Core Values grid background */
-        .core-value-card {
-            transition: transform 0.3s ease;
-        }
-
-        .core-value-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(239, 68, 68, 0.1);
-        }
-
-        /* --- PROFESSION CARD STYLING (Modern & Elevated) --- */
+        /* --- PROFESSION CARD STYLING (Applying the requested square design) --- */
         .profession-card {
             background-color: white;
             border-radius: 0.75rem;
-            /* Rounded corners */
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            /* Subtle initial shadow */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
             border: 1px solid #f3f4f6;
-            /* Light border */
             display: flex;
             flex-direction: column;
+            padding: 1.5rem;
+            position: relative;
+            min-height: 280px;
+            text-align: left;
         }
 
         .profession-card:hover {
-            transform: translateY(-8px);
-            /* More pronounced lift on hover */
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
-            /* Stronger shadow on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(239, 68, 68, 0.1);
         }
 
-        .profession-card img {
-            width: 100%;
-            height: 140px;
-            /* Consistent image height for better visual */
-            object-fit: cover;
-            display: block;
-            filter: brightness(0.95);
-            /* Slightly darken image for text contrast */
-        }
-
-        /* Red Label Box Style - Now a Text Block inside the card */
-        .profession-label {
-            background-color: white;
-            /* White background for clean look */
-            color: #1f2937;
-            /* Dark text */
-            font-size: 1.125rem;
-            /* text-lg */
-            font-weight: 700;
-            /* font-bold */
+        /* Card Header (for the subtle side title) */
+        .card-header-label {
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #9ca3af;
             text-transform: uppercase;
-            padding: 1rem 0.75rem;
-            text-align: center;
-            min-height: 70px;
-            /* Consistent height for the label area */
+        }
+
+        /* Styling for the icon at the top center of the card */
+        .profession-icon-container {
+            width: 70px;
+            height: 70px;
+            background-color: #fef2f2;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            line-height: 1.3;
-            /* Add a small red underline for emphasis */
-            border-top: 3px solid transparent;
-            transition: border-top 0.3s ease;
+            margin: 1.5rem auto 1rem; /* Center the icon */
+            border: 2px solid var(--bni-red);
+            flex-shrink: 0;
         }
 
-        .profession-card:hover .profession-label {
-            border-top: 3px solid #ef4444;
-            /* BNI Red underline on hover */
+        /* The main label/title */
+        .profession-label {
+            color: #1f2937;
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            text-align: center; /* Center the main title */
         }
 
-        /* Team Section Styling: FIXED 4-COLUMN LAYOUT */
+        /* Detailed description - Mock content added here for consistency */
+        .profession-description {
+            font-size: 0.9375rem;
+            color: #6b7280;
+            line-height: 1.5;
+            flex-grow: 1;
+            padding-top: 0.5rem;
+        }
+        
+        /* Utility Icon (Bottom Right) */
+        .card-utility-icon {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            color: #6b7280;
+            transition: color 0.3s;
+        }
+
+        .profession-card:hover .card-utility-icon {
+            color: var(--bni-red);
+        }
+
+        /* Team Section Styling: FIXED 3-COLUMN LAYOUT for desktop */
         .team-grid {
-            /* Default small screen layout (2 columns) */
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(1, minmax(0, 1fr));
             gap: 1.5rem;
-            /* Increased gap for better spacing between blocks */
         }
 
         @media (min-width: 640px) {
-
-            /* sm breakpoint and up */
             .team-grid {
-                /* Force 4 columns on tablet/desktop to meet the requirement */
-                grid-template-columns: repeat(4, minmax(0, 1fr));
+                grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 2rem;
-                /* Wider gap on desktop */
             }
         }
-
-        /* Remove padding around the grid wrapper to push content to edges slightly */
-        #professions-grid>.max-w-7xl>div {
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        /* --- Custom Spacing Adjustment for requested fix --- */
-        #professions-grid {
-            /* Reduced vertical padding (py-8 instead of py-16/pt-16) */
-            padding-top: 2rem;
-            padding-bottom: 2rem;
-        }
-
-        /* --- Floating Chat/Modal Styles --- */
-        #floating-chat-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 1000;
-        }
-
-        /* Modal Overlay */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 900;
-        }
-
-        /* Chat Modal Container - fixed on the right bottom */
-        .chat-modal-container {
-            position: fixed;
-            bottom: 6rem;
-            /* Adjust based on button height */
-            right: 2rem;
-            width: 90%;
-            max-width: 350px;
-            z-index: 1000;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
-
-        .chat-modal-container.active {
-            opacity: 1;
-            transform: translateY(0);
+        
+        @media (min-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 2.5rem;
+            }
         }
 
 
@@ -182,7 +138,8 @@
                 padding-top: 6rem;
             }
         }
-
+        
+        /* FIX: Ensure dropdown menu shows on hover for desktop */
         .dropdown:hover .dropdown-menu {
             display: block;
         }
@@ -190,27 +147,67 @@
         /* Mobile Menu Fixes */
         #mobileSubCategories a {
             padding-left: 2rem !important;
-            /* Ensure proper indent */
             padding-right: 1rem;
+        }
+
+        /* --- FLOATING CHAT/MODAL STYLES (RIGHT SIDE) --- */
+        #floating-chat-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem; 
+            left: auto;
+            z-index: 1000;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 900;
+        }
+
+        .chat-modal-container {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem; 
+            left: auto;
+            width: 90%;
+            max-width: 350px;
+            z-index: 1000;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .chat-modal-container.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-100 text-gray-800">
 
+    <!-- HEADER (Navigation) -->
     <header class="bg-white shadow-lg fixed top-0 left-0 w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between relative">
+
             <div class="flex items-center space-x-3 z-10">
                 <img src="./images/BNI.jpg" alt="BNI AURA Logo" class="h-10 md:h-12 w-auto object-contain"
                     onerror="this.onerror=null; this.src='https://placehold.co/150x40/ef4444/ffffff?text=BNI+AURA+Logo'">
             </div>
+
             <nav
                 class="hidden md:flex space-x-6 text-gray-700 font-semibold md:absolute md:inset-0 md:justify-center md:items-center">
-                <a href="index.html" class="hover:text-red-600 transition duration-300">Home</a>
-                <a href="about.html" class="hover:text-red-600 transition duration-300">About Us</a>
+                <a href="index.html" class="nav-link hover:text-bni-red transition duration-300">Home</a>
+                <a href="about.html" class="nav-link hover:text-bni-red transition duration-300">About Us</a>
 
                 <div class="relative dropdown">
-                    <a href="categories.html" class="flex items-center hover:text-red-600 transition duration-300">
+                    <a href="categories.html"
+                        class="nav-link active flex items-center text-bni-red transition duration-300 border-b-2 border-bni-red pb-1 font-bold">
                         Categories
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -222,36 +219,37 @@
                         class="dropdown-menu hidden absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-64 bg-white rounded-lg shadow-xl border border-gray-100 z-50">
                         <div class="py-2">
                             <a href="infra-detail.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">INFRA
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">INFRA
                                 TEAM</a>
                             <a href="construction-Team.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">CONSTRUCTION
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">CONSTRUCTION
                                 TEAM</a>
                             <a href="finance-team.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">FINANCE
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">FINANCE
                                 TEAM</a>
                             <a href="events.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">EVENTS
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">EVENTS
                                 TEAM</a>
                             <a href="Industrialsme.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">INDUSTRIAL/SME
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">INDUSTRIAL/SME
                                 TEAM</a>
                             <a href="healthcare.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">HEALTHCARE
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">HEALTHCARE
                                 TEAM</a>
                             <a href="categories.html"
-                                class="block px-4 py-2 text-red-600 font-bold border-t mt-1 hover:bg-red-50 transition duration-200">View
+                                class="block px-4 py-2 text-bni-red font-bold border-t mt-1 hover:bg-red-50 transition duration-200">View
                                 All Categories</a>
                         </div>
                     </div>
                 </div>
-                <a href="invite.html" class="hover:text-red-600 transition duration-300">Get Invited</a>
-                <a href="join.html" class="hover:text-red-600 transition duration-300">Join Us</a>
+                <a href="invite.html" class="nav-link hover:text-bni-red transition duration-300">Get Invited</a>
+                <a href="join.html" class="nav-link hover:text-bni-red transition duration-300">Join Us</a>
             </nav>
 
             <div class="hidden md:flex items-center space-x-3 z-10">
-                <a href="mailto:bniaurablr@gmail.com"
-                    class="text-sm sm:text-base text-red-600 font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
+                <a href="mailto:bniaurablr@gmail.com
+"
+                    class="text-sm sm:text-base text-bni-red font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -275,169 +273,240 @@
         <div id="mobileMenu" class="md:hidden bg-white shadow-xl hidden border-t border-red-100">
             <nav class="flex flex-col space-y-2 p-4 text-gray-700 font-medium">
                 <a href="index.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Home</a>
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Home</a>
                 <a href="about.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">About
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">About
                     Us</a>
 
                 <div class="border-b border-red-100">
-                    <button id="categoryToggle"
-                        class="flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300 font-bold focus:outline-none">
-                        Categories
-                        <svg id="toggleIcon"
-                            class="w-4 h-4 transform rotate-0 transition-transform duration-300 text-gray-700 hover:text-bni-red"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                    </button>
+                    <div
+                        class="flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-red-50 transition duration-300 ">
+                        <a href="categories.html" class="flex-grow font-bold text-bni-red active hover:text-bni-red ">
+                            Categories
+                        </a>
+                        <button id="categoryToggle" class="p-1 focus:outline-none">
+                            <svg id="toggleIcon" class="w-4 h-4 transform rotate-0 transition-transform duration-300"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
 
                 <div id="mobileSubCategories" class="hidden flex flex-col space-y-1">
                     <a href="infra-detail.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">INFRA
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INFRA
                         TEAM</a>
                     <a href="construction-Team.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">CONSTRUCTION
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">CONSTRUCTION
                         TEAM</a>
                     <a href="finance-team.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">FINANCE
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">FINANCE
                         TEAM</a>
                     <a href="events.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">EVENTS
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">EVENTS
                         TEAM</a>
                     <a href="Industrialsme.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">INDUSTRIAL/SME
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INDUSTRIAL/SME
                         TEAM</a>
                     <a href="healthcare.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">HEALTHCARE
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">HEALTHCARE
                         TEAM</a>
                     <a href="categories.html"
-                        class="block pl-8 py-2 text-red-600 font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200">View
+                        class="block pl-8 py-2 text-bni-red font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200">View
                         All Categories</a>
                 </div>
                 <a href="invite.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Get
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Get
                     Invited</a>
                 <a href="join.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Join
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Join
                     Us</a>
                 <a href="mailto:bniaurablr@gmail.com"
-                    class="block px-3 py-2 text-red-600 font-semibold text-center border-t mt-2">bniaurablr@gmail.com</a>
+                    class="block px-3 py-2 text-bni-red font-semibold text-center border-t mt-2">bniaurablr@gmail.com</a>
             </nav>
         </div>
     </header>
 
     <main class="pt-header-fix">
 
-        <section id="team-hero" class="bg-gray-800 text-white py-20">
+        <!-- HERO SECTION - BRIGHT RED BACKGROUND FOR STRIKING EFFECT -->
+        <section id="team-hero" class="bg-bni-red text-white py-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-5xl font-extrabold mb-3 text-red-500">INDUSTRIAL TEAM</h1>
-                <h2 class="text-3xl font-light mb-2">Essential Professions</h2>
-                <p class="text-xl font-light text-gray-300">Connecting businesses and manufacturing professionals for
+                <h1 class="text-5xl font-extrabold mb-3 text-white">INDUSTRIAL/SME TEAM</h1>
+                <h2 class="text-3xl font-light mb-2">Essential Professions for Manufacturing & Business Support</h2>
+                <p class="text-xl font-light text-red-100">Connecting businesses and manufacturing professionals for
                     powerful B2B referrals.</p>
             </div>
         </section>
+        
+        <hr class="border-t-4 border-red-700 w-full" />
 
-        <section id="professions-grid" class="py-16 bg-gray-50">
+        <!-- PROFESSIONS GRID - STYLED WITH SQUARE CARDS AND DESCRIPTIONS -->
+        <section id="professions-grid" class="py-16 bg-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Available Categories</h3>
 
                 <div id="grid-container" class="team-grid">
 
+                    <!-- WASTE WATER MANAGEMENT -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about WASTE WATER MANAGEMENT seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./INDUSTRIALSME-TEAM/WASTE-WATER-MANAGEMENT.jpg" alt="WASTE WATER MANAGEMENT"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=WASTE+WATER+MANAGEMENT'">
+                        <span class="card-header-label">INDUSTRIAL / ENVIRONMENT</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-water-ladder text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">WASTE WATER MANAGEMENT</div>
+                        <p class="profession-description">Specializing in the treatment and disposal of industrial wastewater, ensuring regulatory compliance and environmental sustainability for manufacturing units.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- INDUSTRIAL IT & OT -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about INDUSTRIAL IT & OT seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./INDUSTRIALSME-TEAM/INDUSTRIAL-IT-OT.jpg" alt="INDUSTRIAL IT & OT"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=INDUSTRIAL+IT+&amp;+OT'">
+                        <span class="card-header-label">INDUSTRIAL / TECHNOLOGY</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-computer-mouse text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">INDUSTRIAL IT & OT</div>
+                        <p class="profession-description">Focuses on integrating information technology (IT) systems with operational technology (OT) to optimize plant efficiency, automation, and industrial cybersecurity.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- IT & HARDWARE -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about IT & HARDWARE seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./INDUSTRIALSME-TEAM/IT-HARDWARE.jpg" alt="IT & HARDWARE"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=IT+&amp;+HARDWARE'">
+                        <span class="card-header-label">SME / TECHNOLOGY</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-server text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">IT & HARDWARE</div>
+                        <p class="profession-description">Supplies, installs, and maintains essential office IT infrastructure, including servers, networking equipment, desktops, and data storage solutions for SMEs.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- INDUSTRIAL FLOORINGS -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about INDUSTRIAL FLOORINGS seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./INDUSTRIALSME-TEAM/INDUSTRIAL-FLOORINGS.jpg" alt="INDUSTRIAL FLOORINGS"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=INDUSTRIAL+FLOORINGS'">
+                        <span class="card-header-label">INDUSTRIAL / INFRASTRUCTURE</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-warehouse text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">INDUSTRIAL FLOORINGS</div>
+                        <p class="profession-description">Specialists in heavy-duty, chemical-resistant flooring solutions like epoxy and polyurethane, essential for manufacturing plants, warehouses, and clean rooms.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- WEBSITE DEVELOPER -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about WEBSITE DEVELOPER seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./INDUSTRIALSME-TEAM/WEBSITE-DEVELOPER.jpg" alt="WEBSITE DEVELOPER"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=WEBSITE+DEVELOPER'">
+                        <span class="card-header-label">SME / MARKETING</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-code text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">WEBSITE DEVELOPER</div>
+                        <p class="profession-description">Creates and maintains professional, responsive websites and e-commerce platforms, helping SMEs establish a strong, functional digital presence.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- TYRE DEALERS -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about TYRE DEALERS seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./INDUSTRIALSME-TEAM/TYRE-DEALERS.jpg" alt="TYRE DEALERS"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=TYRE+DEALERS'">
+                        <span class="card-header-label">INDUSTRIAL / TRANSPORT</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-tire text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">TYRE DEALERS</div>
+                        <p class="profession-description">Supplier of commercial and industrial tires for heavy machinery, fleet vehicles, and transportation logistics, ensuring operational continuity for businesses.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- FACILITY MANAGEMENT -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about FACILITY MANAGEMENT seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./INDUSTRIALSME-TEAM/FACILITY-MANAGEMENT.jpg" alt="FACILITY MANAGEMENT"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=FACILITY+MANAGEMENT'">
+                        <span class="card-header-label">SME / OPERATIONS</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-broom-ball text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">FACILITY MANAGEMENT</div>
+                        <p class="profession-description">Offers integrated services to manage commercial and industrial buildings, including maintenance, cleaning, space management, and utility efficiency.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- SECURITY SERVICES -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about SECURITY SERVICES seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./INDUSTRIALSME-TEAM/SECURITY-SERVICES.jpg" alt="SECURITY SERVICES"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=SECURITY+SERVICES'">
+                        <span class="card-header-label">SME / SAFETY</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-user-shield text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">SECURITY SERVICES</div>
+                        <p class="profession-description">Provides trained security personnel, electronic surveillance, and access control solutions to protect commercial properties, industrial sites, and sensitive data centers.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- UNIFORMS -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about UNIFORMS seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./INDUSTRIALSME-TEAM/UNIFORMS.jpg" alt="UNIFORMS"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=UNIFORMS'">
+                        <span class="card-header-label">SME / APPAREL</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-vest text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">UNIFORMS</div>
+                        <p class="profession-description">Supplier of custom corporate uniforms, safety wear, and specialized industrial apparel, ensuring professional branding and compliance with workplace safety standards.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- OFFICE SUPPLIES -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about OFFICE SUPPLIES seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./INDUSTRIALSME-TEAM/OFFICE-SUPPLIES.jpg" alt="OFFICE SUPPLIES"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=OFFICE+SUPPLIES'">
+                        <span class="card-header-label">SME / PROCUREMENT</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-scissors-cut text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">OFFICE SUPPLIES</div>
+                        <p class="profession-description">Wholesaler and retailer of essential office consumables, stationery, paper products, and general administrative goods required for daily business operations.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- DIGITAL MARKETING -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about DIGITAL MARKETING seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./INDUSTRIALSME-TEAM/DIGITAL-MARKETING.jpg" alt="DIGITAL MARKETING"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=DIGITAL+MARKETING'">
+                        <span class="card-header-label">SME / MARKETING</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-bullhorn text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">DIGITAL MARKETING</div>
+                        <p class="profession-description">Provides strategic online marketing services, including SEO, social media management, PPC campaigns, and content creation to boost SME visibility and customer leads.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- OFFICE FURNITURES -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about OFFICE FURNITURES seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./INDUSTRIALSME-TEAM/OFFICE-FURNITURES.jpg" alt="OFFICE FURNITURES"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=OFFICE+FURNITURES'">
+                        <span class="card-header-label">SME / INTERIORS</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-desk text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">OFFICE FURNITURES</div>
+                        <p class="profession-description">Supplies ergonomic chairs, executive desks, conference tables, and custom storage solutions, creating productive and professional office environments.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
                 </div>
             </div>
         </section>
 
+        <!-- JOIN SECTION -->
         <section id="join" class="py-16 bg-bni-red text-white">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h3 class="text-3xl font-bold mb-4">
                     Ready to Claim Your Category? 🚀
                 </h3>
-                <p class="text-lg text-gray-200 mb-6">
+                <p class="text-lg text-red-100 mb-6">
                     If your category is open, secure your spot. If it's taken, or you don't see your profession, click
                     below to connect with us!
                 </p>
@@ -451,20 +520,23 @@
 
     </main>
 
+    <!-- FLOATING CHAT BUTTON (RIGHT SIDE) -->
     <button id="floating-chat-btn"
-        class="bg-red-600 text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+        class="bg-bni-red text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Icon to represent a message or chat bubble -->
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z">
             </path>
         </svg>
     </button>
 
+    <!-- CHAT MODAL (RIGHT SIDE) -->
     <div id="chat-modal" class="hidden">
         <div class="modal-overlay"></div>
-        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-red-600">
+        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-bni-red">
             <div class="flex justify-between items-start border-b pb-3 mb-4">
-                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-red-600">AURA</span></h3>
+                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-bni-red">AURA</span></h3>
                 <button id="close-chat-btn" class="text-gray-500 hover:text-gray-900 transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -480,28 +552,29 @@
             <form action="#" method="POST" class="space-y-4">
                 <div>
                     <input type="text" placeholder="Name*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <div>
                     <input type="email" placeholder="Email*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <button type="submit"
-                    class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
+                    class="w-full bg-bni-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
                     Send
                 </button>
             </form>
 
             <p class="text-xs text-center text-gray-400 mt-4">
                 This site is protected by reCAPTCHA and the Google <a href="#"
-                    class="hover:text-red-500 underline">Privacy Policy</a> and <a href="#"
-                    class="hover:text-red-500 underline">Terms of Service</a> apply.
+                    class="hover:text-bni-red underline">Privacy Policy</a> and <a href="#"
+                    class="hover:text-bni-red underline">Terms of Service</a> apply.
             </p>
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer class="bg-gray-900 py-12 text-gray-400">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
@@ -525,7 +598,7 @@
                     <nav class="space-y-2 text-sm">
                         <a href="index.html" class="block hover:text-red-400 transition">Home</a>
                         <a href="about.html" class="block hover:text-red-400 transition">About Us</a>
-                        <a href="teams-overview.html" class="block hover:text-red-400 transition">Categories</a>
+                        <a href="categories.html" class="block hover:text-red-400 transition">Categories</a>
                         <a href="invite.html" class="block hover:text-red-400 transition">Get Invited</a>
                         <a href="join.html" class="block hover:text-red-400 transition">Join Us</a>
                     </nav>
@@ -585,15 +658,70 @@
         </div>
     </footer>
 
+    <button id="floating-chat-btn"
+        class="bg-bni-red text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Icon to represent a message or chat bubble -->
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z">
+            </path>
+        </svg>
+    </button>
+
+    <div id="chat-modal" class="hidden">
+        <div class="modal-overlay"></div>
+        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-bni-red">
+            <div class="flex justify-between items-start border-b pb-3 mb-4">
+                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-bni-red">AURA</span></h3>
+                <button id="close-chat-btn" class="text-gray-500 hover:text-gray-900 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <p class="text-sm text-gray-600 mb-4">Hi! Please leave your details and our team will connect with you
+                shortly.</p>
+
+            <form action="#" method="POST" class="space-y-4">
+                <div>
+                    <input type="text" placeholder="Name*"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
+                        required>
+                </div>
+                <div>
+                    <input type="email" placeholder="Email*"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
+                        required>
+                </div>
+                <button type="submit"
+                    class="w-full bg-bni-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
+                    Send
+                </button>
+            </form>
+
+            <p class="text-xs text-center text-gray-400 mt-4">
+                This site is protected by reCAPTCHA and the Google <a href="#"
+                    class="hover:text-bni-red underline">Privacy Policy</a> and <a href="#"
+                    class="hover:text-bni-red underline">Terms of Service</a> apply.
+            </p>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Mobile Menu Toggle JS ---
             const menuBtn = document.getElementById("menuBtn");
             const mobileMenu = document.getElementById("mobileMenu");
             const mobileMenuButton = document.getElementById('mobileMenuButton'); // Hamburger Icon
+
+            // Corrected ID for mobile sub-categories used in closing logic
             const mobileSubCategories = document.getElementById('mobileSubCategories');
             const categoryToggle = document.getElementById('categoryToggle'); // Button to toggle dropdown
-            const categoryArrow = document.getElementById('toggleIcon'); // Arrow icon inside the button
+            const toggleIcon = document.getElementById('toggleIcon'); // Arrow icon inside the button
+
 
             // Helper function to update the hamburger icon
             function updateMobileMenuIcon(isOpen) {
@@ -614,21 +742,19 @@
                 updateMobileMenuIcon(isHidden);
             });
 
-            // --- Mobile Categories Accordion Toggle JS (Fixed) ---
-            if (categoryToggle && mobileSubCategories && categoryArrow) {
+            // --- Mobile Categories Accordion Toggle JS (Fixed to prevent navigation) ---
+            if (categoryToggle && mobileSubCategories && toggleIcon) {
                 categoryToggle.addEventListener('click', (e) => {
-                    // This prevents the anchor tag from navigating, effectively making it a toggle button
+                    // Prevent the link (categories.html) from being navigated to when clicking the toggle button
                     e.preventDefault();
 
                     const isHidden = mobileSubCategories.classList.contains('hidden');
                     mobileSubCategories.classList.toggle('hidden');
 
                     if (isHidden) {
-                        categoryArrow.classList.add('rotate-90');
-                        categoryArrow.classList.remove('rotate-0'); // Ensure it rotates correctly
+                        toggleIcon.classList.add('rotate-90');
                     } else {
-                        categoryArrow.classList.remove('rotate-90');
-                        categoryArrow.classList.add('rotate-0');
+                        toggleIcon.classList.remove('rotate-90');
                     }
                 });
             }
@@ -637,14 +763,14 @@
             const mobileLinks = mobileMenu.querySelectorAll('a');
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    // Check if the clicked link is not the anchor tag used for the submenu toggle
-                    if (!link.closest('.flex.justify-between')) {
+                    // Check if the clicked link is not the category toggle button itself
+                    if (!link.closest('.border-b.border-red-100')) {
                         // Reset category menu state when main menu closes
                         if (mobileSubCategories) {
                             mobileSubCategories.classList.add('hidden');
                         }
-                        if (categoryArrow) {
-                            categoryArrow.classList.remove('rotate-90');
+                        if (toggleIcon) {
+                            toggleIcon.classList.remove('rotate-90');
                         }
                         mobileMenu.classList.add('hidden');
                         updateMobileMenuIcon(false); // Reset icon to hamburger
@@ -658,25 +784,25 @@
             const chatModal = document.getElementById("chat-modal");
             const closeChatBtn = document.getElementById("close-chat-btn");
 
-            if (chatModal) {
+            // Function to toggle the chat modal visibility
+            const toggleModal = () => {
                 const modalContainer = chatModal.querySelector('.chat-modal-container');
+                const isHidden = chatModal.classList.contains("hidden");
 
-                const toggleModal = () => {
-                    const isHidden = chatModal.classList.contains("hidden");
+                if (isHidden) {
+                    chatModal.classList.remove("hidden");
+                    setTimeout(() => {
+                        modalContainer.classList.add("active");
+                    }, 10);
+                } else {
+                    modalContainer.classList.remove("active");
+                    setTimeout(() => {
+                        chatModal.classList.add("hidden");
+                    }, 300); // Wait for CSS transition
+                }
+            };
 
-                    if (isHidden) {
-                        chatModal.classList.remove("hidden");
-                        setTimeout(() => {
-                            modalContainer.classList.add("active");
-                        }, 10);
-                    } else {
-                        modalContainer.classList.remove("active");
-                        setTimeout(() => {
-                            chatModal.classList.add("hidden");
-                        }, 300); // Wait for transition
-                    }
-                };
-
+            if (chatModal) {
                 if (chatBtn) {
                     chatBtn.addEventListener("click", toggleModal);
                 }
@@ -684,15 +810,33 @@
                     closeChatBtn.addEventListener("click", toggleModal);
                 }
 
+                // Close modal if overlay is clicked
                 chatModal.addEventListener("click", (e) => {
                     if (e.target.classList.contains('modal-overlay')) {
                         toggleModal();
                     }
                 });
+
+                // Attach the click handler to all profession cards (which link to #floating-chat-btn)
+                document.querySelectorAll('.profession-card').forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        e.preventDefault(); // Prevent default link behavior
+                        if (chatModal.classList.contains("hidden")) {
+                             toggleModal();
+                        }
+                    });
+                });
+                
+                // Attach the click handler to the CTA button (which links to #floating-chat-btn)
+                document.querySelector('#join a').addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default link behavior
+                    if (chatModal.classList.contains("hidden")) {
+                         toggleModal();
+                    }
+                });
             }
         });
     </script>
-
 </body>
 
 </html>

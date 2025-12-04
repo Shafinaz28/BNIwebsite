@@ -4,16 +4,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Finance Team - BNI AURA</title>
+    <title>FINANCE TEAM - BNI AURA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        /* Custom styles for BNI theme */
+        /* Custom styles for BNI theme and red color consistency */
         :root {
-            --bni-red: #ef4444;
+            --bni-red: #ef4444; /* Consistent Red */
             --bni-red-dark: #dc2626;
-            --bni-red-original: #ef4444;
-            /* Added for consistency with usage */
         }
 
         .text-bni-red {
@@ -28,164 +27,104 @@
             border-color: var(--bni-red);
         }
 
-        /* Style for the Core Values grid background */
-        .core-value-card {
-            transition: transform 0.3s ease;
-        }
-
-        .core-value-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(239, 68, 68, 0.1);
-        }
-
-        /* Custom styles for BNI theme */
-        .text-bni-red {
-            color: #ef4444;
-            /* Tailwind red-600 */
-        }
-
-        .bg-bni-red {
-            background-color: #ef4444;
-            /* Tailwind red-600 */
-        }
-
-        .border-bni-red {
-            border-color: #ef4444;
-            /* Tailwind red-600 */
-        }
-
-        /* Header specific active link */
-        .nav-link.active {
-            color: #ef4444;
-            /* Tailwind red-600 */
-            font-weight: bold;
-        }
-
-        /* --- ✨ NEW PROFESSION CARD STYLING (Modern & Elevated) ✨ --- */
+        /* --- PROFESSION CARD STYLING (Applying the requested square design) --- */
         .profession-card {
             background-color: white;
             border-radius: 0.75rem;
-            /* Rounded corners */
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            /* Subtle initial shadow */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
             border: 1px solid #f3f4f6;
-            /* Light border */
             display: flex;
             flex-direction: column;
+            padding: 1.5rem;
+            position: relative;
+            min-height: 280px;
+            text-align: left;
         }
 
         .profession-card:hover {
-            transform: translateY(-8px);
-            /* More pronounced lift on hover */
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
-            /* Stronger shadow on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(239, 68, 68, 0.1);
         }
 
-        .profession-card img {
-            width: 100%;
-            height: 140px;
-            /* Consistent image height for better visual */
-            object-fit: cover;
-            display: block;
-            filter: brightness(0.95);
-            /* Slightly darken image for text contrast */
-        }
-
-        /* Red Label Box Style - Now a Text Block inside the card */
-        .profession-label {
-            background-color: white;
-            /* White background for clean look */
-            color: #1f2937;
-            /* Dark text */
-            font-size: 1.125rem;
-            /* text-lg */
-            font-weight: 700;
-            /* font-bold */
+        /* Card Header (for the subtle side title) */
+        .card-header-label {
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #9ca3af;
             text-transform: uppercase;
-            padding: 1rem 0.75rem;
-            text-align: center;
-            min-height: 70px;
-            /* Consistent height for the label area */
+        }
+
+        /* Styling for the icon at the top center of the card */
+        .profession-icon-container {
+            width: 70px;
+            height: 70px;
+            background-color: #fef2f2;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            line-height: 1.3;
-            /* Add a small red underline for emphasis */
-            border-top: 3px solid transparent;
-            transition: border-top 0.3s ease;
+            margin: 1.5rem auto 1rem; /* Center the icon */
+            border: 2px solid var(--bni-red);
+            flex-shrink: 0;
+        }
+
+        /* The main label/title */
+        .profession-label {
+            color: #1f2937;
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            text-align: center; /* Center the main title */
+        }
+
+        /* Detailed description - Mock content added here for consistency */
+        .profession-description {
+            font-size: 0.9375rem;
+            color: #6b7280;
+            line-height: 1.5;
             flex-grow: 1;
+            padding-top: 0.5rem;
+        }
+        
+        /* Utility Icon (Bottom Right) */
+        .card-utility-icon {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            color: #6b7280;
+            transition: color 0.3s;
         }
 
-        .profession-card:hover .profession-label {
-            border-top: 3px solid #ef4444;
-            /* BNI Red underline on hover */
+        .profession-card:hover .card-utility-icon {
+            color: var(--bni-red);
         }
 
-        /* Team Section Styling: FIXED 4-COLUMN LAYOUT */
+        /* Team Section Styling: FIXED 3-COLUMN LAYOUT for desktop */
         .team-grid {
-            /* Default small screen layout (2 columns) */
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(1, minmax(0, 1fr));
             gap: 1.5rem;
-            /* Increased gap for better spacing between blocks */
         }
 
         @media (min-width: 640px) {
-
-            /* sm breakpoint and up */
             .team-grid {
-                /* Force 4 columns on tablet/desktop to meet the requirement */
-                grid-template-columns: repeat(4, minmax(0, 1fr));
+                grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 2rem;
-                /* Wider gap on desktop */
             }
         }
-
-        /* Remove padding around the grid wrapper to push content to edges slightly */
-        #professions-grid>.max-w-7xl>div {
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        /* --- Floating Chat/Modal Styles --- */
-        #floating-chat-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 1000;
-        }
-
-        /* Modal Overlay */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 900;
-        }
-
-        /* Chat Modal Container - fixed on the right bottom */
-        .chat-modal-container {
-            position: fixed;
-            bottom: 6rem;
-            /* Adjust based on button height */
-            right: 2rem;
-            width: 90%;
-            max-width: 350px;
-            z-index: 1000;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
-
-        .chat-modal-container.active {
-            opacity: 1;
-            transform: translateY(0);
+        
+        @media (min-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 2.5rem;
+            }
         }
 
 
@@ -199,35 +138,76 @@
                 padding-top: 6rem;
             }
         }
-
+        
+        /* FIX: Ensure dropdown menu shows on hover for desktop */
         .dropdown:hover .dropdown-menu {
             display: block;
         }
 
-        /* Mobile Menu Fixes for indentation */
-        #mobile-category-list a {
+        /* Mobile Menu Fixes */
+        #mobileSubCategories a {
             padding-left: 2rem !important;
-            /* Ensure proper indent */
             padding-right: 1rem;
+        }
+
+        /* --- FLOATING CHAT/MODAL STYLES (RIGHT SIDE) --- */
+        #floating-chat-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem; 
+            left: auto;
+            z-index: 1000;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 900;
+        }
+
+        .chat-modal-container {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem; 
+            left: auto;
+            width: 90%;
+            max-width: 350px;
+            z-index: 1000;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .chat-modal-container.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-100 text-gray-800">
 
+    <!-- HEADER (Navigation) -->
     <header class="bg-white shadow-lg fixed top-0 left-0 w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between relative">
+
             <div class="flex items-center space-x-3 z-10">
                 <img src="./images/BNI.jpg" alt="BNI AURA Logo" class="h-10 md:h-12 w-auto object-contain"
                     onerror="this.onerror=null; this.src='https://placehold.co/150x40/ef4444/ffffff?text=BNI+AURA+Logo'">
             </div>
+
             <nav
                 class="hidden md:flex space-x-6 text-gray-700 font-semibold md:absolute md:inset-0 md:justify-center md:items-center">
-                <a href="index.html" class="hover:text-red-600 transition duration-300">Home</a>
-                <a href="about.html" class="hover:text-red-600 transition duration-300">About Us</a>
+                <a href="index.html" class="nav-link hover:text-bni-red transition duration-300">Home</a>
+                <a href="about.html" class="nav-link hover:text-bni-red transition duration-300">About Us</a>
 
                 <div class="relative dropdown">
-                    <a href="categories.html" class="flex items-center hover:text-red-600 transition duration-300">
+                    <a href="categories.html"
+                        class="nav-link active flex items-center text-bni-red transition duration-300 border-b-2 border-bni-red pb-1 font-bold">
                         Categories
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
@@ -239,43 +219,44 @@
                         class="dropdown-menu hidden absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-64 bg-white rounded-lg shadow-xl border border-gray-100 z-50">
                         <div class="py-2">
                             <a href="infra-detail.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">INFRA
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">INFRA
                                 TEAM</a>
                             <a href="construction-Team.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">CONSTRUCTION
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">CONSTRUCTION
                                 TEAM</a>
                             <a href="finance-team.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">FINANCE
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">FINANCE
                                 TEAM</a>
                             <a href="events.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">EVENTS
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">EVENTS
                                 TEAM</a>
                             <a href="Industrialsme.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">INDUSTRIAL/SME
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">INDUSTRIAL/SME
                                 TEAM</a>
                             <a href="healthcare.html"
-                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">HEALTHCARE
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-bni-red transition duration-200">HEALTHCARE
                                 TEAM</a>
                             <a href="categories.html"
-                                class="block px-4 py-2 text-red-600 font-bold border-t mt-1 hover:bg-red-50 transition duration-200">View
+                                class="block px-4 py-2 text-bni-red font-bold border-t mt-1 hover:bg-red-50 transition duration-200">View
                                 All Categories</a>
                         </div>
                     </div>
                 </div>
-                <a href="invite.html" class="hover:text-red-600 transition duration-300">Get Invited</a>
-                <a href="join.html" class="hover:text-red-600 transition duration-300">Join Us</a>
+                <a href="invite.html" class="nav-link hover:text-bni-red transition duration-300">Get Invited</a>
+                <a href="join.html" class="nav-link hover:text-bni-red transition duration-300">Join Us</a>
             </nav>
 
             <div class="hidden md:flex items-center space-x-3 z-10">
-                <a href="mailto:support@bniaura.com"
-                    class="text-sm sm:text-base text-red-600 font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
+                <a href="mailto:bniaurablr@gmail.com
+"
+                    class="text-sm sm:text-base text-bni-red font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
                         </path>
                     </svg>
-                    <span>support@bniaura.com</span>
+                    <span>bniaurablr@gmail.com</span>
                 </a>
             </div>
 
@@ -292,142 +273,193 @@
         <div id="mobileMenu" class="md:hidden bg-white shadow-xl hidden border-t border-red-100">
             <nav class="flex flex-col space-y-2 p-4 text-gray-700 font-medium">
                 <a href="index.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Home</a>
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Home</a>
                 <a href="about.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">About
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">About
                     Us</a>
 
                 <div class="border-b border-red-100">
-                    <button id="categoryToggle"
-                        class="flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300 font-bold focus:outline-none">
-                        Categories
-                        <svg id="toggleIcon"
-                            class="w-4 h-4 transform rotate-0 transition-transform duration-300 text-gray-700 hover:text-bni-red"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                    </button>
+                    <div
+                        class="flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-red-50 transition duration-300 ">
+                        <a href="categories.html" class="flex-grow font-bold text-bni-red active hover:text-bni-red ">
+                            Categories
+                        </a>
+                        <button id="categoryToggle" class="p-1 focus:outline-none">
+                            <svg id="toggleIcon" class="w-4 h-4 transform rotate-0 transition-transform duration-300"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
 
                 <div id="mobileSubCategories" class="hidden flex flex-col space-y-1">
                     <a href="infra-detail.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">INFRA
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INFRA
                         TEAM</a>
                     <a href="construction-Team.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">CONSTRUCTION
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">CONSTRUCTION
                         TEAM</a>
                     <a href="finance-team.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">FINANCE
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">FINANCE
                         TEAM</a>
                     <a href="events.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">EVENTS
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">EVENTS
                         TEAM</a>
                     <a href="Industrialsme.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">INDUSTRIAL/SME
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">INDUSTRIAL/SME
                         TEAM</a>
                     <a href="healthcare.html"
-                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-red-600 transition duration-300">HEALTHCARE
+                        class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">HEALTHCARE
                         TEAM</a>
                     <a href="categories.html"
-                        class="block pl-8 py-2 text-red-600 font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200">View
+                        class="block pl-8 py-2 text-bni-red font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200">View
                         All Categories</a>
                 </div>
                 <a href="invite.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Get
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Get
                     Invited</a>
                 <a href="join.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Join
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Join
                     Us</a>
-                <a href="mailto:support@bniaura.com"
-                    class="block px-3 py-2 text-red-600 font-semibold text-center border-t mt-2">support@bniaura.com</a>
+                <a href="mailto:bniaurablr@gmail.com"
+                    class="block px-3 py-2 text-bni-red font-semibold text-center border-t mt-2">bniaurablr@gmail.com</a>
             </nav>
         </div>
     </header>
 
     <main class="pt-header-fix">
 
-        <section id="team-hero" class="bg-gray-800 text-white py-20">
+        <!-- HERO SECTION - BRIGHT RED BACKGROUND FOR STRIKING EFFECT -->
+        <section id="team-hero" class="bg-bni-red text-white py-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-5xl font-extrabold mb-3 text-red-500">FINANCE TEAM</h1>
-                <h2 class="text-3xl font-light mb-2">Essential Professions</h2>
-                <p class="text-xl font-light text-gray-300">Trusted professionals in Accounting, Law,
+                <h1 class="text-5xl font-extrabold mb-3 text-white">FINANCE TEAM</h1>
+                <h2 class="text-3xl font-light mb-2">Essential Professions in Financial & Legal Services</h2>
+                <p class="text-xl font-light text-red-100">Trusted professionals in Accounting, Law,
                     Investment and Advisory Services.</p>
             </div>
         </section>
+        
+        <hr class="border-t-4 border-red-700 w-full" />
 
-        <section id="professions-grid" class="py-16 bg-gray-50">
+        <!-- PROFESSIONS GRID - STYLED WITH SQUARE CARDS AND DESCRIPTIONS -->
+        <section id="professions-grid" class="py-16 bg-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Available Categories</h3>
 
                 <div id="grid-container" class="team-grid">
 
+                    <!-- CA (CHARTERED ACCOUNTANT) -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about CA seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Finance-team/CA.jpg" alt="CA (CHARTERED ACCOUNTANT)"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=CA+ACCOUNTANT'">
+                        <span class="card-header-label">FINANCE / ACCOUNTING</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-file-invoice-dollar text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">CA (CHARTERED ACCOUNTANT)</div>
+                        <p class="profession-description">Provides auditing, tax consultation, financial reporting, and business advisory services, ensuring compliance and strategic fiscal management for businesses and individuals.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- COMPANY SECRETARY -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about COMPANY SECRETARY seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Finance-team/COMPANY-SECRETARY.jpg" alt="COMPANY SECRETARY"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=COMPANY+SECRETARY'">
+                        <span class="card-header-label">FINANCE / COMPLIANCE</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-gavel text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">COMPANY SECRETARY</div>
+                        <p class="profession-description">Manages corporate governance, regulatory compliance, and legal administration, ensuring the company operates within the strict framework of corporate and securities law.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- FINANCIAL PLANNER -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about FINANCIAL PLANNER seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Finance-team/FINANCIAL-PLANNER.jpg" alt="FINANCIAL PLANNER"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=FINANCIAL+PLANNER'">
+                        <span class="card-header-label">FINANCE / WEALTH</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-chart-line text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">FINANCIAL PLANNER</div>
+                        <p class="profession-description">Creates comprehensive financial roadmaps for clients, covering investment strategies, retirement planning, insurance needs, and long-term wealth accumulation goals.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- LOAN CONSULTANT -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about LOAN CONSULTANT seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Finance-team/LOAN-CONSULTANT.jpg" alt="LOAN CONSULTANT"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=LOAN+CONSULTANT'">
+                        <span class="card-header-label">FINANCE / LENDING</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-house-chimney-medical text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">LOAN CONSULTANT</div>
+                        <p class="profession-description">Specializes in securing optimal financing solutions, including home loans, business loans, and debt consolidation, navigating the complex banking landscape for clients.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- LAWYER -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about LAWYER seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Finance-team/LAWYER.jpg" alt="LAWYER"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=LAWYER'">
+                        <span class="card-header-label">FINANCE / LEGAL</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-scale-balanced text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">LAWYER</div>
+                        <p class="profession-description">Offers legal counsel in areas such as real estate, corporate law, contract drafting, and dispute resolution, protecting clients' assets and legal standing.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- GENERAL INSURANCE -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about GENERAL INSURANCE seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Finance-team/GENERAL-INSURANCE.jpg" alt="GENERAL INSURANCE"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=GENERAL+INSURANCE'">
+                        <span class="card-header-label">FINANCE / RISK</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-shield-halved text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">GENERAL INSURANCE</div>
+                        <p class="profession-description">Provides coverage for non-life assets including property, vehicles, and commercial liabilities, mitigating financial losses due to unforeseen damage or accidents.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- STOCK BROKER -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about STOCK BROKER seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Finance-team/STOCK-BROKER.jpg" alt="STOCK BROKER"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=STOCK+BROKER'">
+                        <span class="card-header-label">FINANCE / INVESTMENTS</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-arrow-trend-up text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">STOCK BROKER</div>
+                        <p class="profession-description">Executes trades on behalf of clients and offers advisory services on purchasing and selling stocks, bonds, and other securities in the capital markets.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- HR CONSULTANT -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about HR CONSULTANT seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./Finance-team/HR-CONSULTANT.jpg" alt="HR CONSULTANT"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=HR+CONSULTANT'">
+                        <span class="card-header-label">FINANCE / BUSINESS SUPPORT</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-user-tie text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">HR CONSULTANT</div>
+                        <p class="profession-description">Advises businesses on human resources strategy, recruitment, employee compliance, and payroll management, optimizing internal organizational structures and efficiency.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
                 </div>
             </div>
         </section>
 
+        <!-- JOIN SECTION -->
         <section id="join" class="py-16 bg-bni-red text-white">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h3 class="text-3xl font-bold mb-4">
                     Ready to Claim Your Category? 🚀
                 </h3>
-                <p class="text-lg text-gray-200 mb-6">
+                <p class="text-lg text-red-100 mb-6">
                     If your category is open, secure your spot. If it's taken, or you don't see your profession, click
                     below to connect with us!
                 </p>
@@ -441,20 +473,23 @@
 
     </main>
 
+    <!-- FLOATING CHAT BUTTON (RIGHT SIDE) -->
     <button id="floating-chat-btn"
-        class="bg-red-600 text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+        class="bg-bni-red text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Icon to represent a message or chat bubble -->
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z">
             </path>
         </svg>
     </button>
 
+    <!-- CHAT MODAL (RIGHT SIDE) -->
     <div id="chat-modal" class="hidden">
         <div class="modal-overlay"></div>
-        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-red-600">
+        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-bni-red">
             <div class="flex justify-between items-start border-b pb-3 mb-4">
-                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-red-600">AURA</span></h3>
+                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-bni-red">AURA</span></h3>
                 <button id="close-chat-btn" class="text-gray-500 hover:text-gray-900 transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -470,28 +505,29 @@
             <form action="#" method="POST" class="space-y-4">
                 <div>
                     <input type="text" placeholder="Name*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <div>
                     <input type="email" placeholder="Email*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <button type="submit"
-                    class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
+                    class="w-full bg-bni-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
                     Send
                 </button>
             </form>
 
             <p class="text-xs text-center text-gray-400 mt-4">
                 This site is protected by reCAPTCHA and the Google <a href="#"
-                    class="hover:text-red-500 underline">Privacy Policy</a> and <a href="#"
-                    class="hover:text-red-500 underline">Terms of Service</a> apply.
+                    class="hover:text-bni-red underline">Privacy Policy</a> and <a href="#"
+                    class="hover:text-bni-red underline">Terms of Service</a> apply.
             </p>
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer class="bg-gray-900 py-12 text-gray-400">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
@@ -515,7 +551,7 @@
                     <nav class="space-y-2 text-sm">
                         <a href="index.html" class="block hover:text-red-400 transition">Home</a>
                         <a href="about.html" class="block hover:text-red-400 transition">About Us</a>
-                        <a href="teams-overview.html" class="block hover:text-red-400 transition">Categories</a>
+                        <a href="categories.html" class="block hover:text-red-400 transition">Categories</a>
                         <a href="invite.html" class="block hover:text-red-400 transition">Get Invited</a>
                         <a href="join.html" class="block hover:text-red-400 transition">Join Us</a>
                     </nav>
@@ -539,7 +575,7 @@
                                 Business City, CA 90210
                             </span>
                         </p>
-                        <a href="mailto:support@bniaura.com"
+                        <a href="mailto:bniaurablr@gmail.com"
                             class="flex items-center space-x-2 hover:text-red-400 transition">
                             <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -547,7 +583,7 @@
                                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
                                 </path>
                             </svg>
-                            <span>support@bniaura.com</span>
+                            <span>bniaurablr@gmail.com</span>
                         </a>
                     </div>
                 </div>
@@ -574,16 +610,18 @@
             </div>
         </div>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- Mobile Menu Toggle JS ---
             const menuBtn = document.getElementById("menuBtn");
             const mobileMenu = document.getElementById("mobileMenu");
             const mobileMenuButton = document.getElementById('mobileMenuButton'); // Hamburger Icon
+
+            // Corrected ID for mobile sub-categories used in closing logic
             const mobileSubCategories = document.getElementById('mobileSubCategories');
             const categoryToggle = document.getElementById('categoryToggle'); // Button to toggle dropdown
             const toggleIcon = document.getElementById('toggleIcon'); // Arrow icon inside the button
+
 
             // Helper function to update the hamburger icon
             function updateMobileMenuIcon(isOpen) {
@@ -604,13 +642,11 @@
                 updateMobileMenuIcon(isHidden);
             });
 
-            // --- Mobile Categories Accordion Toggle JS ---
+            // --- Mobile Categories Accordion Toggle JS (Fixed to prevent navigation) ---
             if (categoryToggle && mobileSubCategories && toggleIcon) {
                 categoryToggle.addEventListener('click', (e) => {
-                    // Prevent the underlying link (if wrapped in an A tag) from navigating
-                    if (e.target.tagName !== 'A') {
-                        e.preventDefault();
-                    }
+                    // Prevent the link (categories.html) from being navigated to when clicking the toggle button
+                    e.preventDefault();
 
                     const isHidden = mobileSubCategories.classList.contains('hidden');
                     mobileSubCategories.classList.toggle('hidden');
@@ -627,7 +663,7 @@
             const mobileLinks = mobileMenu.querySelectorAll('a');
             mobileLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    // Only close the menu if the link is not the main category link wrapper (which toggles the submenu)
+                    // Check if the clicked link is not the category toggle button itself
                     if (!link.closest('.border-b.border-red-100')) {
                         // Reset category menu state when main menu closes
                         if (mobileSubCategories) {
@@ -648,33 +684,54 @@
             const chatModal = document.getElementById("chat-modal");
             const closeChatBtn = document.getElementById("close-chat-btn");
 
-            if (chatModal && chatBtn) {
+            // Function to toggle the chat modal visibility
+            const toggleModal = () => {
                 const modalContainer = chatModal.querySelector('.chat-modal-container');
+                const isHidden = chatModal.classList.contains("hidden");
 
-                const toggleModal = () => {
-                    const isHidden = chatModal.classList.contains("hidden");
+                if (isHidden) {
+                    chatModal.classList.remove("hidden");
+                    setTimeout(() => {
+                        modalContainer.classList.add("active");
+                    }, 10);
+                } else {
+                    modalContainer.classList.remove("active");
+                    setTimeout(() => {
+                        chatModal.classList.add("hidden");
+                    }, 300); // Wait for CSS transition
+                }
+            };
 
-                    if (isHidden) {
-                        chatModal.classList.remove("hidden");
-                        setTimeout(() => {
-                            modalContainer.classList.add("active");
-                        }, 10);
-                    } else {
-                        modalContainer.classList.remove("active");
-                        setTimeout(() => {
-                            chatModal.classList.add("hidden");
-                        }, 300); // Wait for transition
-                    }
-                };
-
-                chatBtn.addEventListener("click", toggleModal);
+            if (chatModal) {
+                if (chatBtn) {
+                    chatBtn.addEventListener("click", toggleModal);
+                }
                 if (closeChatBtn) {
                     closeChatBtn.addEventListener("click", toggleModal);
                 }
 
+                // Close modal if overlay is clicked
                 chatModal.addEventListener("click", (e) => {
                     if (e.target.classList.contains('modal-overlay')) {
                         toggleModal();
+                    }
+                });
+
+                // Attach the click handler to all profession cards (which link to #floating-chat-btn)
+                document.querySelectorAll('.profession-card').forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        e.preventDefault(); // Prevent default link behavior
+                        if (chatModal.classList.contains("hidden")) {
+                             toggleModal();
+                        }
+                    });
+                });
+                
+                // Attach the click handler to the CTA button (which links to #floating-chat-btn)
+                document.querySelector('#join a').addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default link behavior
+                    if (chatModal.classList.contains("hidden")) {
+                         toggleModal();
                     }
                 });
             }

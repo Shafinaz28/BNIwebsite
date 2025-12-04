@@ -4,17 +4,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>INFRA TEAM - BNI AURA</title>
+    <title>CONSTRUCTION TEAM - BNI AURA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        /* Custom styles for BNI theme */
+        /* Custom styles for BNI theme and red color consistency */
         :root {
-            --bni-red: #ef4444;
+            --bni-red: #ef4444; /* Consistent Red */
             --bni-red-dark: #dc2626;
-            --bni-red-original: #ef4444;
-            /* Added for consistency with usage */
         }
 
         .text-bni-red {
@@ -29,146 +27,104 @@
             border-color: var(--bni-red);
         }
 
-        /* Style for the Core Values grid background */
-        .core-value-card {
-            transition: transform 0.3s ease;
-        }
-
-        .core-value-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px rgba(239, 68, 68, 0.1);
-        }
-
-        /* Mission/Vision Card Styles */
-        .mission-vision-card {
-            min-height: 12rem;
-            border-top: 4px solid var(--bni-red);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-        }
-
-        .mission-vision-card:hover {
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-            border-top-color: var(--bni-red-dark);
-        }
-
-        /* --- PROFESSION CARD STYLING (Modern & Elevated) --- */
+        /* --- PROFESSION CARD STYLING (Applying the requested square design) --- */
         .profession-card {
             background-color: white;
             border-radius: 0.75rem;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
             border: 1px solid #f3f4f6;
             display: flex;
             flex-direction: column;
+            padding: 1.5rem;
+            position: relative;
+            min-height: 280px;
+            text-align: left;
         }
 
         .profession-card:hover {
-            transform: translateY(-8px);
-            /* More pronounced lift on hover */
-            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
-            /* Stronger shadow on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(239, 68, 68, 0.1);
         }
 
-        .profession-card img {
-            width: 100%;
-            height: 140px;
-            /* Consistent image height for better visual */
-            object-fit: cover;
-            display: block;
-            filter: brightness(0.95);
-            /* Slightly darken image for text contrast */
-        }
-
-        /* Red Label Box Style - Now a Text Block inside the card */
-        .profession-label {
-            background-color: white;
-            /* White background for clean look */
-            color: #1f2937;
-            /* Dark text */
-            font-size: 1.125rem;
-            /* text-lg */
-            font-weight: 700;
-            /* font-bold */
+        /* Card Header (for the subtle side title) */
+        .card-header-label {
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #9ca3af;
             text-transform: uppercase;
-            padding: 1rem 0.75rem;
-            text-align: center;
-            min-height: 70px;
-            /* Consistent height for the label area */
+        }
+
+        /* Styling for the icon at the top center of the card */
+        .profession-icon-container {
+            width: 70px;
+            height: 70px;
+            background-color: #fef2f2;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            line-height: 1.3;
-            /* Add a small red underline for emphasis */
-            border-top: 3px solid transparent;
-            transition: border-top 0.3s ease;
+            margin: 1.5rem auto 1rem; /* Center the icon */
+            border: 2px solid var(--bni-red);
+            flex-shrink: 0;
+        }
+
+        /* The main label/title */
+        .profession-label {
+            color: #1f2937;
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            text-align: center; /* Center the main title */
+        }
+
+        /* Detailed description - Mock content added here for consistency */
+        .profession-description {
+            font-size: 0.9375rem;
+            color: #6b7280;
+            line-height: 1.5;
             flex-grow: 1;
-            /* Allow label to grow */
+            padding-top: 0.5rem;
+        }
+        
+        /* Utility Icon (Bottom Right) */
+        .card-utility-icon {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            color: #6b7280;
+            transition: color 0.3s;
         }
 
-        .profession-card:hover .profession-label {
-            border-top: 3px solid #ef4444;
-            /* BNI Red underline on hover */
+        .profession-card:hover .card-utility-icon {
+            color: var(--bni-red);
         }
 
-        /* Team Section Styling: FIXED 4-COLUMN LAYOUT */
+        /* Team Section Styling: FIXED 3-COLUMN LAYOUT for desktop */
         .team-grid {
-            /* Default small screen layout (2 columns) */
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: repeat(1, minmax(0, 1fr));
             gap: 1.5rem;
-            /* Increased gap for better spacing between blocks */
         }
 
         @media (min-width: 640px) {
-
-            /* sm breakpoint and up */
             .team-grid {
-                /* Force 4 columns on tablet/desktop to meet the requirement */
-                grid-template-columns: repeat(4, minmax(0, 1fr));
+                grid-template-columns: repeat(2, minmax(0, 1fr));
                 gap: 2rem;
-                /* Wider gap on desktop */
             }
         }
-
-
-        /* --- Floating Chat/Modal Styles --- */
-        #floating-chat-btn {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 1000;
-        }
-
-        /* Modal Overlay */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 900;
-        }
-
-        .chat-modal-container {
-            position: fixed;
-            bottom: 6rem;
-            /* Adjust based on button height */
-            right: 2rem;
-            width: 90%;
-            max-width: 350px;
-            z-index: 1000;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
-
-        .chat-modal-container.active {
-            opacity: 1;
-            transform: translateY(0);
+        
+        @media (min-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 2.5rem;
+            }
         }
 
 
@@ -182,8 +138,8 @@
                 padding-top: 6rem;
             }
         }
-
-        /* FIX: Show dropdown menu on hover for desktop navigation */
+        
+        /* FIX: Ensure dropdown menu shows on hover for desktop */
         .dropdown:hover .dropdown-menu {
             display: block;
         }
@@ -193,11 +149,49 @@
             padding-left: 2rem !important;
             padding-right: 1rem;
         }
+
+        /* --- FLOATING CHAT/MODAL STYLES (RIGHT SIDE) --- */
+        #floating-chat-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem; 
+            left: auto;
+            z-index: 1000;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 900;
+        }
+
+        .chat-modal-container {
+            position: fixed;
+            bottom: 6rem;
+            right: 2rem; 
+            left: auto;
+            width: 90%;
+            max-width: 350px;
+            z-index: 1000;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .chat-modal-container.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-100 text-gray-800">
 
+    <!-- HEADER (Navigation) - Uses original red classes for consistency -->
     <header class="bg-white shadow-lg fixed top-0 left-0 w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between relative">
 
@@ -322,194 +316,298 @@
                         class="block pl-8 py-1 text-sm text-gray-600 hover:bg-red-50 hover:text-bni-red transition duration-300">HEALTHCARE
                         TEAM</a>
                     <a href="categories.html"
-                        class="block pl-8 py-2 text-red-600 font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200">View
+                        class="block pl-8 py-2 text-bni-red font-bold text-sm border-t mt-1 hover:bg-red-50 transition duration-200">View
                         All Categories</a>
                 </div>
                 <a href="invite.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Get
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Get
                     Invited</a>
                 <a href="join.html"
-                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-red-600 transition duration-300">Join
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Join
                     Us</a>
                 <a href="mailto:bniaurablr@gmail.com"
-                    class="block px-3 py-2 text-red-600 font-semibold text-center border-t mt-2">bniaurablr@gmail.com</a>
+                    class="block px-3 py-2 text-bni-red font-semibold text-center border-t mt-2">bniaurablr@gmail.com</a>
             </nav>
         </div>
     </header>
 
     <main class="pt-header-fix">
 
-
-        <section id="team-hero" class="bg-gray-800 text-white py-20">
+        <!-- HERO SECTION - BRIGHT RED BACKGROUND FOR STRIKING EFFECT (Updated content/title) -->
+        <section id="team-hero" class="bg-bni-red text-white py-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h1 class="text-5xl font-extrabold mb-3 text-red-500">CONSTRUCTION TEAM</h1>
-                <h2 class="text-3xl font-light mb-2">Essential Professions</h2>
-                <p class="text-xl font-light text-gray-300">Building success through collaboration: Materials,
+                <h1 class="text-5xl font-extrabold mb-3 text-white">CONSTRUCTION TEAM</h1>
+                <h2 class="text-3xl font-light mb-2">Essential Professions for Materials & Finishes</h2>
+                <p class="text-xl font-light text-red-100">Building success through collaboration: Materials,
                     Fixtures,Suppliers and Installation Specialists.</p>
             </div>
         </section>
+        
+        <hr class="border-t-4 border-red-700 w-full" />
 
-        <section id="professions-grid" class="py-16 bg-gray-50">
+        <!-- PROFESSIONS GRID - STYLED WITH SQUARE CARDS AND DESCRIPTIONS -->
+        <section id="professions-grid" class="py-16 bg-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <h3 class="text-3xl font-bold text-center mb-12 text-gray-800">Available Categories</h3>
 
                 <div id="grid-container" class="team-grid">
 
+                    <!-- PLYWOOD SUPPLIER -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about PLYWOOD SUPPLIER seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/PLYWOOD-SUPPLIER.jpg" alt="PLYWOOD SUPPLIER"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=PLYWOOD+SUPPLIER'">
+                        <span class="card-header-label">CONSTRUCTION / MATERIALS</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-layer-group text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">PLYWOOD SUPPLIER</div>
+                        <p class="profession-description">Provides high-grade plywood, laminates, and other wooden panels essential for interior finishing, furniture manufacturing, and formwork construction.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- TILES & SANITARYWARE -->
                     <a href="#floating-chat-btn" class="profession-card"
                         title="Inquire about TILES & SANITARYWARE seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/TILES-SANITARYWARE.jpg" alt="TILES & SANITARYWARE"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=TILES+SANITARYWARE'">
+                        <span class="card-header-label">CONSTRUCTION / FINISHES</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-bath text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">TILES & SANITARYWARE</div>
+                        <p class="profession-description">Sourcing and distribution of ceramic, porcelain, and natural stone tiles, alongside modern sanitaryware and bathroom fixtures for high-end residential and commercial projects.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- UPVC WINDOWS -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about UPVC WINDOWS seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/UPVC-WINDOWS.jpg" alt="UPVC WINDOWS"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=UPVC+WINDOWS'">
+                        <span class="card-header-label">CONSTRUCTION / WINDOWS</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-window-frame text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">UPVC WINDOWS</div>
+                        <p class="profession-description">Supplier and installer of high-performance unplasticized polyvinyl chloride windows, offering superior insulation, durability, and minimal maintenance for modern buildings.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- GLASS DEALER -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about GLASS DEALER seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/GLASS-DEALER.jpg" alt="GLASS DEALER"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=GLASS+DEALER'">
+                        <span class="card-header-label">CONSTRUCTION / MATERIALS</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-glass-whiskey text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">GLASS DEALER</div>
+                        <p class="profession-description">Provides specialized architectural glass, including tempered, laminated, and energy-efficient options for facades, railings, and sophisticated interior glasswork.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- ARTIST -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about ARTIST seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/ARTIST.jpg" alt="ARTIST"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=ARTIST'">
+                        <span class="card-header-label">CONSTRUCTION / AESTHETICS</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-palette text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">ARTIST</div>
+                        <p class="profession-description">Specializing in custom mural creation, sculptures, and decorative art installations that transform interior and exterior spaces into personalized, engaging environments.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- LIGHTING SHOWROOM -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about LIGHTING SHOWROOM seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/LIGHTING-SHOWROOM.jpg" alt="LIGHTING SHOWROOM"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=LIGHTING+SHOWROOM'">
+                        <span class="card-header-label">CONSTRUCTION / ELECTRICAL</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-lightbulb text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">LIGHTING SHOWROOM</div>
+                        <p class="profession-description">Offers a comprehensive range of designer and architectural lighting solutions, focusing on ambient, accent, and task lighting design for optimal visual comfort and energy savings.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- MODULAR FACTORY -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about MODULAR FACTORY seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/MODULAR-FACTORY.jpg" alt="MODULAR FACTORY"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=MODULAR+FACTORY'">
+                        <span class="card-header-label">CONSTRUCTION / INTERIORS</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-kitchen-set text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">MODULAR FACTORY</div>
+                        <p class="profession-description">Manufacturers of bespoke modular kitchens, wardrobes, and furniture systems, providing precision-engineered components for rapid and flawless interior fit-outs.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- UPS & BATTERY -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about UPS & BATTERY seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/UPS-BATTERY.jpg" alt="UPS & BATTERY"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=UPS+BATTERY'">
+                        <span class="card-header-label">CONSTRUCTION / POWER</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-battery-full text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">UPS & BATTERY</div>
+                        <p class="profession-description">Supplies Uninterruptible Power Supply (UPS) systems and commercial batteries to ensure continuous power operation for critical systems in homes and businesses.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- ELEVATORS -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about ELEVATORS seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/ELEVATORS.jpg" alt="ELEVATORS"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=ELEVATORS'">
+                        <span class="card-header-label">CONSTRUCTION / VERTICAL TRANSPORT</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-elevator text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">ELEVATORS</div>
+                        <p class="profession-description">Installation, servicing, and modernizing of passenger and freight elevators, ensuring safe, efficient, and reliable vertical transport solutions for multi-story buildings.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- WOODEN FLOORING -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about WOODEN FLOORING seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/WOODEN-FLOORING.jpg" alt="WOODEN FLOORING"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=WOODEN+FLOORING'">
+                        <span class="card-header-label">CONSTRUCTION / FLOORING</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-house-chimney-crack text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">WOODEN FLOORING</div>
+                        <p class="profession-description">Provides and installs premium quality hardwood, engineered wood, and laminate flooring, offering timeless appeal and durability for interior spaces.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- CURTAINS & BLINDS -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about CURTAINS & BLINDS seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/CURTAINS-BLINDS.jpg" alt="CURTAINS & BLINDS"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=CURTAINS+BLINDS'">
+                        <span class="card-header-label">CONSTRUCTION / SOFT FURNISHINGS</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-window-maximize text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">CURTAINS & BLINDS</div>
+                        <p class="profession-description">Specializes in customized window treatments, including automated blinds, drapes, and shades, controlling light, privacy, and thermal efficiency within the structure.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- HOME THEATRE -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about HOME THEATRE seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/HOME-THEATRE.jpg" alt="HOME THEATRE"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=HOME+THEATRE'">
+                        <span class="card-header-label">CONSTRUCTION / AV INTEGRATION</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-video text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">HOME THEATRE</div>
+                        <p class="profession-description">Designs and installs bespoke audio-visual and home automation systems, including acoustic paneling, projectors, and hidden wiring for ultimate entertainment experience.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- SIGNAGES -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about SIGNAGES seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/SIGNAGES.jpg" alt="SIGNAGES"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=SIGNAGES'">
+                        <span class="card-header-label">CONSTRUCTION / BRANDING</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-signs-post text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">SIGNAGES</div>
+                        <p class="profession-description">Manufacturers of commercial signage, including LED boards, 3D letters, and directional signs, crucial for navigation and brand visibility on commercial properties.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- CCTV & NETWORKING -->
                     <a href="#floating-chat-btn" class="profession-card"
                         title="Inquire about CCTV & NETWORKING seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/CCTV.jpg" alt="CCTV & NETWORKING"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=CCTV+NETWORKING'">
+                        <span class="card-header-label">CONSTRUCTION / SECURITY</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-camera-cctv text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">CCTV & NETWORKING</div>
+                        <p class="profession-description">Provides integrated security solutions, including surveillance cameras (CCTV), access control, and complete data networking infrastructure planning and installation.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- FURNITURE -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about FURNITURE seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/FURNITURE.jpg" alt="FURNITURE"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=FURNITURE'">
+                        <span class="card-header-label">CONSTRUCTION / INTERIORS</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-couch text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">FURNITURE</div>
+                        <p class="profession-description">Suppliers and distributors of ergonomic and aesthetic furniture for office spaces, hospitality venues, and residential settings, ensuring comfort and style.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- BUILDING MATERIAL SUPPLIER -->
                     <a href="#floating-chat-btn" class="profession-card"
                         title="Inquire about BUILDING MATERIAL SUPPLIER seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/BUILDING-MATERIAL-SUPPLIER.jpg"
-                            alt="BUILDING MATERIAL SUPPLIER"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=BUILDING+MATERIAL+SUPPLIER'">
+                        <span class="card-header-label">CONSTRUCTION / CORE MATERIALS</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-truck-ramp-box text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">BUILDING MATERIAL SUPPLIER</div>
+                        <p class="profession-description">Deals in fundamental construction supplies like cement, rebar, sand, and aggregates, ensuring the foundation and structure of the building meet quality standards.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- MS FABRICATOR -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about MS FABRICATOR seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/MS-FABRICATOR.jpg" alt="MS FABRICATOR"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=MS+FABRICATOR'">
+                        <span class="card-header-label">CONSTRUCTION / METALWORK</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-helmet-safety text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">MS FABRICATOR</div>
+                        <p class="profession-description">Custom metal fabrication services, including mild steel railings, gates, structural supports, and custom decorative metalwork used in construction and finishing.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- FIRE SAFETY -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about FIRE SAFETY seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/FIRE-SAFETY.jpg" alt="FIRE SAFETY"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=FIRE+SAFETY'">
+                        <span class="card-header-label">CONSTRUCTION / SAFETY</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-fire-extinguisher text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">FIRE SAFETY</div>
+                        <p class="profession-description">Installation and certification of fire suppression systems, alarms, sprinklers, and emergency exits to ensure full compliance with national and local fire codes.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- GRANITE & MARBLES -->
                     <a href="#floating-chat-btn" class="profession-card" title="Inquire about GRANITE & MARBLES seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/GRANITE-MARBLES.jpg" alt="GRANITE & MARBLES"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=GRANITE+MARBLES'">
+                        <span class="card-header-label">CONSTRUCTION / NATURAL STONE</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-gem text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">GRANITE & MARBLES</div>
+                        <p class="profession-description">Provider of imported and domestic granite, marble, and quartz slabs for countertops, flooring, and wall cladding, specializing in cutting and installation.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
+                    <!-- SOLID WOOD DOORS & WINDOWS -->
                     <a href="#floating-chat-btn" class="profession-card"
                         title="Inquire about SOLID WOOD DOORS & WINDOWS seat"
                         onclick="document.getElementById('floating-chat-btn').click(); return false;">
-                        <img src="./CONSTRUCTION-TEAM/SOLID-WOOD-DOORS-WINDOWS.jpg"
-                            alt="SOLID WOOD DOORS & WINDOWS"
-                            onerror="this.onerror=null; this.src='https://placehold.co/400x140/DDE3E8/333333?text=SOLID+WOOD+DOORS'">
+                        <span class="card-header-label">CONSTRUCTION / WOODWORK</span>
+                        <div class="profession-icon-container">
+                            <i class="fas fa-door-open text-bni-red text-3xl"></i>
+                        </div>
                         <div class="profession-label">SOLID WOOD DOORS & WINDOWS</div>
+                        <p class="profession-description">Crafts and installs custom doors and window frames made from solid wood, offering classic aesthetics, superior security, and exceptional craftsmanship.</p>
+                        <i class="fas fa-arrow-right card-utility-icon"></i>
                     </a>
 
                 </div>
             </div>
         </section>
 
+        <!-- JOIN SECTION -->
         <section id="join" class="py-16 bg-bni-red text-white">
             <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h3 class="text-3xl font-bold mb-4">
                     Ready to Claim Your Category? 🚀
                 </h3>
-                <p class="text-lg text-gray-200 mb-6">
+                <p class="text-lg text-red-100 mb-6">
                     If your category is open, secure your spot. If it's taken, or you don't see your profession, click
                     below to connect with us!
                 </p>
@@ -523,20 +621,23 @@
 
     </main>
 
+    <!-- FLOATING CHAT BUTTON (RIGHT SIDE) -->
     <button id="floating-chat-btn"
-        class="bg-red-600 text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+        class="bg-bni-red text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Icon to represent a message or chat bubble -->
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z">
             </path>
         </svg>
     </button>
 
+    <!-- CHAT MODAL (RIGHT SIDE) -->
     <div id="chat-modal" class="hidden">
         <div class="modal-overlay"></div>
-        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-red-600">
+        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-bni-red">
             <div class="flex justify-between items-start border-b pb-3 mb-4">
-                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-red-600">AURA</span></h3>
+                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-bni-red">AURA</span></h3>
                 <button id="close-chat-btn" class="text-gray-500 hover:text-gray-900 transition">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
@@ -552,28 +653,29 @@
             <form action="#" method="POST" class="space-y-4">
                 <div>
                     <input type="text" placeholder="Name*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <div>
                     <input type="email" placeholder="Email*"
-                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-red-500 focus:ring-red-500"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
                         required>
                 </div>
                 <button type="submit"
-                    class="w-full bg-red-600 text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
+                    class="w-full bg-bni-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
                     Send
                 </button>
             </form>
 
             <p class="text-xs text-center text-gray-400 mt-4">
                 This site is protected by reCAPTCHA and the Google <a href="#"
-                    class="hover:text-red-500 underline">Privacy Policy</a> and <a href="#"
-                    class="hover:text-red-500 underline">Terms of Service</a> apply.
+                    class="hover:text-bni-red underline">Privacy Policy</a> and <a href="#"
+                    class="hover:text-bni-red underline">Terms of Service</a> apply.
             </p>
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer class="bg-gray-900 py-12 text-gray-400">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
@@ -597,7 +699,7 @@
                     <nav class="space-y-2 text-sm">
                         <a href="index.html" class="block hover:text-red-400 transition">Home</a>
                         <a href="about.html" class="block hover:text-red-400 transition">About Us</a>
-                        <a href="teams-overview.html" class="block hover:text-red-400 transition">Categories</a>
+                        <a href="categories.html" class="block hover:text-red-400 transition">Categories</a>
                         <a href="invite.html" class="block hover:text-red-400 transition">Get Invited</a>
                         <a href="join.html" class="block hover:text-red-400 transition">Join Us</a>
                     </nav>
@@ -668,6 +770,7 @@
             const categoryToggle = document.getElementById('categoryToggle'); // Button to toggle dropdown
             const toggleIcon = document.getElementById('toggleIcon'); // Arrow icon inside the button
 
+
             // Helper function to update the hamburger icon
             function updateMobileMenuIcon(isOpen) {
                 if (mobileMenuButton) {
@@ -724,30 +827,30 @@
             });
 
 
-            // --- Floating Chat/Modal JS ---
+            // --- Floating Chat/Modal JS (Global) ---
             const chatBtn = document.getElementById("floating-chat-btn");
             const chatModal = document.getElementById("chat-modal");
             const closeChatBtn = document.getElementById("close-chat-btn");
 
-            if (chatModal) {
+            // Function to toggle the chat modal visibility
+            const toggleModal = () => {
                 const modalContainer = chatModal.querySelector('.chat-modal-container');
+                const isHidden = chatModal.classList.contains("hidden");
 
-                const toggleModal = () => {
-                    const isHidden = chatModal.classList.contains("hidden");
+                if (isHidden) {
+                    chatModal.classList.remove("hidden");
+                    setTimeout(() => {
+                        modalContainer.classList.add("active");
+                    }, 10);
+                } else {
+                    modalContainer.classList.remove("active");
+                    setTimeout(() => {
+                        chatModal.classList.add("hidden");
+                    }, 300); // Wait for CSS transition
+                }
+            };
 
-                    if (isHidden) {
-                        chatModal.classList.remove("hidden");
-                        setTimeout(() => {
-                            modalContainer.classList.add("active");
-                        }, 10);
-                    } else {
-                        modalContainer.classList.remove("active");
-                        setTimeout(() => {
-                            chatModal.classList.add("hidden");
-                        }, 300); // Wait for transition
-                    }
-                };
-
+            if (chatModal) {
                 if (chatBtn) {
                     chatBtn.addEventListener("click", toggleModal);
                 }
@@ -755,9 +858,28 @@
                     closeChatBtn.addEventListener("click", toggleModal);
                 }
 
+                // Close modal if overlay is clicked
                 chatModal.addEventListener("click", (e) => {
                     if (e.target.classList.contains('modal-overlay')) {
                         toggleModal();
+                    }
+                });
+
+                // Attach the click handler to all profession cards (which link to #floating-chat-btn)
+                document.querySelectorAll('.profession-card').forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        e.preventDefault(); // Prevent default link behavior
+                        if (chatModal.classList.contains("hidden")) {
+                             toggleModal();
+                        }
+                    });
+                });
+                
+                // Attach the click handler to the CTA button (which links to #floating-chat-btn)
+                document.querySelector('#join a').addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default link behavior
+                    if (chatModal.classList.contains("hidden")) {
+                         toggleModal();
                     }
                 });
             }
