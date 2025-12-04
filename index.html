@@ -81,6 +81,7 @@
             width: 300%;
             height: 100%;
             display: flex;
+            /* Added transition for smooth movement */
             transition: transform 0.8s ease-in-out;
         }
 
@@ -96,6 +97,12 @@
             justify-content: center;
             flex-shrink: 0;
         }
+
+        /* FIX FOR SLIDE 2 IMAGE FOCUS (to prevent cropping of the woman in red) */
+        .slide.slide-2-focus {
+            background-position: 45% center;
+        }
+
 
         .slide-overlay {
             position: absolute;
@@ -228,34 +235,30 @@
             object-fit: cover;
         }
 
-        /* --- START MOBILE IMAGE FIX FOR CONTENT SECTION --- */
+        /* --- START MOBILE IMAGE FIX FOR CONTENT SECTION (MODIFIED FOR CONTAIN) --- */
         .full-img-mobile {
-            /* On larger screens, maintain fixed aspect/cover */
+            /* Ensures the full image is visible, scales it down to fit the container. */
             width: 100%;
-            height: 250px;
-            object-fit: cover;
+            /* FIX: Changed height to auto, using min-height for baseline visual presence */
+            height: auto; 
+            min-height: 250px;
+            object-fit: contain; 
             object-position: center;
-            /* Default position */
             border-radius: 0.75rem;
+            background-color: #f7f7f7; /* Background color for potential white space */
         }
 
         @media (max-width: 640px) {
             .full-img-mobile {
-                /* On small screens, use a modest height and try to fit the whole image */
+                /* On small screens, use a modest height and ensure visibility */
                 height: auto;
-                /* Allow height to adjust */
                 min-height: 180px;
-                /* Minimum height for impact */
                 max-height: 300px;
-                object-fit: contain;
-                /* Ensure the whole image is visible (may introduce white space) */
+                object-fit: contain; 
                 width: 100%;
-                /* Ensure it spans full width of its container */
                 background-color: #f7f7f7;
-                /* Background color behind the 'contained' image */
             }
         }
-
         /* --- END MOBILE IMAGE FIX FOR CONTENT SECTION --- */
 
 
@@ -533,7 +536,7 @@
                     </div>
                 </div>
 
-                <div class="slide" style="background-image: url('/images/hero3.jpg');">
+                <div class="slide slide-2-focus" style="background-image: url('/images/hero3.jpg');">
                     <div class="slide-overlay" style="background-color: rgba(0, 0, 0, 0.65);">
                         <div class="max-w-4xl mx-auto px-4 text-center">
                             <h2
@@ -1065,20 +1068,20 @@
             });
 
 
-            // --- Hero Slider JS Fix (UPDATED for 3 Slides) ---
+            // --- Hero Slider JS (Auto-slide and Dot control logic) ---
             const slideTrack = document.getElementById('slide-track');
             const dotsContainer = document.getElementById('slider-dots');
             const slides = slideTrack ? slideTrack.querySelectorAll('.slide') : [];
             const dots = dotsContainer ? dotsContainer.querySelectorAll('.dot') : [];
             let currentSlide = 0;
-            const totalSlides = slides.length; // Now correctly calculated as 3
+            const totalSlides = slides.length;
 
             if (slideTrack && totalSlides > 0) {
 
-                // Calculate slide width as a percentage
                 const slideWidthPercentage = 100 / totalSlides;
+                const slideInterval = 5000; // 5 seconds
+                let autoSlideTimer;
 
-                // Function to handle the slide movement and state update
                 function moveToSlide(index) {
                     if (index < 0) {
                         index = totalSlides - 1; // Loop back to the last slide
@@ -1086,7 +1089,6 @@
                         index = 0; // Loop back to the first slide
                     }
 
-                    // Calculate the percentage offset based on the number of slides
                     const offset = -index * slideWidthPercentage;
                     slideTrack.style.transform = `translateX(${offset}%)`;
 
@@ -1101,22 +1103,6 @@
                     currentSlide = index;
                 }
 
-                // Event listeners for dots (manual navigation)
-                dots.forEach(dot => {
-                    dot.addEventListener('click', (e) => {
-                        const slideIndex = parseInt(e.target.getAttribute('data-slide'));
-                        moveToSlide(slideIndex);
-                        // Reset interval when user clicks a dot
-                        resetAutoSlide();
-                    });
-                });
-
-                // Automatic sliding logic
-                const slideInterval = 5000; // 5 seconds
-                let autoSlideTimer = setInterval(() => {
-                    moveToSlide(currentSlide + 1);
-                }, slideInterval);
-
                 // Function to reset the timer (for manual dot clicks)
                 function resetAutoSlide() {
                     clearInterval(autoSlideTimer);
@@ -1124,8 +1110,20 @@
                         moveToSlide(currentSlide + 1);
                     }, slideInterval);
                 }
+
+                // Initialize auto-slide
+                resetAutoSlide();
+
+                // Event listeners for dots (manual navigation)
+                dots.forEach(dot => {
+                    dot.addEventListener('click', (e) => {
+                        const slideIndex = parseInt(e.target.getAttribute('data-slide'));
+                        moveToSlide(slideIndex);
+                        resetAutoSlide(); // Reset interval when user clicks a dot
+                    });
+                });
             }
-            // --- End Hero Slider JS Fix ---
+            // --- End Hero Slider JS ---
 
 
             // --- Floating Chat/Modal JS (Global) ---
