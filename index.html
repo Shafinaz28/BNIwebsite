@@ -7,19 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BNI AURA | The World's Leading Referral Network</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Font: Roboto Condensed -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
 
-    <!-- Swiper CSS (MANDATORY for carousel styles) -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
     <style>
@@ -29,6 +24,14 @@
             /* Consistent Red (Tailwind red-500) */
             --bni-red-dark: #dc2626;
             /* Darker Red (Tailwind red-700) */
+            /* BNI Stat Colors (Based on the image) */
+            --stat-member-color: #5cb85c;
+            /* Green - Used for Members & Cities for contrast */
+            --stat-done-color: #d9534f;
+            /* Crimson/Red - Used for Business Done */
+            --stat-passed-color: #007bff;
+            /* Blue - Used for Referrals Passed */
+            --stat-bg-light: #fefefe;
         }
 
         .font-display {
@@ -244,6 +247,23 @@
             object-fit: cover;
         }
 
+        /* 🔑 TESTIMONIAL ALIGNMENT FIX */
+        /* Forces all slides to inherit height automatically and makes the card fill it. */
+        .swiper-slide {
+            height: auto !important;
+            /* Override Swiper's inline height calculation */
+        }
+
+        .swiper-slide > div {
+            height: 100%;
+            /* Ensure the inner card takes the full auto height of the slide */
+        }
+
+        .min-h-\[6rem\] {
+            min-height: 6rem;
+        }
+        /* 🔑 END TESTIMONIAL ALIGNMENT FIX */
+
         /* --- START MOBILE IMAGE FIX FOR CONTENT SECTION (MODIFIED FOR CONTAIN) --- */
         .full-img-mobile {
             /* Ensures the full image is visible, scales it down to fit the container. */
@@ -375,6 +395,151 @@
             transform: translateY(0);
             opacity: 1;
         }
+
+        /* --- START NEW BNI STATS STYLING --- */
+
+        .stats-context-section {
+            padding: 4rem 0;
+            background-color: #fdfdfd;
+            /* Light background for contrast */
+        }
+
+        .stats-context-section .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .networking-title {
+            color: var(--bni-red);
+            text-align: center;
+            font-size: 2.5rem;
+            /* Equivalent to text-4xl or 3xl */
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .networking-text {
+            text-align: center;
+            color: #4b5563;
+            /* Tailwind gray-600 */
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.125rem;
+            /* Tailwind text-lg */
+        }
+
+        .global-org-title {
+            color: #1f2937;
+            /* Tailwind gray-900 */
+            text-align: center;
+            font-size: 2rem;
+            /* Equivalent to text-3xl */
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .how-it-works-title {
+            color: var(--bni-red-dark);
+            text-align: center;
+            font-size: 1.5rem;
+            /* Tailwind text-xl */
+            font-weight: 600;
+            margin-top: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            background-color: var(--stat-bg-light);
+            padding: 1.5rem 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e5e7eb;
+            /* Tailwind border-gray-200 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.25rem;
+            /* Tailwind text-4xl */
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 0.25rem;
+            color: var(--stat-member-color);
+            /* Default green for Members/Cities */
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        .stat-label {
+            display: block;
+            font-size: 0.875rem;
+            /* Tailwind text-sm */
+            color: #6b7280;
+            /* Tailwind gray-500 */
+            text-transform: uppercase;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        /* Specific stat color overrides */
+        .stat-item:nth-child(1) .stat-number,
+        .stat-item:nth-child(2) .stat-number {
+            color: var(--stat-member-color);
+            /* Members & Cities */
+        }
+
+        .highlight-done .stat-number {
+            color: var(--stat-done-color);
+        }
+
+        .highlight-passed .stat-number {
+            color: var(--stat-passed-color);
+        }
+
+        .section-divider {
+            max-width: 150px;
+            margin: 2rem auto;
+            border: 0;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .networking-title {
+                font-size: 2rem;
+            }
+
+            .global-org-title {
+                font-size: 1.75rem;
+            }
+        }
+        /* --- END NEW BNI STATS STYLING --- */
     </style>
 </head>
 
@@ -669,6 +834,33 @@
             </div>
         </section>
 
+        <section id="bni-stats-full" class="stats-context-section">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <h2 class="networking-title font-display text-4xl font-bold">Networking is the Foundation for Business Growth</h2>
+                <p class="networking-text text-lg text-gray-700 max-w-4xl mx-auto">
+                    Networking has proven to be one of the most effective ways to generate referrals and revenue growth.
+                    A significant 82% of Business Owners say that most of their business comes from referrals.
+                    BNI India offers a proven system of referral marketing that helps you grow your local business through a trusted network of like-minded people.
+                </p>
+                
+                <hr class="section-divider">
+
+                <h2 class="global-org-title font-display text-3xl font-bold">The World's Largest Referral Networking Organization</h2>
+                <p class="global-text text-gray-700 text-center max-w-4xl mx-auto">
+                    Formed in January 1985, BNI is the largest and most successful business networking organisation in the world. 
+                    It helps SME businesses in 76 countries across more than 11,300+ chapters scale their business over the last 40 years.
+                </p>
+
+                <h3 class="how-it-works-title text-xl font-semibold">How does it work?</h3>
+                <p class="description text-gray-600 text-center max-w-3xl mx-auto">
+                    A BNI Membership provides the right environment, training, and support to build trusted relationships that help grow business. 
+                    Weekly local chapter meetings follow a structured agenda that is proven to maximize referrals.
+                </p>
+
+               
+            </div>
+        </section>
         <section id="teams" class="py-16 bg-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -732,7 +924,6 @@
         </section>
 
 
-        <!-- START: COMBINED TESTIMONIAL SECTION with SWIPER -->
         <section class="py-20 bg-white">
             <div class="container mx-auto px-6">
 
@@ -745,11 +936,9 @@
                     </p>
                 </div>
 
-                <!-- Swiper Container -->
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
 
-                        <!-- 1 Akshay G. (Digital Marketing) - Expanded Content & Size Fix -->
                         <div class="swiper-slide">
                             <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
                                 <div class="text-bni-red mb-4">
@@ -771,7 +960,6 @@
                             </div>
                         </div>
 
-                        <!-- 2 Tousif Ali (Real Estate Broker) - Expanded Content & Size Fix -->
                         <div class="swiper-slide">
                             <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
                                 <div class="text-bni-red mb-4">
@@ -793,7 +981,6 @@
                             </div>
                         </div>
 
-                        <!-- 3 Balakrishna (Insurance Advisor) - Expanded Content & Size Fix -->
                         <div class="swiper-slide">
                             <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
                                 <div class="text-bni-red mb-4">
@@ -815,7 +1002,6 @@
                             </div>
                         </div>
 
-                        <!-- 4 Pranathi Neelakanta (Interior Designer) - Expanded Content & Size Fix -->
                         <div class="swiper-slide">
                             <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
                                 <div class="text-bni-red mb-4">
@@ -837,7 +1023,6 @@
                             </div>
                         </div>
 
-                        <!-- 5 Shareesh (Chartered Accountant) - Expanded Content & Size Fix -->
                         <div class="swiper-slide">
                             <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
                                 <div class="text-bni-red mb-4">
@@ -859,7 +1044,6 @@
                             </div>
                         </div>
 
-                        <!-- 6 Gagan Nischal (Tours & Travels) - Expanded Content & Size Fix -->
                         <div class="swiper-slide">
                             <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
                                 <div class="text-bni-red mb-4">
@@ -881,7 +1065,6 @@
                             </div>
                         </div>
 
-                        <!-- 7 Keerthi Kumar C N (Home Loans Specialist) - Expanded Content & Size Fix -->
                         <div class="swiper-slide">
                             <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
                                 <div class="text-bni-red mb-4">
@@ -903,7 +1086,6 @@
                             </div>
                         </div>
 
-                        <!-- 8 Achyut Joshi (Architect) - Expanded Content & Size Fix -->
                         <div class="swiper-slide">
                             <div class="bg-white p-8 rounded-xl shadow-md h-full flex flex-col">
                                 <div class="text-bni-red mb-4">
@@ -929,9 +1111,6 @@
 
             </div>
         </section>
-        <!-- END: COMBINED TESTIMONIAL SECTION with SWIPER -->
-
-
         <section class="py-16 bg-white">
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1131,7 +1310,6 @@
     </footer>
 
 
-    <!-- Swiper JS (MANDATORY for carousel functionality) -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <script>
@@ -1148,6 +1326,8 @@
                     slidesPerView: 3,
                     spaceBetween: 30,
                     loop: true,
+                    // FIX: autoHeight should handle the vertical alignment issue correctly.
+                    autoHeight: true, 
                     autoplay: {
                         delay: 3500, // Increased delay slightly for readability
                         disableOnInteraction: false,

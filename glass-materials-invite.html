@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BNI AURA | Exclusive Business Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom styles for BNI theme */
+        :root {
+            --bni-red: #ef4444;
+            /* Consistent Red */
+            --bni-red-dark: #dc2626;
+            --bni-red-light: #fef2f2;
+            /* Very light red for accents */
+        }
+
+        .text-bni-red {
+            color: var(--bni-red);
+        }
+
+        .bg-bni-red {
+            background-color: var(--bni-red);
+        }
+
+        .border-bni-red {
+            border-color: var(--bni-red);
+        }
+
+        /* Utility for Header Fix */
+        .pt-header-fix {
+            padding-top: 5rem;
+        }
+
+        @media (min-width: 768px) {
+            .pt-header-fix {
+                padding-top: 6rem;
+            }
+        }
+        
+        /* --- CARD SHOWCASE STYLING (4x4 UNIFORM SIZE) --- */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .showcase-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.5rem;
+            }
+        }
+
+        /* Styling for the large, dynamic card */
+        .dynamic-card-wrapper {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            padding: 0;
+            border: 1px solid #e5e7eb;
+            
+            /* ENFORCES UNIFORM HEIGHT */
+            min-height: 380px; 
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dynamic-card-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-image-square {
+            width: 100%;
+            height: 150px; 
+            object-fit: cover;
+            flex-shrink: 0;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+        }
+
+        .card-text-content {
+            padding: 1rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .card-text-large {
+            font-size: 1.25rem;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .card-bni-block {
+            background-color: var(--bni-red);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-top: auto; 
+            max-width: 100%;
+        }
+        
+        /* --- FLOATING CHAT/MODAL STYLES (CORNER) --- */
+        #floating-chat-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem; 
+            z-index: 1000;
+        }
+        
+        #chat-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none; 
+            z-index: 999;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .chat-modal-container {
+            position: fixed; 
+            bottom: 100px; 
+            right: 2rem;
+            max-width: 90%;
+            width: 350px;
+            z-index: 1000;
+            transform-origin: bottom right;
+            animation: fadeIn 0.3s ease-out; 
+        }
+        
+        @keyframes fadeIn {
+          from { opacity: 0; transform: scale(0.95) }
+          to { opacity: 1; transform: scale(1) }
+        }
+
+        /* Hide modal in JS, but ensure it's positioned for display */
+        #chat-modal.show-modal {
+            display: block;
+        }
+
+        /* Highlight the current page */
+        .nav-link.active {
+            color: var(--bni-red);
+            font-weight: bold;
+        }
+
+        /* ************************************** */
+        /* *** Desktop Dropdown Fix *** */
+        /* ************************************** */
+        @media (min-width: 768px) {
+            .dropdown:hover .dropdown-menu {
+                display: block !important; /* Forces the dropdown to show on hover */
+            }
+            .dropdown-menu {
+                 display: none; /* Ensure it starts hidden */
+            }
+        }
+        /* ************************************** */
+    </style>
+</head>
+
+<body class="bg-white text-gray-800">
+
+    <header class="bg-white shadow-lg fixed top-0 left-0 w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between relative">
+            <div class="flex items-center space-x-3 z-10">
+                <img src="./images/BNI.jpg" alt="BNI AURA Logo" class="h-10 md:h-12 w-auto object-contain"
+                    onerror="this.onerror=null; this.src='https://placehold.co/150x40/ef4444/ffffff?text=BNI+AURA+Logo'">
+            </div>
+
+            <nav
+                class="hidden md:flex space-x-6 text-gray-700 font-semibold md:absolute md:inset-0 md:justify-center md:items-center">
+                <a href="index.html" class="hover:text-red-600 transition duration-300">Home</a>
+                <a href="about.html" class="hover:text-red-600 transition duration-300">About Us</a>
+
+                <div class="relative dropdown">
+                    <a href="categories.html" class="nav-link flex items-center hover:text-red-600 transition duration-300">
+                        Categories
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </a>
+                    <div
+                        class="dropdown-menu hidden absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-64 bg-white rounded-lg shadow-xl border border-gray-100 z-50">
+                        <div class="py-2">
+                            <a href="infra-detail.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">INFRA TEAM</a>
+                            <a href="construction-Team.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">CONSTRUCTION TEAM</a>
+                            <a href="finance-team.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">FINANCE TEAM</a>
+                            <a href="events.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">EVENTS TEAM</a>
+                            <a href="Industrialsme.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">INDUSTRIAL/SME TEAM</a>
+                            <a href="healthcare.html"
+                                class="block px-4 py-2 text-gray-700 hover:bg-red-50 hover:text-red-600 transition duration-200">HEALTHCARE TEAM</a>
+                            <a href="categories.html"
+                                class="block px-4 py-2 text-red-600 font-bold border-t mt-1 hover:bg-red-50 transition duration-200">View All Categories</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="invite.html" class="hover:text-red-600 transition duration-300 nav-link active">Get Invited</a>
+                <a href="join.html" class="hover:text-red-600 transition duration-300">Join Us</a>
+            </nav>
+
+
+            <div class="hidden md:flex items-center space-x-3 z-10">
+                <a href="mailto:bniaurablr@gmail.com
+"
+                    class="text-sm sm:text-base text-bni-red font-semibold hover:text-red-800 transition duration-300 flex items-center space-x-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                    <span>bniaurablr@gmail.com</span>
+                </a>
+            </div>
+
+            <button id="menuBtn"
+                class="md:hidden text-gray-700 focus:outline-none p-2 rounded-md hover:bg-gray-100 transition duration-300 z-10">
+                <svg class="w-6 h-6" id="mobileMenuButton" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="mobileMenu" class="md:hidden bg-white shadow-xl hidden border-t border-red-100">
+            <nav class="flex flex-col space-y-2 p-4 text-gray-700 font-medium">
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Home</a>
+                <a href="about.html"
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">About Us</a>
+
+                <div class="border-b border-red-100">
+                    <a href="categories.html" id="categoryToggle"
+                        class="flex justify-between items-center w-full px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300 font-bold">
+                        Categories
+                        <svg id="toggleIcon" class="w-4 h-4 transform rotate-0 transition-transform duration-300"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+
+                <div id="mobileSubCategories" class="hidden flex flex-col space-y-1">
+                    <a href="infra-detail.html"
+                        class="block pl-8 pr-3 py-2 text-sm rounded-md hover:bg-red-50 hover:text-red-600 transition duration-200">INFRA TEAM</a>
+                    <a href="construction-Team.html"
+                        class="block pl-8 pr-3 py-2 text-sm rounded-md hover:bg-red-50 hover:text-red-600 transition duration-200">CONSTRUCTION TEAM</a>
+                    <a href="finance-team.html"
+                        class="block pl-8 pr-3 py-2 text-sm rounded-md hover:bg-red-50 hover:text-red-600 transition duration-200">FINANCE TEAM</a>
+                    <a href="events.html"
+                        class="block pl-8 pr-3 py-2 text-sm rounded-md hover:bg-red-50 hover:text-red-600 transition duration-200">EVENTS TEAM</a>
+                    <a href="Industrialsme.html"
+                        class="block pl-8 pr-3 py-2 text-sm rounded-md hover:bg-red-50 hover:text-red-600 transition duration-200">INDUSTRIAL/SME TEAM</a>
+                    <a href="healthcare.html"
+                        class="block pl-8 pr-3 py-2 text-sm rounded-md hover:bg-red-50 hover:text-red-600 transition duration-200">HEALTHCARE TEAM</a>
+                    <a href="categories.html"
+                        class="block pl-8 pr-3 py-2 text-sm text-red-600 font-bold hover:bg-red-50 transition duration-200">View All Categories</a>
+                </div>
+
+                <a href="invite.html"
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300 text-bni-red font-bold">
+                    Get Invited
+                </a>
+
+                <a href="join.html"
+                    class="block px-3 py-2 rounded-md hover:bg-red-50 hover:text-bni-red transition duration-300">Join Us</a>
+                <a href="mailto:bniaurablr@gmail.com"
+                    class="block px-3 py-2 text-bni-red font-semibold text-center border-t mt-2">bniaurablr@gmail.com</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-header-fix">
+
+        <section id="hero" class=" text-gray-800 py-24 bg-bni-red border-b border-bni-red">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center ">
+                <h1 class="text-5xl font-extrabold mb-3 text-white drop-shadow-sm">Exclusive Business Showcase</h1>
+                <p class="text-white/80 text-lg">See the potential business our members can generate for you.</p>
+            </div>
+        </section>
+
+        <section id="why-attend" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Referral Opportunities</h2>
+
+                <div class="showcase-grid">
+                    
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/close-up-metallic-structure-against-wall.jpg" alt="Glass Materials" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Glass+Materials'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into glass materials business?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹35 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/moments-preparation-christmas.jpg" alt="Gifting Business" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Gifting+Business'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into the gifting business?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹21 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/surveyor-using-total-station-measure-land-levels-ai-image.jpg" alt="Land Surveying" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Land+Surveying'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into land surveying?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹12 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/boutiqe.jpg" alt="Boutique Owner" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Boutique+Owner'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you a boutique owner?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹40 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/cctv.jpg" alt="CCTV Solutions" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=CCTV+Solutions'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into the CCTV solution business?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹20 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/interior-modern-stylish-bathroom-with-black-tiled-walls-curtain-shower-place-wooden-furniture-with-wash.jpg" alt="Tiles & Sanitary" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Tiles+Sanitary'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into tiles & sanitary products?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹50 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/pile-new-bricks-construction-site-concept-repair-building-materials.jpg" alt="Building Materials" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Building+Materials'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into supplying building and construction materials?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹1.70 Cr++</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/young-handsome-man-isolated-wall-holding-mini-cakes.jpg" alt="Bakery Business" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Bakery+Business'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into the bakery business?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹10 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/shelves-with-medicines-pharmacy.jpg" alt="Pharmacy Business" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Pharmacy+Business'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into the pharmacy business?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹50 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/smiling-painter-with-paint-roller-his-hand-wearing-cap-overalls-is-standing-against-dark-green-backgrou.jpg" alt="Painting Services" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Painting+Services'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into professional painting services?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹90 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/makeup-artist-vlogging-her-tutorials.jpg" alt="Influencer Marketing" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Influencer+Marketing'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into influencer marketing and content creation?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹22 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/young-woman-holding-paint-brushes-gray.jpg" alt="Makeup Artist" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Makeup+Artist'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you a makeup artist?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹20 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/interior-large-distribution-warehouse-with-shelves-stacked-with-palettes-goods-ready-market.jpg" alt="Warehousing" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Warehousing'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into warehousing and storage services?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹1 Cr+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/shutterstock_192039461.jpg" alt="Solar Business" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Solar+Business'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into the Solar business?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹60 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/shutterstock_2399344103-1135x675.jpg" alt="Facility Management" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Facility+Management'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into the facility management services business?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹30 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dynamic-card-wrapper">
+                        <img src="./openings imgs/worker-performs-overhaul-roof-residential-building.jpg" alt="Waterproofing" class="card-image-square" onerror="this.onerror=null; this.src='https://placehold.co/400x150/fef2f2/ef4444?text=Waterproofing+Solutions'">
+                        <div class="card-text-content">
+                            <h3 class="text-xs font-medium text-gray-700">Are you into waterproofing solutions business?</h3>
+                            <p class="card-text-large text-gray-900">
+                                Our group can bring you <span class="text-bni-red">₹60 L+</span> business every year
+                            </p>
+                            <div class="card-bni-block">
+                                <h3 class="text-xs text-white font-bold mb-1">BNI AURA</h3>
+                                <p class="text-xs font-medium leading-snug">A group of entrepreneurs coming together to collaborate and grow their business.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <button id="floating-chat-btn"
+        class="bg-bni-red text-white p-4 rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 4v-4z">
+            </path>
+        </svg>
+    </button>
+
+    <div id="chat-modal" class="hidden">
+        <div class="modal-overlay"></div>
+        <div class="chat-modal-container bg-white rounded-xl shadow-2xl p-6 border-t-4 border-bni-red">
+            <div class="flex justify-between items-start border-b pb-3 mb-4">
+                <h3 class="text-xl font-bold text-gray-900">BNI <span class="text-bni-red">AURA</span></h3>
+                <button id="close-chat-btn" class="text-gray-500 hover:text-gray-900 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <p class="text-sm text-gray-600 mb-4">Hi! Please leave your details and our team will connect with you
+                shortly.</p>
+
+            <form action="#" method="POST" class="space-y-4">
+                <div>
+                    <input type="text" placeholder="Name"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
+                        required>
+                </div>
+                <div>
+                    <input type="email" placeholder="Email"
+                        class="w-full p-3 border border-gray-300 rounded-lg focus:border-bni-red focus:ring-bni-red"
+                        required>
+                </div>
+                <button type="submit" id="invitation-form-submit"
+                    class="w-full bg-bni-red text-white font-bold py-3 rounded-lg hover:bg-red-700 transition duration-300">
+                    Send
+                </button>
+            </form>
+
+            <p class="text-xs text-center text-gray-400 mt-4">
+                This site is protected by reCAPTCHA and the Google <a href="#"
+                    class="hover:text-bni-red underline">Privacy Policy</a> and <a href="#"
+                    class="hover:text-bni-red underline">Terms of Service</a> apply.
+            </p>
+        </div>
+    </div>
+
+    <footer class="bg-gray-900 py-12 text-gray-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-gray-700 pb-8 mb-8">
+
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <img src="./images/BNI.jpg" alt="BNI AURA Logo" class="h-8 w-auto object-contain"
+                            onerror="this.onerror=null; this.src='https://placehold.co/120x30/ef4444/ffffff?text=BNI+AURA+Logo'">
+                    </div>
+                    <p class="text-sm">
+                        Unlock new opportunities, forge valuable partnerships, and drive your business forward with BNI
+                        AURA.
+                    </p>
+                    <p class="text-xs mt-1 text-bni-red font-semibold">
+                        We believe in Givers Gain®.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Quick Links</h4>
+                    <nav class="space-y-2 text-sm">
+                        <a href="index.html" class="block hover:text-red-400 transition">Home</a>
+                        <a href="about.html" class="block hover:text-red-400 transition">About Us</a>
+                        <a href="categories.html" class="block hover:text-red-400 transition">Categories</a>
+                        <a href="invite.html" class="block hover:text-red-400 transition">Get Invited</a>
+                        <a href="join.html" class="block hover:text-red-400 transition">Join Us</a>
+                    </nav>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Contact</h4>
+                    <div class="space-y-2 text-sm">
+                        <p class="flex items-start space-x-2">
+                            <svg class="w-5 h-5 mt-1 text-red-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>
+                                BNI AURA Chapter Office,<br>
+                                123 Referral Blvd, Suite 400,<br>
+                                Business City, CA 90210
+                            </span>
+                        </p>
+                        <a href="mailto:bniaurablr@gmail.com"
+                            class="flex items-center space-x-2 hover:text-red-400 transition">
+                            <svg class="w-5 h-5 text-red-500 flex-shrink-0" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            <span>bniaurablr@gmail.com</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4 border-b border-bni-red pb-1">Connect</h4>
+                    <div class="flex space-x-4">
+
+
+                        <a href="https://www.instagram.com/bniaura/?igsh=MWU0N3U0bnlyMnUzcA%3D%3D#"
+                            class="text-red-400 hover:text-white transition">
+                            <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.773 1.58 4.92 4.85.058 1.265.07 1.645.07 4.85s-.012 3.584-.07 4.85c-.147 3.27-1.678 4.773-4.92 4.92-1.266.058-1.645.07-4.85.07s-3.584-.012-4.85-.07c-3.27-.147-4.773-1.678-4.92-4.92-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.147-3.27 1.678-4.773 4.92-4.92 1.265-.058 1.645-.07 4.85-.07zm0-2.163C8.715 0 8.358.012 7.1.07 3.655.22 1.3 2.64 1.15 6.1c-.058 1.265-.07 1.645-.07 4.85s.012 3.584.07 4.85c.15 3.45 2.57 5.869 6.1 6.019 1.265.058 1.645.07 4.85.07s3.584-.012 4.85-.07c3.45-.15 5.869-2.57 6.019-6.1.058-1.265.07-1.645.07-4.85s-.012-3.584-.07-4.85c-.15-3.45-2.57-5.869-6.1-6.019-1.265-.058-1.645-.07-4.85-.07zm0 6a4.5 4.5 0 100 9 4.5 4.5 0 000-9zm0 2a2.5 2.5 0 110 5 2.5 2.5 0 010-5zm5.5-2.75a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z" />
+                            </svg>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center text-sm">
+                <p>Copyright &copy; 2025 BNI AURA All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Mobile Menu Toggle JS (Main Hamburger) ---
+            const menuBtn = document.getElementById("menuBtn");
+            const mobileMenu = document.getElementById("mobileMenu");
+            const mobileMenuButton = document.getElementById('mobileMenuButton'); // Hamburger Icon
+            const mobileSubCategories = document.getElementById('mobileSubCategories');
+            const categoryToggle = document.getElementById('categoryToggle');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            // --- Floating Chat/Modal Elements ---
+            const chatBtn = document.getElementById("floating-chat-btn");
+            const chatModal = document.getElementById("chat-modal");
+            const closeChatBtn = document.getElementById("close-chat-btn");
+            const modalOverlay = chatModal.querySelector('.modal-overlay');
+            const submitButton = document.getElementById("invitation-form-submit");
+
+
+            function updateMobileMenuIcon(isOpen) {
+                if (mobileMenuButton) {
+                    mobileMenuButton.innerHTML = isOpen
+                        ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>'
+                        : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>';
+                }
+            }
+
+            menuBtn.addEventListener("click", () => {
+                const isHidden = mobileMenu.classList.contains("hidden");
+                mobileMenu.classList.toggle("hidden");
+                updateMobileMenuIcon(isHidden);
+            });
+
+            // --- Mobile Categories Accordion Toggle JS ---
+            if (categoryToggle && mobileSubCategories && toggleIcon) {
+                categoryToggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const isHidden = mobileSubCategories.classList.contains('hidden');
+                    mobileSubCategories.classList.toggle('hidden');
+                    toggleIcon.classList.toggle('rotate-90', isHidden);
+                });
+            }
+
+            // --- Close Mobile Menu on Link Click ---
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (link.id !== 'categoryToggle') {
+                        if (mobileSubCategories) mobileSubCategories.classList.add('hidden');
+                        if (toggleIcon) toggleIcon.classList.remove('rotate-90');
+                        mobileMenu.classList.add('hidden');
+                        updateMobileMenuIcon(false);
+                    }
+                });
+            });
+
+            // --- Floating Chat/Modal JS (Global) ---
+            const toggleModal = (show) => {
+                if (show) {
+                    chatModal.classList.remove('hidden');
+                    chatModal.classList.add('show-modal'); // Use this class to control visibility/animation
+                } else {
+                    chatModal.classList.remove('show-modal');
+                    chatModal.classList.add('hidden');
+                }
+            };
+
+            if (chatBtn) {
+                chatBtn.addEventListener("click", () => toggleModal(true));
+            }
+            if (closeChatBtn) {
+                closeChatBtn.addEventListener("click", () => toggleModal(false));
+            }
+            if (modalOverlay) {
+                // Clicking the overlay should hide the modal
+                modalOverlay.addEventListener("click", () => toggleModal(false));
+            }
+
+            // Add click listener to the Submit Request button on the page form
+            if (submitButton) {
+                submitButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // In a real application, form data would be validated and submitted here.
+                    alert("Invitation request submitted successfully! A host will contact you shortly.");
+                    toggleModal(false); // Close modal after simulated submission
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
